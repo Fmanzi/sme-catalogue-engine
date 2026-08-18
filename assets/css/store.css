@@ -205,7 +205,7 @@ body { color: var(--text); font-family: "Poppins", sans-serif; }
 /* ---------- shop banner ---------- */
 
 .shop-banner { padding: 24px 0 0; }
-.shop-banner-inner { display: flex; align-items: center; background: var(--ink); background-size: cover; background-position: center; border-radius: 10px; overflow: hidden; min-height: 120px; }
+.shop-banner-inner { display: flex; align-items: center; background: var(--ink); background-size: cover; background-position: center; min-height: 120px; }
 .shop-banner-inner[style] { min-height: 160px; }
 .shop-banner-text { padding: 28px 36px; max-width: 520px; }
 .shop-banner-kicker { display: inline-block; text-transform: uppercase; letter-spacing: 3px; font-size: var(--fs-9); color: var(--gold-light); font-weight: 600; margin-bottom: 6px; }

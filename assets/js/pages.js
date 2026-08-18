@@ -138,14 +138,11 @@
     if (!el) return;
     el.innerHTML = `
       <div class="shop-banner">
-        <div class="container-wide">
-          <div class="shop-banner-inner"${banner.bg ? ` style="background-image:url('${esc(banner.bg)}')"` : ''}>
-            <div class="shop-banner-text">
-              ${banner.kicker ? `<span class="shop-banner-kicker">${esc(banner.kicker)}</span>` : ''}
-              <h2 class="shop-banner-title">${esc(banner.title)}</h2>
-              ${banner.text ? `<p class="shop-banner-desc">${esc(banner.text)}</p>` : ''}
-              ${banner.buttonText && banner.link ? `<a href="${esc(banner.link)}" class="btn btn-primary shop-banner-btn">${esc(banner.buttonText)}</a>` : ''}
-            </div>
+        <div class="shop-banner-inner"${banner.bg ? ` style="background-image:url('${esc(banner.bg)}')"` : ''}>
+          <div class="shop-banner-text">
+            ${banner.kicker ? `<span class="shop-banner-kicker">${esc(banner.kicker)}</span>` : ''}
+            <h2 class="shop-banner-title">${esc(banner.title)}</h2>
+            ${banner.text ? `<p class="shop-banner-desc">${esc(banner.text)}</p>` : ''}
           </div>
         </div>
       </div>`;
