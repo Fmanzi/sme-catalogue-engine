@@ -32,5 +32,13 @@
     "title": "Contact Us",
     "subtitle": "We'd love to hear from you.",
     "subjects": ["General enquiry", "Order help", "Returns", "Something else"]
+  },
+  "shopBanner": {
+    "kicker": "Promotion",
+    "title": "Free delivery on orders over KSh 5,000",
+    "text": "Same-day delivery in Nairobi. Countrywide via courier.",
+    "buttonText": "Shop now",
+    "link": "/",
+    "bg": ""
   }
 }

@@ -4,6 +4,7 @@ product/
 assets/js/client-data.js
 robots.txt
 sitemap.xml
+.vscode/
 .DS_Store
 Thumbs.db
 *.log

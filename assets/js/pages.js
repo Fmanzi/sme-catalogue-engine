@@ -29,8 +29,14 @@
       '',
       ...items.map((i, idx) => `${idx + 1}) ${i.product.name} — Qty ${i.quantity} × ${UI.money(i.product.salePrice || i.product.price)} = ${UI.money(i.lineTotal)}`)
     ];
+    if (opts && opts.shipping) {
+      lines.push('', `Shipping: ${opts.shipping.label} — ${opts.shipping.fee ? UI.money(opts.shipping.fee) : 'Free'}`);
+    }
     if (opts && opts.note) lines.push(`Note: ${opts.note}`);
-    lines.push('', `Subtotal: ${UI.money(subtotal)}`, 'Please confirm availability, delivery and payment options. Thank you!');
+    const shipFee = (opts && opts.shipping) ? opts.shipping.fee : 0;
+    lines.push('', `Subtotal: ${UI.money(subtotal)}`);
+    if (shipFee) lines.push(`Shipping: ${UI.money(shipFee)}`);
+    lines.push(`Total: ${UI.money(subtotal + shipFee)}`, '', 'Please confirm availability and delivery. Thank you!');
     return 'https://wa.me/' + waNumber() + '?text=' + encodeURIComponent(lines.join('\n'));
   };
 
@@ -117,8 +123,37 @@
     setInterval(() => show((current + 1) % slides.length), 6000);
   }
 
+  function renderShopBanner() {
+    const el = $('#shop-banner');
+    const pageHeader = document.querySelector('.page-header');
+    const s = Store.settings();
+    const b = s.business || {};
+    const banner = b.shopBanner || {};
+    if (!banner.title) {
+      if (pageHeader) pageHeader.style.display = '';
+      if (el) el.style.display = 'none';
+      return;
+    }
+    if (pageHeader) pageHeader.style.display = 'none';
+    if (!el) return;
+    el.innerHTML = `
+      <div class="shop-banner">
+        <div class="container-wide">
+          <div class="shop-banner-inner"${banner.bg ? ` style="background-image:url('${esc(banner.bg)}')"` : ''}>
+            <div class="shop-banner-text">
+              ${banner.kicker ? `<span class="shop-banner-kicker">${esc(banner.kicker)}</span>` : ''}
+              <h2 class="shop-banner-title">${esc(banner.title)}</h2>
+              ${banner.text ? `<p class="shop-banner-desc">${esc(banner.text)}</p>` : ''}
+              ${banner.buttonText && banner.link ? `<a href="${esc(banner.link)}" class="btn btn-primary shop-banner-btn">${esc(banner.buttonText)}</a>` : ''}
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
   function renderHome() {
     renderHero();
+    renderShopBanner();
     renderDealOfDay();
 
     const newArrivals = $('#new-arrivals-grid');
@@ -247,9 +282,9 @@
         const open = panel.classList.toggle('is-open');
         toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-      /* auto-expand when a filter has already been applied (e.g. deep links from a category) */
+      /* auto-expand when a filter has already been applied (e.g. deep links from a category) — desktop only */
       const hasActiveFilters = ['q', 'cat', 'gender', 'brand', 'movement', 'status', 'min', 'max', 'collection'].some(k => params.get(k));
-      if (hasActiveFilters) {
+      if (hasActiveFilters && global.innerWidth > 1023) {
         panel.classList.add('is-open');
         toggleBtn.setAttribute('aria-expanded', 'true');
       }
@@ -481,38 +516,38 @@
       return;
     }
 
-    const tbody = items.map(i => `
-      <tr data-cart-row="${i.productId}">
-        <td><div class="cart-product">
-          <a href="product.html?id=${encodeURIComponent(i.productId)}"><img src="${UI.img(i.product.mainImage)}" alt="${esc(i.product.name)}"></a>
-          <div><a href="product.html?id=${encodeURIComponent(i.productId)}" class="cp-name">${esc(i.product.name)}</a>
-          <p class="cp-sku">${esc(i.product.sku)}</p></div>
-        </div></td>
-        <td>${UI.money(i.product.salePrice || i.product.price)}</td>
-        <td><div class="qty-box">
-          <button data-cart-dec="${i.productId}">−</button>
-          <input value="${i.quantity}" data-cart-qty="${i.productId}" inputmode="numeric">
-          <button data-cart-inc="${i.productId}">+</button>
-        </div></td>
-        <td class="cart-total-price">${UI.money(i.lineTotal)}</td>
-        <td><button class="cart-remove" data-cart-remove="${i.productId}" aria-label="Remove"><ion-icon name="trash-outline"></ion-icon></button></td>
-      </tr>`).join('');
+    const cards = items.map(i => `
+      <div class="cart-card" data-cart-row="${i.productId}">
+        <a href="product.html?id=${encodeURIComponent(i.productId)}" class="cart-card-img">
+          <img src="${UI.img(i.product.mainImage)}" alt="${esc(i.product.name)}">
+        </a>
+        <div class="cart-card-top">
+          <a href="product.html?id=${encodeURIComponent(i.productId)}" class="cart-card-name">${esc(i.product.name)}</a>
+          <button class="cart-card-remove" data-cart-remove="${i.productId}" aria-label="Remove"><ion-icon name="trash-outline"></ion-icon></button>
+        </div>
+        <div class="cart-card-row">
+          <span class="cart-card-price">${UI.money(i.product.salePrice || i.product.price)}</span>
+          <div class="qty-box">
+            <button data-cart-dec="${i.productId}">−</button>
+            <input value="${i.quantity}" data-cart-qty="${i.productId}" inputmode="numeric">
+            <button data-cart-inc="${i.productId}">+</button>
+          </div>
+          <span class="cart-card-total">${UI.money(i.lineTotal)}</span>
+        </div>
+      </div>`).join('');
 
     wrap.innerHTML = `
       <div class="cart-layout">
-        <div style="overflow-x:auto">
-          <table class="cart-table">
-            <thead><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th><th></th></tr></thead>
-            <tbody>${tbody}</tbody>
-          </table>
-          <a href="/" class="btn btn-outline" style="margin-top:16px"><ion-icon name="arrow-back-outline"></ion-icon> Continue shopping</a>
+        <div class="cart-items">
+          ${cards}
+          <a href="/" class="btn btn-outline cart-continue"><ion-icon name="arrow-back-outline"></ion-icon> Continue shopping</a>
         </div>
         <aside class="summary-card">
           <h3>Order Summary</h3>
           <div class="summary-row"><span>Subtotal</span><span data-sum-subtotal>${UI.money(subtotal)}</span></div>
           <div class="summary-row"><span>Shipping</span><span data-sum-shipping>Calculated at checkout</span></div>
           <div class="summary-row total"><span>Estimated total</span><span data-sum-total>${UI.money(subtotal)}</span></div>
-          <p class="pod-note"><ion-icon name="wallet-outline"></ion-icon> Pay on delivery — M-Pesa or cash. No prepayment.</p>
+          <p class="pod-note"><ion-icon name="wallet-outline"></ion-icon> Pay on delivery — M-Pesa or cash.</p>
           <a href="checkout.html" class="btn btn-outline btn-block" style="margin-top:10px">Proceed to Checkout</a>
         </aside>
       </div>`;
@@ -580,7 +615,7 @@
           </div>
           <div class="form-section">
             <h3><span class="step-num">3</span> Payment — on delivery</h3>
-            <p class="pod-banner"><ion-icon name="wallet-outline"></ion-icon> Payment is on delivery. No prepayment required — pay with M-Pesa or cash when your order arrives.</p>
+            <p class="pod-banner"><ion-icon name="wallet-outline"></ion-icon> Payment is on delivery — pay with M-Pesa or cash when your order arrives.</p>
             <label class="pay-option selected"><input type="radio" name="paymentMethod" value="M-Pesa on delivery" checked><span><span class="pay-label">M-Pesa — pay on delivery</span><br><span class="pay-note">We send the M-Pesa payment request when your order arrives</span></span></label>
             <label class="pay-option"><input type="radio" name="paymentMethod" value="Cash on delivery"><span><span class="pay-label">Cash on delivery</span><br><span class="pay-note">Pay cash to the rider or at store pickup</span></span></label>
             <div class="form-field" style="margin-top:12px"><label>Order notes (optional)</label><textarea name="notes" rows="2"></textarea></div>
@@ -684,16 +719,81 @@
     });
   }
 
+  const SHIPPING_OPTIONS = [
+    { id: 'rider-nairobi', label: 'Rider — Nairobi', fee: 300, icon: 'bicycle-outline', desc: 'Delivered to your door by rider' },
+    { id: 'g4s-outside', label: 'G4S — outside Nairobi', fee: 600, icon: 'car-outline', desc: 'Countrywide via G4S courier' },
+    { id: 'pickup', label: 'Pickup at shop', fee: 0, icon: 'storefront-outline', desc: 'Collect from our store, free' }
+  ];
+
   function initWhatsAppCheckout() {
     const { items, subtotal } = UI.cartDetail();
     const wrap = $('#checkout-root');
     if (!wrap) return;
     if (!items.length) { wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your cart is empty.</p><a href="/" class="btn btn-primary">Browse products</a></div>`; return; }
     const business = Store.settings().business || {};
-    wrap.innerHTML = `<div class="checkout-layout"><div class="form-section"><h3>Send your order on WhatsApp</h3><p>${esc(((business.commerce || {}).deliveryInfo) || 'Our team will confirm availability, delivery and payment directly on WhatsApp.')}</p><div class="form-field"><label for="wa-order-note">Order note (optional)</label><textarea id="wa-order-note" rows="3" placeholder="For example: preferred delivery area or colour preference"></textarea></div><button type="button" class="btn wa-btn btn-block" data-wa-checkout>Checkout on WhatsApp</button><p class="pod-note">No account or payment details are required on this website.</p></div><aside class="summary-card order-summary"><h3>Your cart</h3>${items.map(item => `<div class="summary-item"><img src="${UI.img(item.product.mainImage)}" alt="${esc(item.product.name)}" loading="lazy"><div><p class="si-name">${esc(item.product.name)}</p><p class="si-meta">Qty ${item.quantity} × ${UI.money(item.product.salePrice || item.product.price)}</p></div></div>`).join('')}<div class="summary-row total"><span>Subtotal</span><span>${UI.money(subtotal)}</span></div></aside></div>`;
+    const deliveryInfo = ((business.commerce || {}).deliveryInfo) || 'Our team will confirm availability, delivery and payment directly on WhatsApp.';
+    const initFee = SHIPPING_OPTIONS[0].fee;
+
+    const shipCards = SHIPPING_OPTIONS.map((opt, idx) => `
+      <label class="ship-card${idx === 0 ? ' selected' : ''}">
+        <input type="radio" name="shipping" value="${opt.id}" ${idx === 0 ? 'checked' : ''}>
+        <ion-icon name="${opt.icon}" class="ship-icon"></ion-icon>
+        <span class="ship-card-label">${esc(opt.label)}</span>
+        <span class="ship-card-fee">${opt.fee ? UI.money(opt.fee) : 'Free'}</span>
+        <span class="ship-card-desc">${esc(opt.desc)}</span>
+      </label>`).join('');
+
+    wrap.innerHTML = `
+      <div class="checkout-layout">
+        <div class="form-section ck-left">
+          <p class="pod-banner"><ion-icon name="wallet-outline"></ion-icon> Pay on delivery — M-Pesa or cash.</p>
+
+          <h3><span class="step-num">1</span> Shipping method</h3>
+          <div class="ship-grid">${shipCards}</div>
+
+          <h3 style="margin-top:24px"><span class="step-num">2</span> Delivery details</h3>
+          <p class="ck-delivery-info">${esc(deliveryInfo)}</p>
+
+          <div class="form-field" style="margin-top:18px">
+            <label for="wa-order-note">Order note (optional)</label>
+            <textarea id="wa-order-note" rows="3" placeholder="For example: preferred delivery area or colour preference"></textarea>
+          </div>
+
+          <button type="button" class="btn wa-btn btn-block ck-wa-btn" data-wa-checkout>
+            <ion-icon name="logo-whatsapp"></ion-icon> Checkout on WhatsApp
+          </button>
+        </div>
+
+        <aside class="summary-card order-summary ck-right">
+          <h3>Your cart</h3>
+          ${items.map(item => `
+            <div class="summary-item">
+              <img src="${UI.img(item.product.mainImage)}" alt="${esc(item.product.name)}" loading="lazy">
+              <div>
+                <p class="si-name">${esc(item.product.name)}</p>
+                <p class="si-meta">Qty ${item.quantity} × ${UI.money(item.product.salePrice || item.product.price)}</p>
+              </div>
+            </div>`).join('')}
+          <div class="summary-row"><span>Subtotal</span><span>${UI.money(subtotal)}</span></div>
+          <div class="summary-row" data-ship-row><span>Shipping</span><span data-ship-fee>${UI.money(initFee)}</span></div>
+          <div class="summary-row total"><span>Total</span><span data-total-with-ship>${UI.money(subtotal + initFee)}</span></div>
+        </aside>
+      </div>`;
+
+    /* shipping card selection */
+    wrap.querySelectorAll('[name="shipping"]').forEach(r => r.addEventListener('change', () => {
+      wrap.querySelectorAll('.ship-card').forEach(c => c.classList.toggle('selected', c.querySelector('input').checked));
+      const fee = SHIPPING_OPTIONS.find(o => o.id === wrap.querySelector('[name="shipping"]:checked').value).fee;
+      $('[data-ship-fee]', wrap).textContent = fee ? UI.money(fee) : 'Free';
+      $('[data-total-with-ship]', wrap).textContent = UI.money(subtotal + fee);
+    }));
+
+    /* whatsapp checkout */
     $('[data-wa-checkout]', wrap).addEventListener('click', () => {
       const note = $('#wa-order-note', wrap).value.trim();
-      global.open(waOrderLink(items, subtotal, { note }), '_blank', 'noopener');
+      const shipId = wrap.querySelector('[name="shipping"]:checked').value;
+      const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
+      global.open(waOrderLink(items, subtotal, { note, shipping: shipOpt }), '_blank', 'noopener');
     });
   }
 
@@ -959,7 +1059,7 @@
     try {
       switch (page) {
         case 'home': renderHome(); break;
-        case 'shop': initShopFilters(); renderShop(); break;
+        case 'shop': renderShopBanner(); initShopFilters(); renderShop(); break;
         case 'listing': renderShop(); break;
         case 'collections': initCollections(); break;
         case 'product': initProduct(); break;

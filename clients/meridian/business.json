@@ -79,5 +79,13 @@
     "title": "Contact Us",
     "subtitle": "Questions, sizing help or service requests — our concierge team replies within one business day.",
     "subjects": ["Order enquiry", "Returns & exchanges", "Warranty & servicing", "Sizing advice", "Something else"]
+  },
+  "shopBanner": {
+    "kicker": "Premium Timepieces",
+    "title": "Browse, add to bag, confirm on WhatsApp",
+    "text": "Same-day delivery in Nairobi. Countrywide via G4S courier. Pay on delivery — M-Pesa or cash.",
+    "buttonText": "",
+    "link": "",
+    "bg": ""
   }
 }

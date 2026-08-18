@@ -386,8 +386,11 @@
           stockStatus: p.availability || 'in_stock',
           status: p.status || 'active',
           brandId: p.brandId || null,
+          categoryId: p.categoryId || null,
+          collectionIds: p.collectionIds || [],
           attributes: p.attributes || {},
-          tags: p.tags || []
+          tags: p.tags || [],
+          stockQuantity: p.stockQuantity != null ? p.stockQuantity : 10
         }));
         memory.data = {
           version: 3, products, categories: catalogue.categories || [], brands: catalogue.brands || [], collections: [],
@@ -400,6 +403,7 @@
             paymentProviders: { whatsapp: { enabled: true, number: (business.contact || {}).whatsapp || '', label: (business.contact || {}).phone || '' },
             },
             hero: business.hero || {}, about: business.about || {}, contactPage: business.contactPage || {},
+            shopBanner: business.shopBanner || {},
             social: (business.site || {}).social || {},
             defaultSeoTitle: (business.site || {}).defaultSeoTitle || '', defaultSeoDescription: (business.site || {}).defaultSeoDescription || '',
             business

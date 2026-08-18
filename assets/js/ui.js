@@ -214,7 +214,7 @@
 
   AnonUI.currentPage = () => global.location.pathname.split('/').pop().toLowerCase() || 'index.html';
 
-  AnonUI.headerHTML = () => {
+  AnonUI.headerHTML = (showSearch) => {
     const s = Store.settings();
     const business = s.business || {};
     const social = ((business.site || {}).social) || {};
@@ -237,10 +237,10 @@
       <a href="/" class="header-logo">
         <img src="${AnonUI.escapeHtml(s.logo || 'assets/images/logo/logo.svg')}" alt="${AnonUI.escapeHtml(s.storeName)}" width="220" height="56">
       </a>
-      <form class="header-search-container" action="search.html" method="get" autocomplete="off">
+      ${showSearch ? `<form class="header-search-container" action="search.html" method="get" autocomplete="off">
         <input type="search" name="q" class="search-field" placeholder="Search products, brands and categories" aria-label="Search products">
         <button type="submit" class="search-btn"><ion-icon name="search-outline"></ion-icon></button>
-      </form>
+      </form>` : ''}
       <div class="header-user-actions">
         <a href="cart.html" class="action-btn" title="Shopping bag" aria-label="Shopping bag"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count>0</span></a>
       </div>
@@ -291,7 +291,9 @@
   AnonUI.injectChrome = () => {
     const header = $('#site-header');
     const footer = $('#site-footer');
-    if (header) header.innerHTML = AnonUI.headerHTML();
+    const page = (document.body.dataset.page || '');
+    const searchPages = ['home', 'shop', 'listing', 'search', 'best-sellers', 'new-arrivals', 'collections', 'mens', 'womens', 'unisex', 'product'];
+    if (header) header.innerHTML = AnonUI.headerHTML(searchPages.includes(page));
     if (footer) footer.innerHTML = AnonUI.footerHTML();
     AnonUI.updateBadges();
     bindChromeEvents();
