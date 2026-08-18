@@ -226,11 +226,75 @@ Open `index.html` in a browser (or use a local server). Check:
 
 ### Step 10: Deploy to Cloudflare Pages
 
-1. Commit the repository to Git (make sure `node_modules/` and `admin/` are excluded)
-2. Connect the repo to Cloudflare Pages
-3. Set build command: `npm run build:data -- <client-id> && npm run build:pages -- <client-id> && npm run build:seo -- <client-id>`
-4. Set output directory: `/` (root)
-5. Add custom domain in Cloudflare Pages settings
+1. Commit and push to GitHub:
+   ```bash
+   git add -A && git commit -m "feat: add <client-id> client"
+   git push origin main
+   ```
+2. In Cloudflare Dashboard → Pages → Create a project → Connect the GitHub repo
+3. Configure the build:
+   - **Production branch:** `main`
+   - **Build command:**
+     ```
+     npm run build:data -- <client-id> && npm run build:pages -- <client-id> && npm run build:seo -- <client-id>
+     ```
+   - **Build output directory:** `/` (root)
+4. Deploy
+5. Add custom domain in Cloudflare Pages → project → Custom domains
+
+### Step 11: Set up custom domain
+
+Once the client has a domain:
+
+1. Update `clients/<client-id>/business.json`:
+   ```json
+   "site": {
+     "domain": "their-domain.co.ke"
+   }
+   ```
+2. Rebuild SEO: `npm run build:seo -- <client-id>`
+3. Commit and push: `git add -A && git commit -m "feat: set domain for <client-id>" && git push`
+4. In Cloudflare Pages → Custom domains → add the domain
+5. Update DNS records as instructed by Cloudflare (automatic if domain is on Cloudflare)
+
+---
+
+## GitHub & Deployment Reference
+
+### Repository setup (first time)
+
+```bash
+git remote add origin https://github.com/<your-username>/<repo-name>.git
+git branch -M main
+git push -u origin main
+```
+
+**Suggested repo name:** `sme-catalogue-engine`
+
+### How deployment works
+
+- The repo is deployed to **Cloudflare Pages** (free tier is fine)
+- Each push to `main` triggers a new deployment
+- The build command generates `client-data.js`, product pages, and SEO files
+- The `product/` directory (300 static pages) is generated during build, not stored in git
+- Each client gets its own Cloudflare Pages project (or a subdirectory on a shared project)
+
+### Per-client build commands
+
+| Client | Build command |
+|--------|---------------|
+| Meridian | `npm run build:data -- meridian && npm run build:pages -- meridian && npm run build:seo -- meridian` |
+| Acme Electronics | `npm run build:data -- acme-electronics && npm run build:pages -- acme-electronics && npm run build:seo -- acme-electronics` |
+| Any client | `npm run build:data -- <id> && npm run build:pages -- <id> && npm run build:seo -- <id>` |
+
+### Gitignored files (not in repo, generated during build)
+
+- `node_modules/`
+- `admin/` — local prototype, not for deployment
+- `product/` — static product pages
+- `assets/js/client-data.js` — the data bundle
+- `robots.txt`, `sitemap.xml` — SEO files
+- `.env` / `.env.*` — secrets
 
 ---
 
