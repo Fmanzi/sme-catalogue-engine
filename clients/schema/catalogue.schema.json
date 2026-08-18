@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SME catalogue",
+  "type": "object",
+  "required": ["categories", "products"],
+  "properties": {
+    "categories": { "type": "array", "items": { "type": "object", "required": ["id", "name", "slug"] } },
+    "brands": { "type": "array", "items": { "type": "object", "required": ["id", "name", "slug"] } },
+    "products": { "type": "array", "items": { "type": "object", "required": ["id", "slug", "name", "price", "categoryId", "images", "availability"] } }
+  }
+}

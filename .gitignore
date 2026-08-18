@@ -1,0 +1,11 @@
+node_modules/
+admin/
+product/
+assets/js/client-data.js
+robots.txt
+sitemap.xml
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*

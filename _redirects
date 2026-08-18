@@ -1,0 +1,6 @@
+# Legacy public product URLs continue to render through the static fallback.
+/product.html /product/ 302
+/shop.html / 301
+/shop/ / 301
+/wishlist.html / 302
+/wishlist/ / 302

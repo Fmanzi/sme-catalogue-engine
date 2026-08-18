@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="canonical" href="/">
+  <title>Shop</title>
+</head>
+<body>
+  <p>Our shop has moved to <a id="shop-home-link" href="/">the homepage</a>.</p>
+  <script>
+    const destination = '/' + window.location.search + window.location.hash;
+    document.getElementById('shop-home-link').href = destination;
+    window.location.replace(destination);
+  </script>
+</body>
+</html>

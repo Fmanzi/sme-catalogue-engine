@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" role="img" aria-label="MERIDIAN Fine Timepieces">
+  <circle cx="30" cy="30" r="22" fill="none" stroke="#b8874a" stroke-width="2.4"/>
+  <circle cx="30" cy="30" r="16" fill="none" stroke="#2f3135" stroke-width="1"/>
+  <g stroke="#2f3135" stroke-width="1.6" stroke-linecap="round">
+    <line x1="30" y1="18" x2="30" y2="22"/><line x1="30" y1="38" x2="30" y2="42"/>
+    <line x1="18" y1="30" x2="22" y2="30"/><line x1="38" y1="30" x2="42" y2="30"/>
+  </g>
+  <g transform="rotate(-30 30 30)"><rect x="28.4" y="14" width="3.2" height="16" rx="1.6" fill="#2f3135"/></g>
+  <text x="62" y="30" font-family="Georgia, serif" font-size="24" letter-spacing="3" fill="#1f1f22">MERIDIAN</text>
+  <text x="64" y="46" font-family="Georgia, serif" font-size="9" letter-spacing="4" fill="#b8874a">FINE TIMEPIECES</text>
+</svg>

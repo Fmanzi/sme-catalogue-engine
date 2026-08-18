@@ -1,0 +1,2 @@
+id,slug,name,sku,price,compareAtPrice,currency,category,subcategory,brand,shortDescription,description,availability,featured,tags,attributes,images,seoTitle,seoDescription
+chair-001,oak-dining-chair,Oak Dining Chair,CHR-001,8500,,KES,Chairs,Dining,Acme,"Solid oak dining chair","A sturdy solid oak dining chair for daily dining.",in_stock,true,"dining,oak","material=Oak|colour=Natural|dimensions=45 x 50 x 85 cm","oak-dining-chair-main.jpg|oak-dining-chair-side.jpg","Oak Dining Chair | Acme","Shop the solid oak dining chair and order on WhatsApp."

@@ -1,0 +1,19 @@
+{
+  "name": "sme-catalogue-engine",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "export:meridian": "node tools/export-meridian-client.js",
+    "build:data": "node tools/build-client-data.js",
+    "build:pages": "node tools/build-static-pages.js",
+    "build:seo": "node tools/build-seo.js",
+    "import:catalogue": "node tools/import-catalogue.js",
+    "images:process": "node tools/process-images.js",
+    "validate": "node tools/validate-client.js",
+    "mock:catalogue": "node tools/generate-mock-catalogue.js"
+  },
+  "devDependencies": {
+    "ionicons": "^5.5.2",
+    "sharp": "^0.34.0"
+  }
+}

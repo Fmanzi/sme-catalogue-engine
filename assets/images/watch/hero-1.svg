@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Meridian timepiece">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d0f14"/><stop offset="100%" stop-color="#1d1a26"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.78" cy="0.5" r="0.42">
+      <stop offset="0%" stop-color="#c9a04c" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#c9a04c" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#c9a04c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="caseH" cx="0.38" cy="0.32" r="0.9">
+      <stop offset="0%" stop-color="#d6d9de"/><stop offset="70%" stop-color="#d6d9de"/><stop offset="100%" stop-color="#6f757e"/>
+    </radialGradient>
+    <linearGradient id="dialH" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8f5ec"/><stop offset="100%" stop-color="#e6e0d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="520" fill="url(#bg)"/>
+  <rect width="1400" height="520" fill="url(#halo)"/>
+  <circle cx="1150" cy="260" r="300" fill="none" stroke="#c9a04c" stroke-opacity="0.18" stroke-width="1.5"/>
+  <circle cx="1150" cy="260" r="360" fill="none" stroke="#c9a04c" stroke-opacity="0.10" stroke-width="1.5"/>
+  <circle cx="1150" cy="260" r="252" fill="none" stroke="#c9a04c" stroke-opacity="0.28" stroke-width="1"/>
+  <!-- watch -->
+  <g transform="translate(1010,120) scale(1.18)">
+    <rect x="-54" y="-90" width="108" height="84" rx="20" fill="#32271b"/>
+    <rect x="-54" y="6" width="108" height="84" rx="20" fill="#32271b"/>
+    <circle r="112" fill="url(#caseH)"/>
+    <circle r="102" fill="none" stroke="#aab0b9" stroke-width="6"/>
+    <circle r="88" fill="url(#dialH)"/>
+    <g>
+      <line x1="0.0" y1="-62.0" x2="0.0" y2="-70.0" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="31.0" y1="-53.7" x2="35.0" y2="-60.6" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="53.7" y1="-31.0" x2="60.6" y2="-35.0" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="62.0" y1="-0.0" x2="70.0" y2="-0.0" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="53.7" y1="31.0" x2="60.6" y2="35.0" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="31.0" y1="53.7" x2="35.0" y2="60.6" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="0.0" y1="62.0" x2="0.0" y2="70.0" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="-31.0" y1="53.7" x2="-35.0" y2="60.6" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="-53.7" y1="31.0" x2="-60.6" y2="35.0" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="-62.0" y1="0.0" x2="-70.0" y2="0.0" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="-53.7" y1="-31.0" x2="-60.6" y2="-35.0" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/><line x1="-31.0" y1="-53.7" x2="-35.0" y2="-60.6" stroke="#3a3d42" stroke-width="3.4" stroke-linecap="round"/>
+    </g>
+    <g transform="rotate(-35)"><rect x="-3" y="-50" width="6" height="54" rx="3" fill="#3a3d42"/></g>
+    <g transform="rotate(14)"><rect x="-1.4" y="-66" width="2.8" height="72" rx="1.4" fill="#3a3d42"/></g>
+    <line x1="0" y1="4" x2="0" y2="-60" stroke="#c9a04c" stroke-width="1.6" transform="rotate(120)"/>
+    <circle r="5.6" fill="#3a3d42"/>
+    <text y="48" font-family="Georgia,serif" font-size="11" letter-spacing="3.5" fill="#8b8377" text-anchor="middle">MERIDIAN</text>
+  </g>
+</svg>

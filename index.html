@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop</title>
+  <meta name="description" content="">
+  <link rel="shortcut icon" href="./assets/images/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/style-prefix.css">
+  <link rel="stylesheet" href="./assets/css/store.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-page="shop">
+  <header id="site-header"></header>
+
+  <main>
+    <div class="page-header">
+      <p class="page-kicker">The Collection</p>
+      <h1 class="page-title">Shop All Products</h1>
+      <p class="page-sub">Automatic, mechanical and quartz timepieces — filter by movement, gender, brand and price.</p>
+    </div>
+
+    <div class="container-wide">
+      <div class="shop-layout">
+        <aside class="filter-panel" id="shop-filters">
+          <button type="button" class="filter-toggle" id="filter-toggle" aria-expanded="false">
+            Filters <ion-icon name="funnel-outline"></ion-icon>
+          </button>
+          <div class="filter-groups">
+            <h3 class="filter-title">Filters</h3>
+            <div class="filter-group"><h4>Category</h4><div id="filter-cats"></div></div>
+            <div class="filter-group"><h4>Brand</h4><div id="filter-brands"></div></div>
+            <div class="filter-group"><h4>Price</h4><div id="filter-price"></div></div>
+            <div class="filter-group"><h4>Status</h4><div id="filter-status"></div></div>
+            <button class="btn btn-outline btn-block" id="filter-clear" style="margin-top:6px">Clear all filters</button>
+          </div>
+        </aside>
+
+        <div>
+          <div class="shop-toolbar">
+            <p class="result-count" id="result-count"></p>
+            <label style="display:flex;align-items:center;gap:10px">
+              <span style="font-size:var(--fs-8);color:var(--text-soft)">Sort by</span>
+              <select id="shop-sort">
+                <option value="featured">Featured</option><option value="newest">Newest</option>
+                <option value="price-asc">Price: Low to High</option><option value="price-desc">Price: High to Low</option>
+                <option value="rating">Top rated</option><option value="name">Name A–Z</option>
+              </select>
+            </label>
+          </div>
+          <div class="chip-row" id="filter-chips"></div>
+          <div class="product-grid" id="shop-grid"></div>
+          <div id="shop-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="./assets/js/client-data.js"></script>
+  <script src="./assets/js/models.js"></script>
+  <script src="./assets/js/store.js"></script>
+  <script src="./assets/js/ui.js"></script>
+  <script src="./assets/js/pages.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

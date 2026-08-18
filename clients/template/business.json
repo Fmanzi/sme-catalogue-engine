@@ -1,0 +1,36 @@
+{
+  "id": "new-client",
+  "name": "New Client",
+  "description": "A short customer-facing business description.",
+  "logo": "assets/images/logo/logo.svg",
+  "favicon": "assets/images/logo/favicon.svg",
+  "contact": { "whatsapp": "254700000000", "phone": "0700 000 000", "email": "info@example.co.ke", "address": "Nairobi, Kenya", "mapsUrl": "", "openingHours": "Mon–Sat, 9am–5pm" },
+  "commerce": { "currency": "KES", "currencySymbol": "KSh ", "locale": "en-KE", "country": "KE", "deliveryInfo": "Delivery is arranged after confirmation.", "returnPolicy": "Contact us for returns." },
+  "brand": { "primary": "#1f1f1f", "secondary": "#ffffff", "accent": "#0f8a52" },
+  "site": { "domain": "", "defaultSeoTitle": "New Client", "defaultSeoDescription": "Browse our catalogue and order on WhatsApp.", "social": {} },
+  "hero": {
+    "slides": [
+      { "bg": "watch/hero-1.svg", "kicker": "Welcome", "title": "Browse Our Collection", "text": "Quality products, delivered to your door. Pay on delivery available.", "buttonText": "Shop now" }
+    ]
+  },
+  "about": {
+    "tagline": "Our story",
+    "title": "About Us",
+    "subtitle": "A short description about the business.",
+    "heading": "Who we are",
+    "paragraphs": ["Tell your story here. Edit business.json to add your own content."],
+    "points": ["Quality products", "Fast delivery", "Customer satisfaction"],
+    "values": [
+      { "title": "Quality", "text": "We source only the best." },
+      { "title": "Trust", "text": "Transparent and reliable service." },
+      { "title": "Value", "text": "Great products at fair prices." }
+    ],
+    "image": "assets/images/watch/hero-1.svg"
+  },
+  "contactPage": {
+    "tagline": "Get in touch",
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you.",
+    "subjects": ["General enquiry", "Order help", "Returns", "Something else"]
+  }
+}

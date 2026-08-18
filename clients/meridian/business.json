@@ -1,0 +1,83 @@
+{
+  "$schema": "../schema/business.schema.json",
+  "id": "meridian",
+  "name": "MERIDIAN",
+  "description": "Fine timepieces selected for collectors who value precision, heritage and quiet luxury.",
+  "logo": "assets/images/logo/logo.svg",
+  "favicon": "assets/images/logo/favicon.svg",
+  "contact": {
+    "whatsapp": "254728580415",
+    "phone": "0728 580 415",
+    "email": "concierge@meridianwatch.com",
+    "address": "Nairobi, Kenya",
+    "mapsUrl": "",
+    "openingHours": "Monday–Saturday, 9am–6pm"
+  },
+  "commerce": {
+    "currency": "KES",
+    "currencySymbol": "KSh ",
+    "locale": "en-KE",
+    "country": "KE",
+    "deliveryInfo": "Delivery and payment are arranged directly with our team after you send your WhatsApp order.",
+    "returnPolicy": "Contact us on WhatsApp for help with your order."
+  },
+  "brand": { "primary": "#b8874a", "secondary": "#1f1f1f", "accent": "#b8874a" },
+  "site": {
+    "domain": "",
+    "defaultSeoTitle": "MERIDIAN Fine Timepieces",
+    "defaultSeoDescription": "Explore MERIDIAN's collection of fine timepieces and order directly on WhatsApp.",
+    "social": { "instagram": "", "facebook": "" }
+  },
+  "hero": {
+    "slides": [
+      {
+        "bg": "watch/hero-1.svg",
+        "kicker": "The New Collection 2026",
+        "title": "Time, Perfected",
+        "text": "Automatic and mechanical timepieces, assembled by hand and finished to Swiss standards. Pay on delivery — Nairobi rider, G4S countrywide or store pickup.",
+        "buttonText": "Shop the collection"
+      },
+      {
+        "bg": "watch/hero-2.svg",
+        "kicker": "Dive Collection",
+        "title": "Engineered for the Deep",
+        "text": "Water resistance to 50 ATM, helium escape valves and sapphire crystals — dive watches that earn their depth rating.",
+        "buttonText": "Explore Dive Watches"
+      },
+      {
+        "bg": "watch/hero-3.svg",
+        "kicker": "Haute Horlogerie",
+        "title": "Limited Editions",
+        "text": "Numbered pieces, in-house calibers and precious metals. When they are gone, they are gone forever.",
+        "buttonText": "Discover Limited Editions"
+      }
+    ]
+  },
+  "about": {
+    "tagline": "Our story",
+    "title": "About MERIDIAN",
+    "subtitle": "A boutique watch house devoted to precision, heritage and quiet luxury.",
+    "heading": "Founded in precision, defined by restraint.",
+    "paragraphs": [
+      "MERIDIAN began in a small Geneva workshop with a simple conviction: a great watch should do one thing — tell time beautifully. No gimmicks, no noise, only the quiet confidence of a movement that runs on time, every time.",
+      "Today our timepieces are assembled by hand from the finest Swiss and Japanese movements, each one individually regulated, tested and certified before it earns the MERIDIAN signature."
+    ],
+    "points": [
+      "Hand-assembled movements, individually regulated",
+      "2–5 year international warranty on every timepiece",
+      "Certificate of authenticity included with every order"
+    ],
+    "values": [
+      { "title": "Craft", "text": "Every case is milled, brushed and polished by hand before it meets its dial." },
+      { "title": "Trust", "text": "Insured worldwide delivery and transparent, lifetime service records." },
+      { "title": "Longevity", "text": "Timeless design and serviceable movements mean a watch for generations." }
+    ],
+    "image": "assets/images/watch/hero-2.svg"
+  },
+  "contactPage": {
+    "tagline": "We're here",
+    "title": "Contact Us",
+    "subtitle": "Questions, sizing help or service requests — our concierge team replies within one business day.",
+    "subjects": ["Order enquiry", "Returns & exchanges", "Warranty & servicing", "Sizing advice", "Something else"]
+  }
+}

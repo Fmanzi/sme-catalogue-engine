@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SME catalogue business configuration",
+  "type": "object",
+  "required": ["id", "name", "contact", "commerce", "brand", "site"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "logo": { "type": "string" },
+    "favicon": { "type": "string" },
+    "contact": {
+      "type": "object",
+      "required": ["whatsapp"],
+      "properties": {
+        "whatsapp": { "type": "string", "pattern": "^[0-9]{8,15}$" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "mapsUrl": { "type": "string" },
+        "openingHours": { "type": "string" }
+      }
+    },
+    "commerce": {
+      "type": "object",
+      "required": ["currency", "currencySymbol"],
+      "properties": {
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "currencySymbol": { "type": "string" },
+        "deliveryInfo": { "type": "string" },
+        "returnPolicy": { "type": "string" }
+      }
+    },
+    "brand": { "type": "object" },
+    "site": { "type": "object" },
+    "hero": {
+      "type": "object",
+      "properties": {
+        "slides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "bg": { "type": "string" },
+              "kicker": { "type": "string" },
+              "title": { "type": "string" },
+              "text": { "type": "string" },
+              "buttonText": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "about": {
+      "type": "object",
+      "properties": {
+        "tagline": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "heading": { "type": "string" },
+        "paragraphs": { "type": "array", "items": { "type": "string" } },
+        "points": { "type": "array", "items": { "type": "string" } },
+        "values": { "type": "array", "items": { "type": "object" } },
+        "image": { "type": "string" }
+      }
+    },
+    "contactPage": {
+      "type": "object",
+      "properties": {
+        "tagline": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "subjects": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
