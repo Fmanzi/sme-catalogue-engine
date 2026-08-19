@@ -124,28 +124,57 @@
   }
 
   function renderShopBanner() {
-    const el = $('#shop-banner');
-    const pageHeader = document.querySelector('.page-header');
+    const el = $('#hero-section') || $('#shop-banner');
+    if (!el) return;
     const s = Store.settings();
     const b = s.business || {};
-    const banner = b.shopBanner || {};
-    if (!banner.title) {
-      if (pageHeader) pageHeader.style.display = '';
-      if (el) el.style.display = 'none';
+    const heroSlides = (b.hero && b.hero.slides) || [];
+
+    if (!heroSlides.length) {
+      el.style.display = 'none';
       return;
     }
-    if (pageHeader) pageHeader.style.display = 'none';
-    if (!el) return;
+
     el.innerHTML = `
-      <div class="shop-banner">
-        <div class="shop-banner-inner"${banner.bg ? ` style="background-image:url('${esc(banner.bg)}')"` : ''}>
-          <div class="shop-banner-text">
-            ${banner.kicker ? `<span class="shop-banner-kicker">${esc(banner.kicker)}</span>` : ''}
-            <h2 class="shop-banner-title">${esc(banner.title)}</h2>
-            ${banner.text ? `<p class="shop-banner-desc">${esc(banner.text)}</p>` : ''}
+      <div class="hero-carousel" data-hero-carousel>
+        ${heroSlides.map((sl, i) => `
+          <div class="hero-slide${i === 0 ? ' is-active' : ''}" data-slide="${i}" ${sl.bg ? `style="background-image:url('assets/images/${sl.bg}')"` : ''}>
+          <div class="hero-slide-overlay"></div>
+          <div class="container-wide hero-slide-content">
+            ${sl.kicker ? `<span class="hero-kicker">${esc(sl.kicker)}</span>` : ''}
+            <h2 class="hero-title">${esc(sl.title)}</h2>
+            ${sl.text ? `<p class="hero-text">${esc(sl.text)}</p>` : ''}
+            ${sl.buttonText ? `<a href="index.html" class="hero-btn">${esc(sl.buttonText)} <ion-icon name="arrow-forward-outline"></ion-icon></a>` : ''}
           </div>
+          </div>`).join('')}
+        <div class="hero-dots container-wide" data-hero-dots>
+          ${heroSlides.map((_, i) => `<button type="button" data-dot="${i}" class="${i === 0 ? 'active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}
         </div>
       </div>`;
+
+    const carousel = el.querySelector('[data-hero-carousel]');
+    const slides = carousel.querySelectorAll('.hero-slide');
+    const dots = carousel.querySelectorAll('[data-dot]');
+    let current = 0;
+    let timer;
+
+    function show(idx) {
+      current = idx;
+      slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+
+    function next() { show((current + 1) % slides.length); }
+
+    function startTimer() { timer = setInterval(next, 5000); }
+    function resetTimer() { clearInterval(timer); startTimer(); }
+
+    dots.forEach(d => d.addEventListener('click', () => {
+      show(Number(d.dataset.dot));
+      resetTimer();
+    }));
+
+    startTimer();
   }
 
   function renderHome() {
@@ -453,7 +482,6 @@
         <div class="product-trust">
           <span class="trust-item"><ion-icon name="wallet-outline"></ion-icon> Pay on delivery — M-Pesa or cash</span>
           <span class="trust-item"><ion-icon name="bicycle-outline"></ion-icon> ${esc(((Store.settings().business || {}).commerce || {}).deliveryInfo || 'Delivery arranged via WhatsApp')}</span>
-          <span class="trust-item"><ion-icon name="ribbon-outline"></ion-icon> ${esc(p.warrantyPeriod)} warranty</span>
         </div>
       </div>
     </div>
@@ -727,14 +755,11 @@
     const wrap = $('#checkout-root');
     if (!wrap) return;
     if (!items.length) { wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your cart is empty.</p><a href="/" class="btn btn-primary">Browse products</a></div>`; return; }
-    const business = Store.settings().business || {};
-    const deliveryInfo = ((business.commerce || {}).deliveryInfo) || 'Our team will confirm availability, delivery and payment directly on WhatsApp.';
     const initFee = SHIPPING_OPTIONS[0].fee;
 
     const shipCards = SHIPPING_OPTIONS.map((opt, idx) => `
       <label class="ship-card${idx === 0 ? ' selected' : ''}">
         <input type="radio" name="shipping" value="${opt.id}" ${idx === 0 ? 'checked' : ''}>
-        <ion-icon name="${opt.icon}" class="ship-icon"></ion-icon>
         <span class="ship-card-label">${esc(opt.label)}</span>
         <span class="ship-card-fee">${opt.fee ? UI.money(opt.fee) : 'Free'}</span>
         <span class="ship-card-desc">${esc(opt.desc)}</span>
@@ -745,24 +770,27 @@
         <div class="form-section ck-left">
           <p class="pod-banner"><ion-icon name="wallet-outline"></ion-icon> Pay on delivery — M-Pesa or cash.</p>
 
-          <h3><span class="step-num">1</span> Shipping method</h3>
+          <h3>Shipping method</h3>
           <div class="ship-grid">${shipCards}</div>
 
-          <h3 style="margin-top:24px"><span class="step-num">2</span> Delivery details</h3>
-          <p class="ck-delivery-info">${esc(deliveryInfo)}</p>
+          <button type="button" class="btn wa-btn btn-block ck-wa-btn" data-wa-checkout style="margin-top:24px">
+            <ion-icon name="logo-whatsapp"></ion-icon> Place order via WhatsApp
+          </button>
 
-          <div class="form-field" style="margin-top:18px">
-            <label for="wa-order-note">Order note (optional)</label>
-            <textarea id="wa-order-note" rows="3" placeholder="For example: preferred delivery area or colour preference"></textarea>
+          <div style="margin:28px 0;border-top:1px solid var(--line)"></div>
+
+          <p class="ck-delivery-info" style="margin-bottom:18px">Alternatively, you can place your order via the website. We will however require you to enter your phone number below so that we can contact you.</p>
+
+          <div class="form-field">
+            <label for="web-order-phone">Phone number <span class="req">*</span></label>
+            <input type="tel" id="web-order-phone" name="phone" placeholder="e.g. 0712 345 678" required>
           </div>
 
-          <button type="button" class="btn wa-btn btn-block ck-wa-btn" data-wa-checkout>
-            <ion-icon name="logo-whatsapp"></ion-icon> Checkout on WhatsApp
-          </button>
+          <button type="button" class="btn btn-primary btn-block" data-web-order style="margin-top:20px">Place order via website</button>
         </div>
 
         <aside class="summary-card order-summary ck-right">
-          <h3>Your cart</h3>
+          <h3>Your cart + shipping costs</h3>
           ${items.map(item => `
             <div class="summary-item">
               <img src="${UI.img(item.product.mainImage)}" alt="${esc(item.product.name)}" loading="lazy">
@@ -787,10 +815,77 @@
 
     /* whatsapp checkout */
     $('[data-wa-checkout]', wrap).addEventListener('click', () => {
-      const note = $('#wa-order-note', wrap).value.trim();
       const shipId = wrap.querySelector('[name="shipping"]:checked').value;
       const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
-      global.open(waOrderLink(items, subtotal, { note, shipping: shipOpt }), '_blank', 'noopener');
+      global.open(waOrderLink(items, subtotal, { shipping: shipOpt }), '_blank', 'noopener');
+    });
+
+    /* place order via website — sends to Telegram bot + Google Apps Script */
+    $('[data-web-order]', wrap).addEventListener('click', () => {
+      const phoneInput = $('#web-order-phone', wrap);
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      if (!phone) { UI.toast('Please enter your phone number.', 'error'); if (phoneInput) phoneInput.focus(); return; }
+
+      const shipId = wrap.querySelector('[name="shipping"]:checked').value;
+      const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
+      const shipFee = shipOpt ? shipOpt.fee : 0;
+
+      const orderLines = items.map((i, idx) =>
+        `${idx + 1}. ${i.product.name} — Qty ${i.quantity} × ${UI.money(i.product.salePrice || i.product.price)} = ${UI.money(i.lineTotal)}`
+      );
+      const orderSummary = [
+        `New website order`,
+        ``,
+        ...orderLines,
+        ``,
+        `Shipping: ${shipOpt ? shipOpt.label : 'N/A'} — ${shipFee ? UI.money(shipFee) : 'Free'}`,
+        `Subtotal: ${UI.money(subtotal)}`,
+        `Total: ${UI.money(subtotal + shipFee)}`,
+        ``,
+        `Phone: ${phone}`
+      ].join('\n');
+
+      /* Send to Google Apps Script webhook */
+      const GAS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxYOUR_SCRIPT_ID_HERE/exec';
+      fetch(GAS_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'website',
+          phone,
+          items: items.map(i => ({ name: i.product.name, qty: i.quantity, price: i.product.salePrice || i.product.price, total: i.lineTotal })),
+          shipping: shipOpt ? shipOpt.label : '',
+          shippingFee: shipFee,
+          subtotal,
+          total: subtotal + shipFee,
+          timestamp: new Date().toISOString()
+        })
+      }).catch(() => {});
+
+      /* Send to Telegram bot */
+      const TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN_HERE';
+      const TELEGRAM_CHAT_ID = 'YOUR_TELEGRAM_CHAT_ID_HERE';
+      fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: orderSummary,
+          parse_mode: 'HTML'
+        })
+      }).catch(() => {});
+
+      /* Reset cart and show confirmation */
+      UI.clearCart();
+      wrap.innerHTML = `
+        <div class="empty-state">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          <p><strong>Thank you! Your order has been placed.</strong></p>
+          <p>We will contact you shortly on <b>${esc(phone)}</b> to confirm your order and arrange delivery.</p>
+          <a href="/" class="btn btn-primary" style="margin-top:16px">Continue shopping</a>
+        </div>`;
+      UI.toast('Order placed successfully!', 'success');
     });
   }
 
