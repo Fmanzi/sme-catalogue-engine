@@ -10,7 +10,13 @@
     "import:catalogue": "node tools/import-catalogue.js",
     "images:process": "node tools/process-images.js",
     "validate": "node tools/validate-client.js",
-    "mock:catalogue": "node tools/generate-mock-catalogue.js"
+    "mock:catalogue": "node tools/generate-mock-catalogue.js",
+    "tg:extract": "python tools/extract-telegram-products.py",
+    "tg:download": "python tools/download-product-images.py",
+    "tg:import": "python tools/import-products.py",
+    "tg:import:dry": "python tools/import-products.py --dry-run",
+    "tg:import:replace": "python tools/import-products.py --replace",
+    "build:all": "npm run build:data && npm run images:process && npm run build:pages && npm run build:seo"
   },
   "devDependencies": {
     "ionicons": "^5.5.2",

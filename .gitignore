@@ -1,12 +1,12 @@
 node_modules/
 admin/
-product/
-assets/js/client-data.js
-robots.txt
-sitemap.xml
 .vscode/
 .DS_Store
 Thumbs.db
 *.log
 .env
 .env.*
+tools/.venv/
+tools/.tg_session*
+tools/extracted-products.json
+tools/__pycache__/
