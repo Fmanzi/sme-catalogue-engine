@@ -30,6 +30,7 @@
   AnonUI.img = (src) => {
     if (!src) return '';
     if (/^(https?:|data:|blob:)/.test(src)) return src;
+    if (/^clients\//.test(src)) return src;
     return 'assets/images/' + src.replace(/^(\.\/)?assets\/images\//, '');
   };
 

@@ -524,6 +524,7 @@
     resolveImage(src) {
       if (!src) return '';
       if (/^(https?:|data:)/.test(src)) return src;
+      if (/^clients\//.test(src)) return src;
       return (global.location && global.location.pathname.endsWith('/admin/index.html'))
         ? '../assets/images/' + src
         : 'assets/images/' + src;
