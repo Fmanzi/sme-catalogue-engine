@@ -380,7 +380,7 @@
         const products = (catalogue.products || []).map(p => ({
           ...p,
           salePrice: p.compareAtPrice || null,
-          mainImage: ((p.images || []).find(im => im.primary) || (p.images || [])[0] || {}).src || '',
+          mainImage: (() => { const im = (p.images || []).find(x => x.primary) || (p.images || [])[0]; return typeof im === 'string' ? im : (im && im.src) || ''; })(),
           images: (p.images || []).map(im => typeof im === 'string' ? im : im.src),
           imageMeta: (p.images || []).map(im => typeof im === 'string' ? { src: im, alt: p.name } : im),
           stockStatus: p.availability || 'in_stock',

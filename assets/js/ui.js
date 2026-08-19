@@ -79,6 +79,7 @@
       <div class="showcase-banner">
         <a href="${AnonUI.productUrl(p)}">
           ${AnonUI.responsiveImage((p.imageMeta || [])[0] || p.mainImage, p.name, 'product-img default')}
+          ${AnonUI.responsiveImage((p.imageMeta || [])[1] || (p.imageMeta || [])[0] || p.mainImage, p.name, 'product-img hover')}
         </a>
         ${AnonUI.badges(p)}
         <div class="showcase-actions">

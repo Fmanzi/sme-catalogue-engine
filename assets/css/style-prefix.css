@@ -1539,7 +1539,29 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 
 .product-grid .showcase:hover { -webkit-box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1); box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1); }
 
-.product-grid .showcase-banner { position: relative; }
+.product-grid .showcase-banner {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.product-grid .showcase-banner a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.product-grid .showcase-banner picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.product-grid .showcase-banner picture + picture {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
 .product-grid .product-img {
   width: 100%;
@@ -1557,9 +1579,6 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 }
 
 .product-grid .product-img.hover {
-  position: absolute;
-  top: 0;
-  left: 0;
   z-index: 2;
   opacity: 0;
 }

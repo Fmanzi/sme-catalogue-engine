@@ -53,8 +53,29 @@ async def main():
 
     print(f"Connecting to Telegram...")
     client = TelegramClient(str(SESSION_FILE), api_id, api_hash)
-    await client.start(code_callback=lambda: '')
+    await client.start()
     print("Connected!\n")
+
+    # Resolve the group entity
+    group = os.getenv('TG_GROUP')
+    entity = None
+    try:
+        entity = await client.get_entity(int(group))
+    except (ValueError, Exception):
+        try:
+            entity = await client.get_entity(group)
+        except Exception:
+            pass
+    if not entity:
+        async for dialog in client.iter_dialogs():
+            if group.lower() in (dialog.name or '').lower():
+                entity = dialog.entity
+                break
+    if not entity:
+        print(f"ERROR: Could not find group '{group}'")
+        await client.disconnect()
+        sys.exit(1)
+    print(f"Found group: {getattr(entity, 'title', group)}\n")
 
     IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -87,7 +108,7 @@ async def main():
                 continue
 
             try:
-                msg = await client.get_messages(None, ids=msg_id)
+                msg = await client.get_messages(entity, ids=msg_id)
                 if msg and msg.media:
                     await client.download_media(msg, str(filepath))
                     print(f"    [downloaded] {filename}")
