@@ -813,10 +813,39 @@
       $('[data-total-with-ship]', wrap).textContent = UI.money(subtotal + fee);
     }));
 
+    const TELEGRAM_BOT_TOKEN = '8997806459:AAF8Qon-BnhaC02fUDOqlZd60b8Z8d2LI5w';
+    const TELEGRAM_CHAT_ID = '6448584511';
+
+    function sendToTelegram(text) {
+      fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text })
+      }).catch(() => {});
+    }
+
+    function buildOrderSummary(prefix, items, subtotal, shipOpt, shipFee, phone) {
+      const lines = items.map((i, idx) =>
+        `${idx + 1}. ${i.product.name} — Qty ${i.quantity} × ${UI.money(i.product.salePrice || i.product.price)} = ${UI.money(i.lineTotal)}`
+      );
+      return [
+        prefix,
+        '',
+        ...lines,
+        '',
+        `Shipping: ${shipOpt ? shipOpt.label : 'N/A'} — ${shipFee ? UI.money(shipFee) : 'Free'}`,
+        `Subtotal: ${UI.money(subtotal)}`,
+        `Total: ${UI.money(subtotal + shipFee)}`,
+        phone ? `\nPhone: ${phone}` : ''
+      ].join('\n');
+    }
+
     /* whatsapp checkout */
     $('[data-wa-checkout]', wrap).addEventListener('click', () => {
       const shipId = wrap.querySelector('[name="shipping"]:checked').value;
       const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
+      const shipFee = shipOpt ? shipOpt.fee : 0;
+      sendToTelegram(buildOrderSummary('New WhatsApp order', items, subtotal, shipOpt, shipFee, ''));
       global.open(waOrderLink(items, subtotal, { shipping: shipOpt }), '_blank', 'noopener');
     });
 
@@ -830,20 +859,7 @@
       const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
       const shipFee = shipOpt ? shipOpt.fee : 0;
 
-      const orderLines = items.map((i, idx) =>
-        `${idx + 1}. ${i.product.name} — Qty ${i.quantity} × ${UI.money(i.product.salePrice || i.product.price)} = ${UI.money(i.lineTotal)}`
-      );
-      const orderSummary = [
-        `New website order`,
-        ``,
-        ...orderLines,
-        ``,
-        `Shipping: ${shipOpt ? shipOpt.label : 'N/A'} — ${shipFee ? UI.money(shipFee) : 'Free'}`,
-        `Subtotal: ${UI.money(subtotal)}`,
-        `Total: ${UI.money(subtotal + shipFee)}`,
-        ``,
-        `Phone: ${phone}`
-      ].join('\n');
+      sendToTelegram(buildOrderSummary('New website order', items, subtotal, shipOpt, shipFee, phone));
 
       /* Send to Google Apps Script webhook */
       const GAS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxYOUR_SCRIPT_ID_HERE/exec';
@@ -860,19 +876,6 @@
           subtotal,
           total: subtotal + shipFee,
           timestamp: new Date().toISOString()
-        })
-      }).catch(() => {});
-
-      /* Send to Telegram bot */
-      const TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN_HERE';
-      const TELEGRAM_CHAT_ID = 'YOUR_TELEGRAM_CHAT_ID_HERE';
-      fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: orderSummary,
-          parse_mode: 'HTML'
         })
       }).catch(() => {});
 
