@@ -138,7 +138,7 @@
     el.innerHTML = `
       <div class="hero-carousel" data-hero-carousel>
         ${heroSlides.map((sl, i) => `
-          <div class="hero-slide${i === 0 ? ' is-active' : ''}" data-slide="${i}" ${sl.bg ? `style="background-image:url('assets/images/${sl.bg}')"` : ''}>
+          <div class="hero-slide${i === 0 ? ' is-active' : ''}" data-slide="${i}" ${sl.bg ? `style="background-image:url('${/^(assets|https?:|data:)/.test(sl.bg) ? sl.bg : 'assets/images/' + sl.bg}')"` : ''}>
           <div class="hero-slide-overlay"></div>
           <div class="container-wide hero-slide-content">
             ${sl.kicker ? `<span class="hero-kicker">${esc(sl.kicker)}</span>` : ''}

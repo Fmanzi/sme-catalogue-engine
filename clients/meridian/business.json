@@ -31,21 +31,21 @@
   "hero": {
     "slides": [
       {
-        "bg": "watch/hero-1.svg",
+        "bg": "assets/media/meridian/products/minifocus-gents-mf0350-4/minifocus-gents-mf0350-4-medium.webp",
         "kicker": "The New Collection 2026",
         "title": "Time, Perfected",
         "text": "Automatic and mechanical timepieces, assembled by hand and finished to Swiss standards. Pay on delivery — Nairobi rider, G4S countrywide or store pickup.",
         "buttonText": "Shop the collection"
       },
       {
-        "bg": "watch/hero-2.svg",
+        "bg": "assets/media/meridian/products/poedagar-859-gents-13/poedagar-859-gents-13-medium.webp",
         "kicker": "Dive Collection",
         "title": "Engineered for the Deep",
         "text": "Water resistance to 50 ATM, helium escape valves and sapphire crystals — dive watches that earn their depth rating.",
         "buttonText": "Explore Dive Watches"
       },
       {
-        "bg": "watch/hero-3.svg",
+        "bg": "assets/media/meridian/products/poedagar-gents-9051-1/poedagar-gents-9051-1-medium.webp",
         "kicker": "Haute Horlogerie",
         "title": "Limited Editions",
         "text": "Numbered pieces, in-house calibers and precious metals. When they are gone, they are gone forever.",
