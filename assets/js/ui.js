@@ -252,7 +252,7 @@
   <div class="mobile-bottom-navigation">
     <button class="action-btn" data-mobile-menu-open-btn><ion-icon name="menu-outline"></ion-icon></button>
     <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:700;line-height:1">0</span></a>
-    <a href="/" class="action-btn" aria-label="Shop"><ion-icon name="storefront-outline"></ion-icon></a>
+    <a href="/" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
   </div>
 
   <nav class="mobile-navigation-menu has-scrollbar" data-mobile-menu>
@@ -299,6 +299,21 @@
     if (footer) footer.innerHTML = AnonUI.footerHTML();
     AnonUI.updateBadges();
     bindChromeEvents();
+
+    /* floating WhatsApp button */
+    if (!document.querySelector('.wa-float')) {
+      const waNum = ((Store.settings().business || {}).contact || {}).whatsapp || '';
+      if (waNum) {
+        const a = document.createElement('a');
+        a.href = 'https://wa.me/' + waNum.replace(/\D/g, '');
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.className = 'wa-float';
+        a.setAttribute('aria-label', 'Chat on WhatsApp');
+        a.innerHTML = '<ion-icon name="logo-whatsapp"></ion-icon>';
+        document.body.appendChild(a);
+      }
+    }
   };
 
   /* ---------- chrome interactions (delegated) ---------- */

@@ -103,7 +103,7 @@ body > main { flex: 1; }
 
 .product-grid .showcase .showcase-banner { background: var(--mist); }
 .product-grid .showcase-title { font-size: var(--fs-5); }
-.product-grid .showcase-category { text-transform: uppercase; letter-spacing: 1.5px; font-size: var(--fs-10); }
+.product-grid .showcase-category { text-transform: uppercase; letter-spacing: 1.5px; font-size: var(--fs-10); color: var(--gold); }
 .showcase-brand { font-size: var(--fs-9); color: var(--text-soft); margin-top: 2px; }
 .showcase-stock-tag { position: absolute; bottom: 10px; left: 0; right: 0; margin: auto; width: max-content; background: rgba(20,21,25,.82); color: #fff; font-size: var(--fs-9); padding: 4px 12px; letter-spacing: 1px; z-index: 3; }
 
@@ -531,3 +531,9 @@ body > main { flex: 1; }
 @media (max-width: 767px) {
   .hero-title { font-size: 1.6rem; }
 }
+
+/* ---------- floating WhatsApp button ---------- */
+
+.wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: #25d366; color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,.3); transition: .3s; text-decoration: none; }
+.wa-float:hover { transform: scale(1.1); background: #1ebe5d; }
+.wa-float ion-icon { font-size: 30px; }
