@@ -179,7 +179,7 @@ body > main { flex: 1; }
 .product-gallery { align-self: start; }
 .product-gallery .gallery-main { background: var(--mist); border: 1px solid var(--line); }
 .product-gallery .gallery-main img { width: 100%; }
-.product-gallery .gallery-thumbs { display: flex; gap: 10px; margin-top: 12px; }
+.product-gallery .gallery-thumbs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
 .product-gallery .gallery-thumbs img { width: 84px; height: 84px; object-fit: cover; border: 2px solid transparent; cursor: pointer; background: var(--mist); }
 .product-gallery .gallery-thumbs img.active { border-color: var(--gold); }
 

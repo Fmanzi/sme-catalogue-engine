@@ -31,6 +31,7 @@
     if (!src) return '';
     if (/^(https?:|data:|blob:)/.test(src)) return src;
     if (/^clients\//.test(src)) return src;
+    if (/^assets\//.test(src)) return src;
     return 'assets/images/' + src.replace(/^(\.\/)?assets\/images\//, '');
   };
 
@@ -61,7 +62,6 @@
   AnonUI.badges = (p) => {
     let b = '';
     if (p.bestSeller) b += '<p class="showcase-badge angle black">best seller</p>';
-    if (p.newArrival) b += '<p class="showcase-badge angle pink">new</p>';
     if (p.salePrice && p.salePrice < p.price) b += `<p class="showcase-badge">${AnonUI.discount(p)}%</p>`;
     return b;
   };

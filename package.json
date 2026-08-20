@@ -16,7 +16,7 @@
     "tg:import": "python tools/import-products.py",
     "tg:import:dry": "python tools/import-products.py --dry-run",
     "tg:import:replace": "python tools/import-products.py --replace",
-    "build:all": "npm run build:data && npm run images:process && npm run build:pages && npm run build:seo"
+    "build:all": "npm run images:process && npm run build:data && npm run build:pages && npm run build:seo"
   },
   "devDependencies": {
     "ionicons": "^5.5.2",

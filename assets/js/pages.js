@@ -192,7 +192,7 @@
   /* ---------- shop / listing ---------- */
 
   const PRICE_PAGES = [
-    [0, 50000], [50000, 150000], [150000, 300000], [300000, 600000], [600000, Infinity]
+    [0, 2000], [2000, 4000], [4000, 6000], [6000, 8000], [8000, Infinity]
   ];
 
   function filteredProducts(paramsOverride) {
@@ -206,7 +206,7 @@
     const cat = params.get('cat');
     if (cat) list = list.filter(p => p.categoryId === cat);
     const brand = params.get('brand');
-    if (brand) list = list.filter(p => p.brandId === brand);
+    if (brand) { const ids = brand.split(','); list = list.filter(p => ids.includes(p.brandId)); }
     const status = params.get('status');
     if (status === 'sale') list = list.filter(p => p.salePrice && p.salePrice < p.price);
     if (status === 'new') list = list.filter(p => p.newArrival);
@@ -332,9 +332,10 @@
 
     const brandsEl = $('#filter-brands');
     if (brandsEl) {
-      const brandOpts = Store.list('brands').filter(b => b.status === 'active');
+      const brandOpts = Store.list('brands').filter(b => activeProducts().some(p => p.brandId === b.id)).sort((a, b) => a.name.localeCompare(b.name));
+      const selectedBrands = (params.get('brand') || '').split(',').filter(Boolean);
       brandsEl.innerHTML = brandOpts.map(b => `
-        <label class="filter-option"><input type="checkbox" name="f-brand" value="${b.id}" ${params.get('brand') === b.id ? 'checked' : ''}>${esc(b.name)}<span class="count">${activeProducts().filter(p => p.brandId === b.id).length}</span></label>`).join('');
+        <label class="filter-option"><input type="checkbox" name="f-brand" value="${b.id}" ${selectedBrands.includes(b.id) ? 'checked' : ''}>${esc(b.name)}<span class="count">${activeProducts().filter(p => p.brandId === b.id).length}</span></label>`).join('');
     }
 
     const movEl = $('#filter-movement');
@@ -453,9 +454,9 @@
     root.innerHTML = `
     <div class="product-layout">
       <div class="product-gallery">
-        <div class="gallery-main"><img src="${UI.img(p.mainImage)}" alt="${esc(p.name)}" id="gallery-main"></div>
+        <div class="gallery-main" id="gallery-main-wrap">${UI.responsiveImage(p.mainImage, p.name, '', { priority: true, sizes: '(max-width: 600px) 100vw, 50vw' })}</div>
         <div class="gallery-thumbs" data-thumbs>
-          ${p.images.map((im, i) => `<img src="${UI.img(im)}" alt="${esc(((p.imageMeta || [])[i] || {}).alt || `${p.name} — view ${i + 1}`)}" loading="lazy" decoding="async" class="${im === p.mainImage ? 'active' : ''}" data-thumb="${UI.img(im)}">`).join('')}
+          ${p.images.map((im, i) => `<img src="${UI.img(im)}" alt="${esc(((p.imageMeta || [])[i] || {}).alt || `${p.name} — view ${i + 1}`)}" loading="lazy" decoding="async" class="${im === p.mainImage ? 'active' : ''}" data-thumb="${UI.img(im)}" data-thumb-idx="${i}">`).join('')}
         </div>
       </div>
       <div class="product-info">
@@ -492,7 +493,10 @@
 
     /* gallery */
     $$('[data-thumb]', root).forEach(t => t.addEventListener('click', () => {
-      $('#gallery-main', root).src = t.dataset.thumb;
+      const idx = Number(t.dataset.thumbIdx);
+      const meta = (p.imageMeta || [])[idx] || { src: t.dataset.thumb };
+      const wrap = $('#gallery-main-wrap', root);
+      if (wrap) wrap.innerHTML = UI.responsiveImage(meta, p.name, '', { priority: true, sizes: '(max-width: 600px) 100vw, 50vw' }).replace(/<\/?picture>/g, '');
       $$('[data-thumb]', root).forEach(x => x.classList.remove('active'));
       t.classList.add('active');
     }));
