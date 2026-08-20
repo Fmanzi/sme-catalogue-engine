@@ -30,8 +30,8 @@ body > main { flex: 1; }
 /* ---------- header refinements ---------- */
 
 .header-top { background: var(--ink); }
-.header-top .container { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.header-alert-news { color: var(--white); font-size: var(--fs-8); letter-spacing: 0.4px; }
+.header-top .container { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; position: relative; }
+.header-alert-news { color: var(--white); font-size: var(--fs-8); letter-spacing: 0.4px; position: absolute; left: 0; right: 0; text-align: center; pointer-events: none; }
 .header-alert-news b { color: var(--gold-light); }
 .header-staff-link { color: var(--white); font-size: var(--fs-9); display: flex; align-items: center; gap: 5px; opacity: .8; }
 .header-staff-link:hover { opacity: 1; color: var(--gold-light); }
@@ -72,7 +72,7 @@ body > main { flex: 1; }
 .hero-carousel .hero-arrow:hover { background: #96692f; }
 .hero-carousel .hero-arrow ion-icon { font-size: 36px; color: #fff; pointer-events: none; }
 
-.header-user-actions .count, .header-actions .count { background: var(--gold) !important; position: absolute; top: -4px; right: -6px; min-width: 20px; height: 20px; padding: 0; display: grid; place-items: center; border-radius: 50%; font-family: Georgia, serif; font-size: 11px; font-weight: 700; line-height: 1; }
+.header-user-actions .count, .header-actions .count { background: var(--gold) !important; position: absolute; top: -4px; right: -6px; min-width: 20px; height: 20px; padding: 0; display: grid; place-items: center; border-radius: 50%; font-size: 11px; font-weight: 700; line-height: 1; }
 
 @media (max-width: 767px) {
   .hero-slide { min-height: 340px; }
@@ -218,7 +218,7 @@ body > main { flex: 1; }
 .product-trust .trust-item { display: flex; align-items: center; gap: 8px; font-size: var(--fs-8); color: var(--text-soft); }
 .product-trust .trust-item ion-icon { color: var(--gold); font-size: 18px; }
 
-.related-section { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--line); }
+.related-section { margin-top: 56px; padding-top: 40px; padding-bottom: 40px; border-top: 1px solid var(--line); }
 .related-section .section-title { margin-bottom: 22px; font-family: Georgia, serif; color: var(--ink); font-size: 1.4rem; }
 
 /* ---------- shop banner ---------- */

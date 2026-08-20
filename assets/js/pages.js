@@ -149,9 +149,9 @@
           </div>`).join('')}
         <div class="hero-dots container-wide" data-hero-dots>
           ${heroSlides.map((_, i) => `<button type="button" data-dot="${i}" class="${i === 0 ? 'active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}
-          <div class="hero-arrows" style="margin-left:auto;display:flex;gap:8px">
-            <button type="button" data-hero-prev class="hero-arrow" aria-label="Previous slide" style="width:36px;height:36px;border-radius:0;background:#e3c273;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25)"><ion-icon name="chevron-back-outline" style="font-size:20px;color:#fff;pointer-events:none"></ion-icon></button>
-            <button type="button" data-hero-next class="hero-arrow" aria-label="Next slide" style="width:36px;height:36px;border-radius:0;background:#e3c273;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25)"><ion-icon name="chevron-forward-outline" style="font-size:20px;color:#fff;pointer-events:none"></ion-icon></button>
+          <div class="hero-arrows" style="margin-left:auto;display:flex;gap:14px">
+            <button type="button" data-hero-prev class="hero-arrow" aria-label="Previous slide" style="width:32px;height:32px;border-radius:0;background:#e3c273;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25)"><ion-icon name="chevron-back-outline" style="font-size:18px;color:#fff;pointer-events:none"></ion-icon></button>
+            <button type="button" data-hero-next class="hero-arrow" aria-label="Next slide" style="width:32px;height:32px;border-radius:0;background:#e3c273;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25)"><ion-icon name="chevron-forward-outline" style="font-size:18px;color:#fff;pointer-events:none"></ion-icon></button>
           </div>
         </div>
       </div>`;
