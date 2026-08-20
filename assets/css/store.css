@@ -64,9 +64,13 @@ body > main { flex: 1; }
 .hero-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: #fff; padding: 13px 28px; font-weight: 600; letter-spacing: .5px; border-radius: 2px; transition: .2s ease; }
 .hero-btn:hover { background: var(--gold-dark); }
 
-.hero-carousel .hero-dots { position: absolute; bottom: 24px; left: 0; right: 0; display: flex; gap: 10px; z-index: 3; }
+.hero-carousel .hero-dots { position: absolute; bottom: 24px; left: 0; right: 0; display: flex; align-items: center; gap: 10px; z-index: 3; }
 .hero-carousel .hero-dots button { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,.35); border: none; cursor: pointer; transition: .3s; }
 .hero-carousel .hero-dots button.active { background: var(--gold-light); }
+.hero-carousel .hero-arrows { margin-left: auto; display: flex; gap: 8px; }
+.hero-carousel .hero-arrow { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: #fff; cursor: pointer; transition: .3s; display: flex; align-items: center; justify-content: center; }
+.hero-carousel .hero-arrow:hover { background: rgba(255,255,255,.3); border-color: rgba(255,255,255,.4); }
+.hero-carousel .hero-arrow ion-icon { font-size: 18px; }
 
 @media (max-width: 767px) {
   .hero-slide { min-height: 340px; }
@@ -176,9 +180,9 @@ body > main { flex: 1; }
 .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 46px; }
 @media (max-width: 1023px) { .product-layout { grid-template-columns: 1fr; } }
 
-.product-gallery { align-self: start; }
-.product-gallery .gallery-main { background: var(--mist); border: 1px solid var(--line); }
-.product-gallery .gallery-main img { width: 100%; }
+.product-gallery { align-self: start; min-width: 0; overflow: hidden; }
+.product-gallery .gallery-main { background: var(--mist); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; }
+.product-gallery .gallery-main img { max-width: 100%; height: auto; display: block; }
 .product-gallery .gallery-thumbs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
 .product-gallery .gallery-thumbs img { width: 84px; height: 84px; object-fit: cover; border: 2px solid transparent; cursor: pointer; background: var(--mist); }
 .product-gallery .gallery-thumbs img.active { border-color: var(--gold); }
@@ -310,12 +314,13 @@ body > main { flex: 1; }
 .form-field > span .req { color: #c0392b; }
 .form-field input, .form-field select, .form-field textarea { width: 100%; border: 1px solid var(--line); padding: 11px 13px; font-size: var(--fs-7); background: var(--paper); }
 .form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: none; border-color: var(--gold); }
+.form-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 425px) { .form-field-row { grid-template-columns: 1fr; } }
 
 /* mobile: move WA button to bottom */
 @media (max-width: 1023px) {
   .ck-left { order: 1; }
   .ck-right { order: 0; margin-bottom: 16px; }
-  .ck-wa-btn { position: sticky; bottom: 0; z-index: 10; margin-top: 0; }
 }
 
 /* shipping cards */

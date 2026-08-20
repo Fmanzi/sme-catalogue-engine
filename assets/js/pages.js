@@ -149,6 +149,10 @@
           </div>`).join('')}
         <div class="hero-dots container-wide" data-hero-dots>
           ${heroSlides.map((_, i) => `<button type="button" data-dot="${i}" class="${i === 0 ? 'active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}
+          <div class="hero-arrows">
+            <button type="button" data-hero-prev class="hero-arrow" aria-label="Previous slide"><ion-icon name="chevron-back-outline"></ion-icon></button>
+            <button type="button" data-hero-next class="hero-arrow" aria-label="Next slide"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+          </div>
         </div>
       </div>`;
 
@@ -165,6 +169,7 @@
     }
 
     function next() { show((current + 1) % slides.length); }
+    function prev() { show((current - 1 + slides.length) % slides.length); }
 
     function startTimer() { timer = setInterval(next, 5000); }
     function resetTimer() { clearInterval(timer); startTimer(); }
@@ -173,6 +178,9 @@
       show(Number(d.dataset.dot));
       resetTimer();
     }));
+
+    el.querySelector('[data-hero-prev]')?.addEventListener('click', () => { prev(); resetTimer(); });
+    el.querySelector('[data-hero-next]')?.addEventListener('click', () => { next(); resetTimer(); });
 
     startTimer();
   }
@@ -476,7 +484,7 @@
             <button data-qty-plus aria-label="increase">+</button>
           </div>
           <button class="add-to-bag-btn" data-add-bag="${p.id}" ${p.stockStatus === 'out_of_stock' && !p.allowBackorders ? 'disabled' : ''}>
-            ${p.stockStatus === 'out_of_stock' && !p.allowBackorders ? 'Out of stock' : 'Add to Bag'}
+            ${p.stockStatus === 'out_of_stock' && !p.allowBackorders ? 'Out of stock' : 'Add to Cart'}
           </button>
         </div>
         ${p.stockStatus === 'low_stock' ? `<p style="color:#c0392b;font-size:var(--fs-8)">Only ${p.stockQuantity} left in stock</p>` : ''}
@@ -777,20 +785,22 @@
           <h3>Shipping method</h3>
           <div class="ship-grid">${shipCards}</div>
 
-          <button type="button" class="btn wa-btn btn-block ck-wa-btn" data-wa-checkout style="margin-top:24px">
+          <div class="form-field-row">
+            <div class="form-field">
+              <label for="ck-name">Full name <span class="req">*</span></label>
+              <input type="text" id="ck-name" name="name" placeholder="e.g. Jane Doe" required>
+            </div>
+            <div class="form-field">
+              <label for="ck-phone">Phone number <span class="req">*</span></label>
+              <input type="tel" id="ck-phone" name="phone" placeholder="e.g. 0712 345 678" required>
+            </div>
+          </div>
+
+          <button type="button" class="btn wa-btn btn-block" data-wa-checkout style="margin-top:20px">
             <ion-icon name="logo-whatsapp"></ion-icon> Place order via WhatsApp
           </button>
 
-          <div style="margin:28px 0;border-top:1px solid var(--line)"></div>
-
-          <p class="ck-delivery-info" style="margin-bottom:18px">Alternatively, you can place your order via the website. We will however require you to enter your phone number below so that we can contact you.</p>
-
-          <div class="form-field">
-            <label for="web-order-phone">Phone number <span class="req">*</span></label>
-            <input type="tel" id="web-order-phone" name="phone" placeholder="e.g. 0712 345 678" required>
-          </div>
-
-          <button type="button" class="btn btn-primary btn-block" data-web-order style="margin-top:20px">Place order via website</button>
+          <button type="button" class="btn btn-primary btn-block" data-web-order style="margin-top:10px">Place order via website</button>
         </div>
 
         <aside class="summary-card order-summary ck-right">
@@ -828,7 +838,7 @@
       }).catch(() => {});
     }
 
-    function buildOrderSummary(prefix, items, subtotal, shipOpt, shipFee, phone) {
+    function buildOrderSummary(prefix, items, subtotal, shipOpt, shipFee, name, phone) {
       const lines = items.map((i, idx) =>
         `${idx + 1}. ${i.product.name} — Qty ${i.quantity} × ${UI.money(i.product.salePrice || i.product.price)} = ${UI.money(i.lineTotal)}`
       );
@@ -840,30 +850,41 @@
         `Shipping: ${shipOpt ? shipOpt.label : 'N/A'} — ${shipFee ? UI.money(shipFee) : 'Free'}`,
         `Subtotal: ${UI.money(subtotal)}`,
         `Total: ${UI.money(subtotal + shipFee)}`,
+        name ? `\nName: ${name}` : '',
         phone ? `\nPhone: ${phone}` : ''
       ].join('\n');
     }
 
     /* whatsapp checkout */
     $('[data-wa-checkout]', wrap).addEventListener('click', () => {
+      const nameInput = $('#ck-name', wrap);
+      const phoneInput = $('#ck-phone', wrap);
+      const name = nameInput ? nameInput.value.trim() : '';
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      if (!name) { UI.toast('Please enter your name.', 'error'); if (nameInput) nameInput.focus(); return; }
+      if (!phone) { UI.toast('Please enter your phone number.', 'error'); if (phoneInput) phoneInput.focus(); return; }
+
       const shipId = wrap.querySelector('[name="shipping"]:checked').value;
       const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
       const shipFee = shipOpt ? shipOpt.fee : 0;
-      sendToTelegram(buildOrderSummary('New WhatsApp order', items, subtotal, shipOpt, shipFee, ''));
+      sendToTelegram(buildOrderSummary('New WhatsApp order', items, subtotal, shipOpt, shipFee, name, phone));
       global.open(waOrderLink(items, subtotal, { shipping: shipOpt }), '_blank', 'noopener');
     });
 
     /* place order via website — sends to Telegram bot + Google Apps Script */
     $('[data-web-order]', wrap).addEventListener('click', () => {
-      const phoneInput = $('#web-order-phone', wrap);
+      const nameInput = $('#ck-name', wrap);
+      const phoneInput = $('#ck-phone', wrap);
+      const name = nameInput ? nameInput.value.trim() : '';
       const phone = phoneInput ? phoneInput.value.trim() : '';
+      if (!name) { UI.toast('Please enter your name.', 'error'); if (nameInput) nameInput.focus(); return; }
       if (!phone) { UI.toast('Please enter your phone number.', 'error'); if (phoneInput) phoneInput.focus(); return; }
 
       const shipId = wrap.querySelector('[name="shipping"]:checked').value;
       const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
       const shipFee = shipOpt ? shipOpt.fee : 0;
 
-      sendToTelegram(buildOrderSummary('New website order', items, subtotal, shipOpt, shipFee, phone));
+      sendToTelegram(buildOrderSummary('New website order', items, subtotal, shipOpt, shipFee, name, phone));
 
       /* Send to Google Apps Script webhook */
       const GAS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxYOUR_SCRIPT_ID_HERE/exec';
