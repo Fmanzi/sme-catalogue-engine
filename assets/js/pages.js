@@ -787,8 +787,8 @@
 
           <div class="form-field-row">
             <div class="form-field">
-              <label for="ck-name">Full name <span class="req">*</span></label>
-              <input type="text" id="ck-name" name="name" placeholder="e.g. Jane Doe" required>
+              <label for="ck-name">Name</label>
+              <input type="text" id="ck-name" name="name" placeholder="e.g. Jane Doe">
             </div>
             <div class="form-field">
               <label for="ck-phone">Phone number <span class="req">*</span></label>
@@ -861,7 +861,6 @@
       const phoneInput = $('#ck-phone', wrap);
       const name = nameInput ? nameInput.value.trim() : '';
       const phone = phoneInput ? phoneInput.value.trim() : '';
-      if (!name) { UI.toast('Please enter your name.', 'error'); if (nameInput) nameInput.focus(); return; }
       if (!phone) { UI.toast('Please enter your phone number.', 'error'); if (phoneInput) phoneInput.focus(); return; }
 
       const shipId = wrap.querySelector('[name="shipping"]:checked').value;
@@ -877,7 +876,6 @@
       const phoneInput = $('#ck-phone', wrap);
       const name = nameInput ? nameInput.value.trim() : '';
       const phone = phoneInput ? phoneInput.value.trim() : '';
-      if (!name) { UI.toast('Please enter your name.', 'error'); if (nameInput) nameInput.focus(); return; }
       if (!phone) { UI.toast('Please enter your phone number.', 'error'); if (phoneInput) phoneInput.focus(); return; }
 
       const shipId = wrap.querySelector('[name="shipping"]:checked').value;
