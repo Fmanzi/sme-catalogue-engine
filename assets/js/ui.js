@@ -244,14 +244,14 @@
         <button type="submit" class="search-btn"><ion-icon name="search-outline"></ion-icon></button>
       </form>` : ''}
       <div class="header-user-actions">
-        <a href="cart.html" class="action-btn" title="Shopping bag" aria-label="Shopping bag"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold)">0</span></a>
+        <a href="cart.html" class="action-btn" title="Shopping bag" aria-label="Shopping bag"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-family:Georgia,serif;font-size:11px;font-weight:700;line-height:1">0</span></a>
       </div>
     </div>
   </div>
 
   <div class="mobile-bottom-navigation">
     <button class="action-btn" data-mobile-menu-open-btn><ion-icon name="menu-outline"></ion-icon></button>
-    <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold)">0</span></a>
+    <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-family:Georgia,serif;font-size:11px;font-weight:700;line-height:1">0</span></a>
     <a href="/" class="action-btn" aria-label="Shop"><ion-icon name="storefront-outline"></ion-icon></a>
   </div>
 

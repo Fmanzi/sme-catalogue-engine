@@ -72,7 +72,7 @@ body > main { flex: 1; }
 .hero-carousel .hero-arrow:hover { background: #96692f; }
 .hero-carousel .hero-arrow ion-icon { font-size: 36px; color: #fff; pointer-events: none; }
 
-.header-user-actions .count, .header-actions .count { background: var(--gold) !important; }
+.header-user-actions .count, .header-actions .count { background: var(--gold) !important; position: absolute; top: -4px; right: -6px; min-width: 20px; height: 20px; padding: 0; display: grid; place-items: center; border-radius: 50%; font-family: Georgia, serif; font-size: 11px; font-weight: 700; line-height: 1; }
 
 @media (max-width: 767px) {
   .hero-slide { min-height: 340px; }
