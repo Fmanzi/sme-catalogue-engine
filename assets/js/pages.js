@@ -186,12 +186,22 @@
   }
 
   function renderHome() {
-    renderHero();
     renderShopBanner();
-    renderDealOfDay();
+
+    const mensGrid = $('#mens-picks-grid');
+    if (mensGrid) {
+      const mens = activeProducts().filter(p => p.gender === 'men').sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.soldCount - a.soldCount).slice(0, 8);
+      UI.renderProductGrid(mensGrid, mens);
+    }
+
+    const womensGrid = $('#womens-picks-grid');
+    if (womensGrid) {
+      const womens = activeProducts().filter(p => p.gender === 'women').sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.soldCount - a.soldCount).slice(0, 8);
+      UI.renderProductGrid(womensGrid, womens);
+    }
 
     const newArrivals = $('#new-arrivals-grid');
-    if (newArrivals) UI.renderProductGrid(newArrivals, activeProducts().filter(p => p.newArrival).slice(0, 8));
+    if (newArrivals) UI.renderProductGrid(newArrivals, activeProducts().filter(p => p.newArrival).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 8));
 
     const featured = $('#featured-timepieces-grid');
     if (featured) UI.renderProductGrid(featured, activeProducts().filter(p => p.featured).slice(0, 8));
@@ -215,6 +225,8 @@
     if (cat) list = list.filter(p => p.categoryId === cat);
     const brand = params.get('brand');
     if (brand) { const ids = brand.split(','); list = list.filter(p => ids.includes(p.brandId)); }
+    const gender = params.get('gender');
+    if (gender) list = list.filter(p => p.gender === gender);
     const status = params.get('status');
     if (status === 'sale') list = list.filter(p => p.salePrice && p.salePrice < p.price);
     if (status === 'new') list = list.filter(p => p.newArrival);
@@ -260,6 +272,8 @@
       if (cat) chipHtml.push(`<span class="chip">${esc(cat.name)} <a class="chip-close" href="${stripParam('cat')}"><ion-icon name="close"></ion-icon></a></span>`);
       const brand = params.get('brand') ? Store.brand(params.get('brand')) : null;
       if (brand) chipHtml.push(`<span class="chip">${esc(brand.name)} <a class="chip-close" href="${stripParam('brand')}"><ion-icon name="close"></ion-icon></a></span>`);
+      const gender = params.get('gender');
+      if (gender) { const gLabel = { men: "Men's", women: "Women's", unisex: 'Unisex' }[gender] || gender; chipHtml.push(`<span class="chip">${esc(gLabel)} <a class="chip-close" href="${stripParam('gender')}"><ion-icon name="close"></ion-icon></a></span>`); }
       const min = params.get('min'), max = params.get('max');
       if (min || max) chipHtml.push(`<span class="chip">${UI.money(min || 0)} – ${UI.money(max || '∞')} <a class="chip-close" href="${stripParam('min', 'max')}"><ion-icon name="close"></ion-icon></a></span>`);
       if (params.get('status')) chipHtml.push(`<span class="chip">${esc(params.get('status'))} <a class="chip-close" href="${stripParam('status')}"><ion-icon name="close"></ion-icon></a></span>`);

@@ -252,7 +252,8 @@
   <nav class="desktop-nav-bar">
     <div class="container">
       <ul class="desktop-nav-list">
-        <li class="desktop-nav-item"><a href="/" class="desktop-nav-link">Shop All</a></li>
+        <li class="desktop-nav-item"><a href="home.html" class="desktop-nav-link">Home</a></li>
+        <li class="desktop-nav-item"><a href="index.html" class="desktop-nav-link">Shop All</a></li>
         <li class="desktop-nav-item"><a href="mens.html" class="desktop-nav-link">Men's</a></li>
         <li class="desktop-nav-item"><a href="womens.html" class="desktop-nav-link">Women's</a></li>
         <li class="desktop-nav-item"><a href="collections.html" class="desktop-nav-link">Collections</a></li>
@@ -265,7 +266,7 @@
   </nav>
 
   <div class="mobile-bottom-navigation">
-    <a href="/" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
+    <a href="home.html" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
     <a href="mens.html" class="action-btn" aria-label="Men's"><ion-icon name="male-outline"></ion-icon></a>
     <a href="womens.html" class="action-btn" aria-label="Women's"><ion-icon name="female-outline"></ion-icon></a>
     <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:700;line-height:1">0</span></a>
@@ -278,7 +279,8 @@
       <button class="menu-close-btn" data-mobile-menu-close-btn><ion-icon name="close-outline"></ion-icon></button>
     </div>
     <ul class="mobile-menu-category-list">
-      <li class="menu-category"><a href="/" class="menu-title">Shop All</a></li>
+      <li class="menu-category"><a href="home.html" class="menu-title">Home</a></li>
+      <li class="menu-category"><a href="index.html" class="menu-title">Shop All</a></li>
       <li class="menu-category"><a href="mens.html" class="menu-title">Men's Watches</a></li>
       <li class="menu-category"><a href="womens.html" class="menu-title">Women's Watches</a></li>
       <li class="menu-category"><a href="collections.html" class="menu-title">Collections</a></li>
@@ -304,7 +306,7 @@
   <div class="footer-bottom">
     <div class="container">
       <p class="copyright">
-        Copyright &copy; <a href="/">${AnonUI.escapeHtml(s.storeName)}</a> all rights reserved.
+        Copyright &copy; <a href="home.html">${AnonUI.escapeHtml(s.storeName)}</a> all rights reserved.
       </p>
     </div>
   </div>`;

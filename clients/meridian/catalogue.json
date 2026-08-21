@@ -416,7 +416,8 @@
       "_source": {
         "wholesale_price": 2200,
         "retail_price": 4800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-2",
@@ -593,7 +594,8 @@
       "_source": {
         "wholesale_price": 1700,
         "retail_price": 3800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-3",
@@ -967,7 +969,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-4",
@@ -1256,7 +1259,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-5",
@@ -1630,7 +1634,8 @@
       "_source": {
         "wholesale_price": 2200,
         "retail_price": 4800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-6",
@@ -1835,7 +1840,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-7",
@@ -2159,7 +2165,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-8",
@@ -2512,7 +2519,8 @@
       "_source": {
         "wholesale_price": 3500,
         "retail_price": 7400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-9",
@@ -2662,7 +2670,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-10",
@@ -3044,7 +3053,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-11",
@@ -3278,7 +3288,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-12",
@@ -3456,7 +3467,8 @@
       "_source": {
         "wholesale_price": 1700,
         "retail_price": 3800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-13",
@@ -3714,7 +3726,8 @@
       "_source": {
         "wholesale_price": 200,
         "retail_price": 800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-14",
@@ -4152,7 +4165,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-15",
@@ -4637,7 +4651,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-16",
@@ -5019,7 +5034,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-17",
@@ -5421,7 +5437,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-18",
@@ -5738,7 +5755,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-19",
@@ -6083,7 +6101,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-20",
@@ -6400,7 +6419,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-21",
@@ -6634,7 +6654,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-22",
@@ -7014,7 +7035,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-23",
@@ -7388,7 +7410,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-24",
@@ -7762,7 +7785,8 @@
       "_source": {
         "wholesale_price": 3600,
         "retail_price": 7600
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-25",
@@ -8079,7 +8103,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-26",
@@ -8517,7 +8542,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-27",
@@ -8863,7 +8889,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-28",
@@ -9237,7 +9264,8 @@
       "_source": {
         "wholesale_price": 3600,
         "retail_price": 7600
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-29",
@@ -9835,7 +9863,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-30",
@@ -10209,7 +10238,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-31",
@@ -10358,7 +10388,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-32",
@@ -10676,7 +10707,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-33",
@@ -11106,7 +11138,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-34",
@@ -11488,7 +11521,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-35",
@@ -11806,7 +11840,8 @@
       "_source": {
         "wholesale_price": 3000,
         "retail_price": 6400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-36",
@@ -12291,7 +12326,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-37",
@@ -12606,7 +12642,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-38",
@@ -12812,7 +12849,8 @@
       "_source": {
         "wholesale_price": 1400,
         "retail_price": 3200
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-39",
@@ -13154,7 +13192,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-40",
@@ -13508,7 +13547,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-41",
@@ -13946,7 +13986,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-42",
@@ -14412,7 +14453,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-43",
@@ -14698,7 +14740,8 @@
       "_source": {
         "wholesale_price": 200,
         "retail_price": 800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-44",
@@ -15044,7 +15087,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-45",
@@ -15278,7 +15322,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-46",
@@ -15775,7 +15820,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-47",
@@ -16036,7 +16082,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-48",
@@ -16577,7 +16624,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-49",
@@ -17007,7 +17055,8 @@
       "_source": {
         "wholesale_price": 3600,
         "retail_price": 7600
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-50",
@@ -17550,7 +17599,8 @@
       "_source": {
         "wholesale_price": 2200,
         "retail_price": 4800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-51",
@@ -17784,7 +17834,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-52",
@@ -17990,7 +18041,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-53",
@@ -18120,7 +18172,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-54",
@@ -18501,7 +18554,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-55",
@@ -18815,7 +18869,8 @@
       "_source": {
         "wholesale_price": 3500,
         "retail_price": 7400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-56",
@@ -19160,7 +19215,8 @@
       "_source": {
         "wholesale_price": 2900,
         "retail_price": 6200
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-57",
@@ -19542,7 +19598,8 @@
       "_source": {
         "wholesale_price": 2200,
         "retail_price": 4800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-58",
@@ -20028,7 +20085,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-59",
@@ -20225,7 +20283,8 @@
       "_source": {
         "wholesale_price": 200,
         "retail_price": 800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-60",
@@ -20403,7 +20462,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-61",
@@ -20721,7 +20781,8 @@
       "_source": {
         "wholesale_price": 2100,
         "retail_price": 4600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-62",
@@ -21179,7 +21240,8 @@
       "_source": {
         "wholesale_price": 3600,
         "retail_price": 7600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-63",
@@ -21421,7 +21483,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-64",
@@ -21655,7 +21718,8 @@
       "_source": {
         "wholesale_price": 500,
         "retail_price": 1400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-65",
@@ -22085,7 +22149,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-66",
@@ -22287,7 +22352,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-67",
@@ -22584,7 +22650,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-68",
@@ -23042,7 +23109,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-69",
@@ -23256,7 +23324,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-70",
@@ -23574,7 +23643,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-71",
@@ -23640,7 +23710,8 @@
       "_source": {
         "wholesale_price": 2300,
         "retail_price": 5000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-72",
@@ -24321,7 +24392,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-73",
@@ -24556,7 +24628,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-74",
@@ -24702,7 +24775,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-75",
@@ -24804,7 +24878,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-76",
@@ -25157,7 +25232,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-77",
@@ -25539,7 +25615,8 @@
       "_source": {
         "wholesale_price": 200,
         "retail_price": 800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-78",
@@ -25857,7 +25934,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-79",
@@ -26155,7 +26233,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-80",
@@ -26566,7 +26645,8 @@
       "_source": {
         "wholesale_price": 3500,
         "retail_price": 7400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-81",
@@ -27032,7 +27112,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-82",
@@ -27442,7 +27523,8 @@
       "_source": {
         "wholesale_price": 2300,
         "retail_price": 5000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-83",
@@ -27620,7 +27702,8 @@
       "_source": {
         "wholesale_price": 2200,
         "retail_price": 4800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-84",
@@ -27966,7 +28049,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-85",
@@ -28168,7 +28252,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-86",
@@ -28402,7 +28487,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-87",
@@ -28691,7 +28777,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-88",
@@ -28869,7 +28956,8 @@
       "_source": {
         "wholesale_price": 3600,
         "retail_price": 7600
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-89",
@@ -29270,7 +29358,8 @@
       "_source": {
         "wholesale_price": 6200,
         "retail_price": 12800
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-90",
@@ -29708,7 +29797,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-91",
@@ -29970,7 +30060,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-92",
@@ -30350,7 +30441,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-93",
@@ -30666,7 +30758,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-94",
@@ -30936,7 +31029,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-95",
@@ -31225,7 +31319,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-96",
@@ -31487,7 +31582,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-97",
@@ -31693,7 +31789,8 @@
       "_source": {
         "wholesale_price": 1700,
         "retail_price": 3800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-98",
@@ -31990,7 +32087,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-99",
@@ -32252,7 +32350,8 @@
       "_source": {
         "wholesale_price": 2300,
         "retail_price": 5000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-100",
@@ -32492,7 +32591,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-101",
@@ -32706,7 +32806,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-102",
@@ -32912,7 +33013,8 @@
       "_source": {
         "wholesale_price": 3200,
         "retail_price": 6800
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-103",
@@ -33144,7 +33246,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-104",
@@ -33462,7 +33565,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-105",
@@ -33920,7 +34024,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-106",
@@ -34489,7 +34594,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-107",
@@ -35166,7 +35272,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-108",
@@ -35434,7 +35541,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-109",
@@ -35788,7 +35896,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-110",
@@ -36046,7 +36155,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-111",
@@ -36456,7 +36566,8 @@
       "_source": {
         "wholesale_price": 1700,
         "retail_price": 3800
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-112",
@@ -36718,7 +36829,8 @@
       "_source": {
         "wholesale_price": 200,
         "retail_price": 800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-113",
@@ -37156,7 +37268,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-114",
@@ -37454,7 +37567,8 @@
       "_source": {
         "wholesale_price": 1700,
         "retail_price": 3800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-115",
@@ -37916,7 +38030,8 @@
       "_source": {
         "wholesale_price": 1700,
         "retail_price": 3800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-116",
@@ -38298,7 +38413,8 @@
       "_source": {
         "wholesale_price": 1700,
         "retail_price": 3800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-117",
@@ -38708,7 +38824,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-118",
@@ -38995,7 +39112,8 @@
       "_source": {
         "wholesale_price": 3500,
         "retail_price": 7400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-119",
@@ -39433,7 +39551,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-120",
@@ -39835,7 +39954,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-121",
@@ -40069,7 +40189,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-122",
@@ -40415,7 +40536,8 @@
       "_source": {
         "wholesale_price": 1700,
         "retail_price": 3800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-123",
@@ -40881,7 +41003,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-124",
@@ -41235,7 +41358,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-125",
@@ -41357,7 +41481,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-126",
@@ -41675,7 +41800,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-127",
@@ -42021,7 +42147,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-128",
@@ -42395,7 +42522,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-129",
@@ -42665,7 +42793,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-130",
@@ -43123,7 +43252,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-131",
@@ -43497,7 +43627,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-132",
@@ -43728,7 +43859,8 @@
       "_source": {
         "wholesale_price": 3000,
         "retail_price": 6400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-133",
@@ -44210,7 +44342,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-134",
@@ -44508,7 +44641,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-135",
@@ -44822,7 +44956,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-136",
@@ -45164,7 +45299,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-137",
@@ -45594,7 +45730,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-138",
@@ -45856,7 +45993,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-139",
@@ -46146,7 +46284,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-140",
@@ -46576,7 +46715,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-141",
@@ -46810,7 +46950,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-142",
@@ -47156,7 +47297,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-143",
@@ -47650,7 +47792,8 @@
       "_source": {
         "wholesale_price": 200,
         "retail_price": 800
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-144",
@@ -48031,7 +48174,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-145",
@@ -48685,7 +48829,8 @@
       "_source": {
         "wholesale_price": 3600,
         "retail_price": 7600
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-146",
@@ -49095,7 +49240,8 @@
       "_source": {
         "wholesale_price": 3600,
         "retail_price": 7600
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-147",
@@ -49693,7 +49839,8 @@
       "_source": {
         "wholesale_price": 3600,
         "retail_price": 7600
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-148",
@@ -50095,7 +50242,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-149",
@@ -50749,7 +50897,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-150",
@@ -51206,7 +51355,8 @@
       "_source": {
         "wholesale_price": 3300,
         "retail_price": 7000
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-151",
@@ -51746,7 +51896,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-152",
@@ -52007,7 +52158,8 @@
       "_source": {
         "wholesale_price": 2500,
         "retail_price": 5400
-      }
+      },
+      "gender": "unisex"
     },
     {
       "id": "prd-153",
@@ -52360,7 +52512,8 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      }
+      },
+      "gender": "men"
     },
     {
       "id": "prd-154",
@@ -52788,7 +52941,8 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-155",
@@ -53161,7 +53315,8 @@
       "_source": {
         "wholesale_price": 2000,
         "retail_price": 4400
-      }
+      },
+      "gender": "women"
     },
     {
       "id": "prd-156",
@@ -53394,7 +53549,8 @@
       "_source": {
         "wholesale_price": 1500,
         "retail_price": 3400
-      }
+      },
+      "gender": "women"
     }
   ]
 }

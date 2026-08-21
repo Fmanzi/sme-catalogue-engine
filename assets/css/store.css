@@ -186,6 +186,11 @@ body > main { flex: 1; }
   }
 }
 
+/* ---------- home sections ---------- */
+
+.home-section { padding: 46px 0 32px; }
+.home-section + .home-section { border-top: 1px solid var(--line); }
+
 /* ---------- shop banner (legacy fallback) ---------- */
 
 .value-strip { background: var(--ink); color: #fff; }
