@@ -249,10 +249,27 @@
     </div>
   </div>
 
+  <nav class="desktop-nav-bar">
+    <div class="container">
+      <ul class="desktop-nav-list">
+        <li class="desktop-nav-item"><a href="/" class="desktop-nav-link">Shop All</a></li>
+        <li class="desktop-nav-item"><a href="mens.html" class="desktop-nav-link">Men's</a></li>
+        <li class="desktop-nav-item"><a href="womens.html" class="desktop-nav-link">Women's</a></li>
+        <li class="desktop-nav-item"><a href="collections.html" class="desktop-nav-link">Collections</a></li>
+        <li class="desktop-nav-item"><a href="best-sellers.html" class="desktop-nav-link">Best Sellers</a></li>
+        <li class="desktop-nav-item"><a href="new-arrivals.html" class="desktop-nav-link">New Arrivals</a></li>
+        <li class="desktop-nav-item"><a href="about.html" class="desktop-nav-link">About</a></li>
+        <li class="desktop-nav-item"><a href="contact.html" class="desktop-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="mobile-bottom-navigation">
-    <button class="action-btn" data-mobile-menu-open-btn><ion-icon name="menu-outline"></ion-icon></button>
-    <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:700;line-height:1">0</span></a>
     <a href="/" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
+    <a href="mens.html" class="action-btn" aria-label="Men's"><ion-icon name="male-outline"></ion-icon></a>
+    <a href="womens.html" class="action-btn" aria-label="Women's"><ion-icon name="female-outline"></ion-icon></a>
+    <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:700;line-height:1">0</span></a>
+    <button class="action-btn" data-mobile-menu-open-btn><ion-icon name="menu-outline"></ion-icon></button>
   </div>
 
   <nav class="mobile-navigation-menu has-scrollbar" data-mobile-menu>
@@ -262,6 +279,11 @@
     </div>
     <ul class="mobile-menu-category-list">
       <li class="menu-category"><a href="/" class="menu-title">Shop All</a></li>
+      <li class="menu-category"><a href="mens.html" class="menu-title">Men's Watches</a></li>
+      <li class="menu-category"><a href="womens.html" class="menu-title">Women's Watches</a></li>
+      <li class="menu-category"><a href="collections.html" class="menu-title">Collections</a></li>
+      <li class="menu-category"><a href="best-sellers.html" class="menu-title">Best Sellers</a></li>
+      <li class="menu-category"><a href="new-arrivals.html" class="menu-title">New Arrivals</a></li>
       ${categories.map(category => `<li class="menu-category"><a href="/?cat=${encodeURIComponent(category.id)}" class="menu-title">${AnonUI.escapeHtml(category.name)}</a></li>`).join('')}
       <li class="menu-category"><a href="search.html" class="menu-title">Search</a></li>
       <li class="menu-category"><a href="about.html" class="menu-title">About</a></li>
@@ -269,10 +291,8 @@
     </ul>
     <div class="menu-bottom">
       <ul class="menu-social-container">
-        <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
-        <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
-        <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
-        <li><a href="#" class="social-link"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+        ${social.facebook ? `<li><a href="${social.facebook}" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>` : ''}
+        ${social.instagram ? `<li><a href="${social.instagram}" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>` : ''}
       </ul>
     </div>
   </nav>`;
@@ -299,6 +319,17 @@
     if (footer) footer.innerHTML = AnonUI.footerHTML();
     AnonUI.updateBadges();
     bindChromeEvents();
+
+    /* highlight current page in desktop nav */
+    const currentPath = global.location.pathname;
+    document.querySelectorAll('.desktop-nav-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const linkPath = new URL(href, global.location.origin).pathname;
+      if (currentPath === linkPath || (linkPath === '/' && currentPath === '/index.html')) {
+        link.classList.add('is-active');
+      }
+    });
 
     /* floating WhatsApp button */
     if (!document.querySelector('.wa-float')) {
