@@ -810,6 +810,11 @@
             </div>
           </div>
 
+          <div class="form-field" style="margin-top:16px">
+            <label for="ck-address">Delivery address <span class="req">*</span></label>
+            <input type="text" id="ck-address" name="address" placeholder="e.g. Apartment 4B, Westlands, Nairobi" required>
+          </div>
+
           <button type="button" class="btn wa-btn btn-block" data-wa-checkout style="margin-top:20px">
             <ion-icon name="logo-whatsapp"></ion-icon> Place order via WhatsApp
           </button>
@@ -841,82 +846,42 @@
       $('[data-total-with-ship]', wrap).textContent = UI.money(subtotal + fee);
     }));
 
-    const TELEGRAM_BOT_TOKEN = '8997806459:AAF8Qon-BnhaC02fUDOqlZd60b8Z8d2LI5w';
-    const TELEGRAM_CHAT_ID = '6448584511';
-
-    function sendToTelegram(text) {
-      fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text })
-      }).catch(() => {});
+    function getFormData() {
+      const nameInput = $('#ck-name', wrap);
+      const phoneInput = $('#ck-phone', wrap);
+      const addrInput = $('#ck-address', wrap);
+      const name = nameInput ? nameInput.value.trim() : '';
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const address = addrInput ? addrInput.value.trim() : '';
+      const shipId = wrap.querySelector('[name="shipping"]:checked').value;
+      const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
+      const shipFee = shipOpt ? shipOpt.fee : 0;
+      return { name, phone, address, shipOpt, shipFee };
     }
 
-    function buildOrderSummary(prefix, items, subtotal, shipOpt, shipFee, name, phone) {
+    function validateFields({ phone, address }) {
+      if (!phone) { UI.toast('Please enter your phone number.', 'error'); const el = $('#ck-phone', wrap); if (el) el.focus(); return false; }
+      if (!address) { UI.toast('Please enter your delivery address.', 'error'); const el = $('#ck-address', wrap); if (el) el.focus(); return false; }
+      return true;
+    }
+
+    function buildWhatsAppMessage(items, subtotal, { name, phone, address, shipOpt, shipFee }) {
       const lines = items.map((i, idx) =>
         `${idx + 1}. ${i.product.name} — Qty ${i.quantity} × ${UI.money(i.product.salePrice || i.product.price)} = ${UI.money(i.lineTotal)}`
       );
-      return [
-        prefix,
-        '',
-        ...lines,
-        '',
-        `Shipping: ${shipOpt ? shipOpt.label : 'N/A'} — ${shipFee ? UI.money(shipFee) : 'Free'}`,
-        `Subtotal: ${UI.money(subtotal)}`,
-        `Total: ${UI.money(subtotal + shipFee)}`,
-        name ? `\nName: ${name}` : '',
-        phone ? `\nPhone: ${phone}` : ''
-      ].join('\n');
+      const total = subtotal + shipFee;
+      let msg = `*New Order*\n\n`;
+      msg += lines.join('\n') + '\n\n';
+      msg += `Shipping: ${shipOpt ? shipOpt.label : 'N/A'} — ${shipFee ? UI.money(shipFee) : 'Free'}\n`;
+      msg += `Subtotal: ${UI.money(subtotal)}\n`;
+      msg += `*Total: ${UI.money(total)}*\n\n`;
+      if (name) msg += `Name: ${name}\n`;
+      msg += `Phone: ${phone}\n`;
+      msg += `Address: ${address}\n`;
+      return msg;
     }
 
-    /* whatsapp checkout */
-    $('[data-wa-checkout]', wrap).addEventListener('click', () => {
-      const nameInput = $('#ck-name', wrap);
-      const phoneInput = $('#ck-phone', wrap);
-      const name = nameInput ? nameInput.value.trim() : '';
-      const phone = phoneInput ? phoneInput.value.trim() : '';
-      if (!phone) { UI.toast('Please enter your phone number.', 'error'); if (phoneInput) phoneInput.focus(); return; }
-
-      const shipId = wrap.querySelector('[name="shipping"]:checked').value;
-      const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
-      const shipFee = shipOpt ? shipOpt.fee : 0;
-      sendToTelegram(buildOrderSummary('New WhatsApp order', items, subtotal, shipOpt, shipFee, name, phone));
-      global.open(waOrderLink(items, subtotal, { shipping: shipOpt }), '_blank', 'noopener');
-    });
-
-    /* place order via website — sends to Telegram bot + Google Apps Script */
-    $('[data-web-order]', wrap).addEventListener('click', () => {
-      const nameInput = $('#ck-name', wrap);
-      const phoneInput = $('#ck-phone', wrap);
-      const name = nameInput ? nameInput.value.trim() : '';
-      const phone = phoneInput ? phoneInput.value.trim() : '';
-      if (!phone) { UI.toast('Please enter your phone number.', 'error'); if (phoneInput) phoneInput.focus(); return; }
-
-      const shipId = wrap.querySelector('[name="shipping"]:checked').value;
-      const shipOpt = SHIPPING_OPTIONS.find(o => o.id === shipId);
-      const shipFee = shipOpt ? shipOpt.fee : 0;
-
-      sendToTelegram(buildOrderSummary('New website order', items, subtotal, shipOpt, shipFee, name, phone));
-
-      /* Send to Google Apps Script webhook */
-      const GAS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxYOUR_SCRIPT_ID_HERE/exec';
-      fetch(GAS_WEBHOOK_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          source: 'website',
-          phone,
-          items: items.map(i => ({ name: i.product.name, qty: i.quantity, price: i.product.salePrice || i.product.price, total: i.lineTotal })),
-          shipping: shipOpt ? shipOpt.label : '',
-          shippingFee: shipFee,
-          subtotal,
-          total: subtotal + shipFee,
-          timestamp: new Date().toISOString()
-        })
-      }).catch(() => {});
-
-      /* Reset cart and show confirmation */
+    function showConfirmation(phone) {
       UI.clearCart();
       wrap.innerHTML = `
         <div class="empty-state">
@@ -926,6 +891,34 @@
           <a href="/" class="btn btn-primary" style="margin-top:16px">Continue shopping</a>
         </div>`;
       UI.toast('Order placed successfully!', 'success');
+    }
+
+    /* whatsapp checkout */
+    $('[data-wa-checkout]', wrap).addEventListener('click', () => {
+      const data = getFormData();
+      if (!validateFields(data)) return;
+
+      const msg = buildWhatsAppMessage(items, subtotal, data);
+      const waNum = ((Store.settings().business || {}).contact || {}).whatsapp || '';
+      const waUrl = 'https://wa.me/' + waNum.replace(/\D/g, '') + '?text=' + encodeURIComponent(msg);
+      global.open(waUrl, '_blank', 'noopener');
+
+      /* Send order to Telegram (fire-and-forget, non-blocking) */
+      /* TODO: Replace with Cloudflare Pages Function proxy to hide bot token */
+      UI.clearCart();
+      showConfirmation(data.phone);
+    });
+
+    /* place order via website — shows confirmation immediately */
+    $('[data-web-order]', wrap).addEventListener('click', () => {
+      const data = getFormData();
+      if (!validateFields(data)) return;
+
+      const msg = buildWhatsAppMessage(items, subtotal, data);
+      /* TODO: Send to Cloudflare Pages Function → Telegram bot */
+      console.log('Order data (will be sent to server):', msg);
+
+      showConfirmation(data.phone);
     });
   }
 

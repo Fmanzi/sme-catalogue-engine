@@ -12,17 +12,16 @@ const domain = String((business.site || {}).domain || '').replace(/^https?:\/\//
 const robotsLines = ['User-agent: *', 'Allow: /'];
 if (domain) {
   robotsLines.push(`Sitemap: https://${domain}/sitemap.xml`);
+} else {
+  robotsLines.push('Sitemap: /sitemap.xml');
 }
 fs.writeFileSync(path.join(root, 'robots.txt'), robotsLines.join('\n') + '\n');
 
 if (!domain) {
-  console.warn('No site.domain set; generated robots.txt without sitemap.');
-  /* Remove stale sitemap if it exists */
-  try { fs.unlinkSync(path.join(root, 'sitemap.xml')); } catch (e) { /* ignore */ }
-  process.exit(0);
+  console.warn('No site.domain set; generating sitemap with relative URLs.');
 }
 
-const base = `https://${domain}`;
+const base = domain ? `https://${domain}` : '';
 const urls = ['/', ...catalogue.categories.map(category => `/category/${category.slug}/`), ...catalogue.products.map(product => `/product/${product.slug}/`)];
 const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${base}${url}</loc></url>`).join('\n')}\n</urlset>\n`;
 fs.writeFileSync(path.join(root, 'sitemap.xml'), body);

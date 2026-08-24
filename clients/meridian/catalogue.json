@@ -92,13 +92,6 @@
       "logo": ""
     },
     {
-      "id": "br-unknown",
-      "name": "Unknown",
-      "slug": "unknown",
-      "description": "Unknown watches sourced from our supplier network.",
-      "logo": ""
-    },
-    {
       "id": "br-minifocus",
       "name": "Minifocus",
       "slug": "minifocus",
@@ -265,6 +258,18 @@
       "slug": "hannah-martin",
       "description": "Hannah Martin watches sourced from our supplier network.",
       "logo": ""
+    },
+    {
+      "id": "br-chenxi",
+      "name": "Chenxi",
+      "slug": "chenxi",
+      "status": "active"
+    },
+    {
+      "id": "br-gedi",
+      "name": "Gedi",
+      "slug": "gedi",
+      "status": "active"
     }
   ],
   "products": [
@@ -395,7 +400,7 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
       "bestSeller": false,
       "variants": [],
@@ -574,9 +579,9 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [],
       "attributes": {},
       "tags": [
@@ -948,9 +953,9 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [],
       "attributes": {},
       "tags": [
@@ -1239,9 +1244,9 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [],
       "attributes": {},
       "tags": [
@@ -1613,9 +1618,9 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [],
       "attributes": {},
       "tags": [
@@ -1820,7 +1825,7 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
       "bestSeller": false,
       "variants": [],
@@ -2139,7 +2144,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -2170,14 +2175,14 @@
     },
     {
       "id": "prd-8",
-      "slug": "unknown-new-chenxi-automatic-watch-8810",
-      "name": "Unknown NEW CHENXI AUTOMATIC WATCH 8810",
+      "slug": "chenxi-automatic-8810",
+      "name": "Chenxi Automatic 8810",
       "sku": "MER-368C1C",
       "price": 7400,
       "compareAtPrice": null,
       "currency": "KES",
       "categoryId": "cat-automatic",
-      "brandId": "br-unknown",
+      "brandId": "br-chenxi",
       "shortDescription": "Unknown NEW CHENXI AUTOMATIC WATCH 8810 — Automatic movement, Skeleton dial, Stainless steel.",
       "description": "✳️Automatic movement. ✳️Skeleton dial. ✳️Stainless steel. ✳️3ATM water resistant. 📌 2 color option",
       "images": [
@@ -2491,7 +2496,7 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
       "bestSeller": false,
       "variants": [
@@ -2649,9 +2654,9 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [],
       "attributes": {},
       "tags": [
@@ -2675,14 +2680,14 @@
     },
     {
       "id": "prd-10",
-      "slug": "unknown-new-gedi-vintage-ladies-watch",
-      "name": "Unknown NEW GEDI VINTAGE LADIES WATCH",
+      "slug": "gedi-vintage-ladies-watch",
+      "name": "Gedi Vintage Ladies Watch",
       "sku": "MER-E4618C",
       "price": 3400,
       "compareAtPrice": null,
       "currency": "KES",
       "categoryId": "cat-dive",
-      "brandId": "br-unknown",
+      "brandId": "br-gedi",
       "shortDescription": "Unknown NEW GEDI VINTAGE LADIES WATCH — Vintage style, Stainless steel, Water resistant.",
       "description": "✳️Vintage style. ✳️Stainless steel. ✳️Water resistant. ✳️Battery powered. ✳️High quality. 📌 3 color option",
       "images": [
@@ -3025,7 +3030,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -3267,9 +3272,9 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [],
       "attributes": {},
       "tags": [
@@ -3293,14 +3298,14 @@
     },
     {
       "id": "prd-12",
-      "slug": "unknown-gents-crrju-5022",
-      "name": "Unknown GENTS CRRJU 5022",
+      "slug": "crrju-gents-5022",
+      "name": "CRRJU GENTS 5022",
       "sku": "MER-44E001",
       "price": 3800,
       "compareAtPrice": null,
       "currency": "KES",
       "categoryId": "cat-dive",
-      "brandId": "br-unknown",
+      "brandId": "br-crrju",
       "shortDescription": "Unknown GENTS CRRJU 5022 — Date display, Water resistant, Battery powered.",
       "description": "✴️💫 GENTS CRRJU 5022 ✴️✴️. ✳️Date display. ✳️Water resistant. ✳️Battery powered. ✳️Genuine leather straps. ✳️ Strong luminous",
       "images": [
@@ -3446,7 +3451,7 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
       "bestSeller": false,
       "variants": [],
@@ -3710,7 +3715,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -4137,7 +4142,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -4167,492 +4172,6 @@
         "retail_price": 4400
       },
       "gender": "men"
-    },
-    {
-      "id": "prd-15",
-      "slug": "unknown-ladies-emporio-armani",
-      "name": "Unknown LADIES EMPORIO ARMANI",
-      "sku": "MER-2E48B7",
-      "price": 3400,
-      "compareAtPrice": null,
-      "currency": "KES",
-      "categoryId": "cat-dive",
-      "brandId": "br-unknown",
-      "shortDescription": "Unknown LADIES EMPORIO ARMANI — Stainless steel, Water resistant, Battery powered.",
-      "description": "✳️Stainless steel. ✳️Water resistant. ✳️Battery powered. ✳️Unique second hand",
-      "images": [
-        {
-          "id": "unknown-ladies-emporio-armani-1",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-1/unknown-ladies-emporio-armani-1-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-1/unknown-ladies-emporio-armani-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-1/unknown-ladies-emporio-armani-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-1/unknown-ladies-emporio-armani-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-1/unknown-ladies-emporio-armani-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-2",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-2/unknown-ladies-emporio-armani-2-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-2/unknown-ladies-emporio-armani-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-2/unknown-ladies-emporio-armani-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-2/unknown-ladies-emporio-armani-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-2/unknown-ladies-emporio-armani-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-3",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-3/unknown-ladies-emporio-armani-3-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-3/unknown-ladies-emporio-armani-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-3/unknown-ladies-emporio-armani-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-3/unknown-ladies-emporio-armani-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-3/unknown-ladies-emporio-armani-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-4",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-4/unknown-ladies-emporio-armani-4-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-4/unknown-ladies-emporio-armani-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-4/unknown-ladies-emporio-armani-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-4/unknown-ladies-emporio-armani-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-4/unknown-ladies-emporio-armani-4-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-5",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-5/unknown-ladies-emporio-armani-5-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-5/unknown-ladies-emporio-armani-5-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-5/unknown-ladies-emporio-armani-5-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-5/unknown-ladies-emporio-armani-5-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-5/unknown-ladies-emporio-armani-5-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-6",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-6/unknown-ladies-emporio-armani-6-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-6/unknown-ladies-emporio-armani-6-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-6/unknown-ladies-emporio-armani-6-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-6/unknown-ladies-emporio-armani-6-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-6/unknown-ladies-emporio-armani-6-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-7",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-7/unknown-ladies-emporio-armani-7-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-7/unknown-ladies-emporio-armani-7-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-7/unknown-ladies-emporio-armani-7-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-7/unknown-ladies-emporio-armani-7-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-7/unknown-ladies-emporio-armani-7-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-8",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-8/unknown-ladies-emporio-armani-8-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-8/unknown-ladies-emporio-armani-8-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-8/unknown-ladies-emporio-armani-8-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-8/unknown-ladies-emporio-armani-8-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-8/unknown-ladies-emporio-armani-8-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-9",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-9/unknown-ladies-emporio-armani-9-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-9/unknown-ladies-emporio-armani-9-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-9/unknown-ladies-emporio-armani-9-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-9/unknown-ladies-emporio-armani-9-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-9/unknown-ladies-emporio-armani-9-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-10",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-10/unknown-ladies-emporio-armani-10-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-10/unknown-ladies-emporio-armani-10-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-10/unknown-ladies-emporio-armani-10-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-10/unknown-ladies-emporio-armani-10-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-10/unknown-ladies-emporio-armani-10-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-11",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-11/unknown-ladies-emporio-armani-11-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-11/unknown-ladies-emporio-armani-11-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-11/unknown-ladies-emporio-armani-11-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-11/unknown-ladies-emporio-armani-11-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-11/unknown-ladies-emporio-armani-11-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-12",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-12/unknown-ladies-emporio-armani-12-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-12/unknown-ladies-emporio-armani-12-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-12/unknown-ladies-emporio-armani-12-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-12/unknown-ladies-emporio-armani-12-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-12/unknown-ladies-emporio-armani-12-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-13",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-13/unknown-ladies-emporio-armani-13-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-13/unknown-ladies-emporio-armani-13-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-13/unknown-ladies-emporio-armani-13-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-13/unknown-ladies-emporio-armani-13-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-13/unknown-ladies-emporio-armani-13-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-14",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-14/unknown-ladies-emporio-armani-14-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-14/unknown-ladies-emporio-armani-14-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-14/unknown-ladies-emporio-armani-14-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-14/unknown-ladies-emporio-armani-14-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-14/unknown-ladies-emporio-armani-14-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-15",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-15/unknown-ladies-emporio-armani-15-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-15/unknown-ladies-emporio-armani-15-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-15/unknown-ladies-emporio-armani-15-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-15/unknown-ladies-emporio-armani-15-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-15/unknown-ladies-emporio-armani-15-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-emporio-armani-16",
-          "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-16/unknown-ladies-emporio-armani-16-medium.webp",
-          "alt": "Unknown LADIES EMPORIO ARMANI",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-16/unknown-ladies-emporio-armani-16-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-16/unknown-ladies-emporio-armani-16-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-16/unknown-ladies-emporio-armani-16-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-emporio-armani-16/unknown-ladies-emporio-armani-16-medium.avif"
-            }
-          ]
-        }
-      ],
-      "availability": "in_stock",
-      "featured": false,
-      "newArrival": true,
-      "bestSeller": false,
-      "variants": [],
-      "attributes": {},
-      "tags": [
-        "stainless steel",
-        "water resistant",
-        "battery powered",
-        "unique second hand"
-      ],
-      "seo": {
-        "title": "Unknown LADIES EMPORIO ARMANI",
-        "description": "Unknown LADIES EMPORIO ARMANI — Stainless steel, Water resistant, Battery powered."
-      },
-      "createdAt": "2026-08-19T20:22:26.609679Z",
-      "updatedAt": "2026-08-19T20:22:26.609687Z",
-      "_source": {
-        "wholesale_price": 1500,
-        "retail_price": 3400
-      },
-      "gender": "women"
     },
     {
       "id": "prd-16",
@@ -5005,9 +4524,9 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [
         {
           "id": "var-prd-16",
@@ -5416,7 +4935,7 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
       "bestSeller": false,
       "variants": [],
@@ -5736,7 +5255,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -6082,7 +5601,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -6399,7 +5918,7 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
       "bestSeller": false,
       "variants": [],
@@ -6633,7 +6152,7 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
       "bestSeller": false,
       "variants": [],
@@ -6656,387 +6175,6 @@
         "retail_price": 3600
       },
       "gender": "men"
-    },
-    {
-      "id": "prd-22",
-      "slug": "unknown-ladies-micheal-kors",
-      "name": "Unknown LADIES MICHEAL KORS",
-      "sku": "MER-CCD249",
-      "price": 3400,
-      "compareAtPrice": null,
-      "currency": "KES",
-      "categoryId": "cat-dive",
-      "brandId": "br-unknown",
-      "shortDescription": "Unknown LADIES MICHEAL KORS — Water resistant, Battery powered, stainless steel.",
-      "description": "✳️Water resistant. ✳️Battery powered. ✳️stainless steel. 📌 3 color option",
-      "images": [
-        {
-          "id": "unknown-ladies-micheal-kors-1",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-1/unknown-ladies-micheal-kors-1-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-1/unknown-ladies-micheal-kors-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-1/unknown-ladies-micheal-kors-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-1/unknown-ladies-micheal-kors-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-1/unknown-ladies-micheal-kors-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-2",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-2/unknown-ladies-micheal-kors-2-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-2/unknown-ladies-micheal-kors-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-2/unknown-ladies-micheal-kors-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-2/unknown-ladies-micheal-kors-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-2/unknown-ladies-micheal-kors-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-3",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-3/unknown-ladies-micheal-kors-3-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-3/unknown-ladies-micheal-kors-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-3/unknown-ladies-micheal-kors-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-3/unknown-ladies-micheal-kors-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-3/unknown-ladies-micheal-kors-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-4",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-4/unknown-ladies-micheal-kors-4-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-4/unknown-ladies-micheal-kors-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-4/unknown-ladies-micheal-kors-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-4/unknown-ladies-micheal-kors-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-4/unknown-ladies-micheal-kors-4-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-5",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-5/unknown-ladies-micheal-kors-5-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-5/unknown-ladies-micheal-kors-5-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-5/unknown-ladies-micheal-kors-5-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-5/unknown-ladies-micheal-kors-5-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-5/unknown-ladies-micheal-kors-5-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-6",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-6/unknown-ladies-micheal-kors-6-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-6/unknown-ladies-micheal-kors-6-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-6/unknown-ladies-micheal-kors-6-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-6/unknown-ladies-micheal-kors-6-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-6/unknown-ladies-micheal-kors-6-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-7",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-7/unknown-ladies-micheal-kors-7-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-7/unknown-ladies-micheal-kors-7-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-7/unknown-ladies-micheal-kors-7-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-7/unknown-ladies-micheal-kors-7-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-7/unknown-ladies-micheal-kors-7-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-8",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-8/unknown-ladies-micheal-kors-8-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-8/unknown-ladies-micheal-kors-8-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-8/unknown-ladies-micheal-kors-8-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-8/unknown-ladies-micheal-kors-8-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-8/unknown-ladies-micheal-kors-8-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-9",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-9/unknown-ladies-micheal-kors-9-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-9/unknown-ladies-micheal-kors-9-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-9/unknown-ladies-micheal-kors-9-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-9/unknown-ladies-micheal-kors-9-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-9/unknown-ladies-micheal-kors-9-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-10",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-10/unknown-ladies-micheal-kors-10-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-10/unknown-ladies-micheal-kors-10-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-10/unknown-ladies-micheal-kors-10-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-10/unknown-ladies-micheal-kors-10-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-10/unknown-ladies-micheal-kors-10-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-11",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-11/unknown-ladies-micheal-kors-11-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-11/unknown-ladies-micheal-kors-11-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-11/unknown-ladies-micheal-kors-11-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-11/unknown-ladies-micheal-kors-11-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-11/unknown-ladies-micheal-kors-11-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-micheal-kors-12",
-          "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-12/unknown-ladies-micheal-kors-12-medium.webp",
-          "alt": "Unknown LADIES MICHEAL KORS",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-12/unknown-ladies-micheal-kors-12-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-12/unknown-ladies-micheal-kors-12-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-12/unknown-ladies-micheal-kors-12-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-micheal-kors-12/unknown-ladies-micheal-kors-12-medium.avif"
-            }
-          ]
-        }
-      ],
-      "availability": "in_stock",
-      "featured": false,
-      "newArrival": true,
-      "bestSeller": false,
-      "variants": [
-        {
-          "id": "var-prd-22",
-          "type": "color",
-          "options": [
-            "3 colors available"
-          ]
-        }
-      ],
-      "attributes": {},
-      "tags": [
-        "water resistant",
-        "battery powered",
-        "stainless steel"
-      ],
-      "seo": {
-        "title": "Unknown LADIES MICHEAL KORS",
-        "description": "Unknown LADIES MICHEAL KORS — Water resistant, Battery powered, stainless steel."
-      },
-      "createdAt": "2026-08-19T20:22:26.610438Z",
-      "updatedAt": "2026-08-19T20:22:26.610447Z",
-      "_source": {
-        "wholesale_price": 1500,
-        "retail_price": 3400
-      },
-      "gender": "women"
     },
     {
       "id": "prd-23",
@@ -7390,7 +6528,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -7765,7 +6903,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -8083,9 +7221,9 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [],
       "attributes": {},
       "tags": [
@@ -8513,9 +7651,9 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [
         {
           "id": "var-prd-26",
@@ -8869,7 +8007,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -8891,381 +8029,6 @@
         "retail_price": 3400
       },
       "gender": "men"
-    },
-    {
-      "id": "prd-28",
-      "slug": "unknown-new",
-      "name": "Unknown NEW",
-      "sku": "MER-464CF8",
-      "price": 7600,
-      "compareAtPrice": null,
-      "currency": "KES",
-      "categoryId": "cat-chronograph",
-      "brandId": "br-unknown",
-      "shortDescription": "Unknown NEW — NEW*, Automatic 🔥, Chronograph.",
-      "description": "NEW. 🔥 🔥 POEDAGAR 1427 LEATHER AUTOMATIC 🔥. ✳️Automatic 🔥. ✳️Chronograph. ✳️Genuine leather straps. ✳️24hr display. ✳️Water resistant. ✳️strong luminous",
-      "images": [
-        {
-          "id": "unknown-new-1",
-          "src": "assets/media/meridian/products/unknown-new-1/unknown-new-1-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-1/unknown-new-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-1/unknown-new-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-1/unknown-new-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-1/unknown-new-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-2",
-          "src": "assets/media/meridian/products/unknown-new-2/unknown-new-2-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-2/unknown-new-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-2/unknown-new-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-2/unknown-new-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-2/unknown-new-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-3",
-          "src": "assets/media/meridian/products/unknown-new-3/unknown-new-3-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-3/unknown-new-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-3/unknown-new-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-3/unknown-new-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-3/unknown-new-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-4",
-          "src": "assets/media/meridian/products/unknown-new-4/unknown-new-4-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-4/unknown-new-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-4/unknown-new-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-4/unknown-new-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-4/unknown-new-4-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-5",
-          "src": "assets/media/meridian/products/unknown-new-5/unknown-new-5-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-5/unknown-new-5-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-5/unknown-new-5-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-5/unknown-new-5-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-5/unknown-new-5-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-6",
-          "src": "assets/media/meridian/products/unknown-new-6/unknown-new-6-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-6/unknown-new-6-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-6/unknown-new-6-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-6/unknown-new-6-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-6/unknown-new-6-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-7",
-          "src": "assets/media/meridian/products/unknown-new-7/unknown-new-7-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-7/unknown-new-7-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-7/unknown-new-7-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-7/unknown-new-7-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-7/unknown-new-7-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-8",
-          "src": "assets/media/meridian/products/unknown-new-8/unknown-new-8-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-8/unknown-new-8-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-8/unknown-new-8-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-8/unknown-new-8-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-8/unknown-new-8-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-9",
-          "src": "assets/media/meridian/products/unknown-new-9/unknown-new-9-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-9/unknown-new-9-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-9/unknown-new-9-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-9/unknown-new-9-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-9/unknown-new-9-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-10",
-          "src": "assets/media/meridian/products/unknown-new-10/unknown-new-10-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-10/unknown-new-10-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-10/unknown-new-10-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-10/unknown-new-10-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-10/unknown-new-10-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-11",
-          "src": "assets/media/meridian/products/unknown-new-11/unknown-new-11-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-11/unknown-new-11-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-11/unknown-new-11-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-11/unknown-new-11-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-11/unknown-new-11-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-12",
-          "src": "assets/media/meridian/products/unknown-new-12/unknown-new-12-medium.webp",
-          "alt": "Unknown NEW",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-12/unknown-new-12-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-12/unknown-new-12-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-12/unknown-new-12-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-12/unknown-new-12-medium.avif"
-            }
-          ]
-        }
-      ],
-      "availability": "in_stock",
-      "featured": false,
-      "newArrival": true,
-      "bestSeller": false,
-      "variants": [],
-      "attributes": {},
-      "tags": [
-        "new*",
-        "automatic 🔥",
-        "chronograph",
-        "genuine leather straps",
-        "24hr display"
-      ],
-      "seo": {
-        "title": "Unknown NEW",
-        "description": "Unknown NEW — NEW*, Automatic 🔥, Chronograph."
-      },
-      "createdAt": "2026-08-19T20:22:26.610869Z",
-      "updatedAt": "2026-08-19T20:22:26.610877Z",
-      "_source": {
-        "wholesale_price": 3600,
-        "retail_price": 7600
-      },
-      "gender": "unisex"
     },
     {
       "id": "prd-29",
@@ -9843,7 +8606,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -10217,7 +8980,7 @@
         }
       ],
       "availability": "in_stock",
-      "featured": false,
+      "featured": true,
       "newArrival": true,
       "bestSeller": false,
       "variants": [],
@@ -10240,156 +9003,6 @@
         "retail_price": 3400
       },
       "gender": "unisex"
-    },
-    {
-      "id": "prd-31",
-      "slug": "unknown-gents-arabic-aura-watch",
-      "name": "Unknown GENTS ARABIC AURA WATCH",
-      "sku": "MER-B91CCE",
-      "price": 3400,
-      "compareAtPrice": null,
-      "currency": "KES",
-      "categoryId": "cat-dive",
-      "brandId": "br-unknown",
-      "shortDescription": "Unknown GENTS ARABIC AURA WATCH — Stainless steel, Battery powered, Water resistant.",
-      "description": "🔥❤️‍🔥 BACKINSTOCK ❤️‍🔥🔥. ✳️Stainless steel. ✳️Battery powered. ✳️Water resistant. ✳️High quality. 🎁 COMES IN A FREE GIFTBOX 🎁",
-      "images": [
-        {
-          "id": "unknown-gents-arabic-aura-watch-1",
-          "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-1/unknown-gents-arabic-aura-watch-1-medium.webp",
-          "alt": "Unknown GENTS ARABIC AURA WATCH",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-1/unknown-gents-arabic-aura-watch-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-1/unknown-gents-arabic-aura-watch-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-1/unknown-gents-arabic-aura-watch-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-1/unknown-gents-arabic-aura-watch-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-gents-arabic-aura-watch-2",
-          "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-2/unknown-gents-arabic-aura-watch-2-medium.webp",
-          "alt": "Unknown GENTS ARABIC AURA WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-2/unknown-gents-arabic-aura-watch-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-2/unknown-gents-arabic-aura-watch-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-2/unknown-gents-arabic-aura-watch-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-2/unknown-gents-arabic-aura-watch-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-gents-arabic-aura-watch-3",
-          "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-3/unknown-gents-arabic-aura-watch-3-medium.webp",
-          "alt": "Unknown GENTS ARABIC AURA WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-3/unknown-gents-arabic-aura-watch-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-3/unknown-gents-arabic-aura-watch-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-3/unknown-gents-arabic-aura-watch-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-3/unknown-gents-arabic-aura-watch-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-gents-arabic-aura-watch-4",
-          "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-4/unknown-gents-arabic-aura-watch-4-medium.webp",
-          "alt": "Unknown GENTS ARABIC AURA WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-4/unknown-gents-arabic-aura-watch-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-4/unknown-gents-arabic-aura-watch-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-4/unknown-gents-arabic-aura-watch-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-gents-arabic-aura-watch-4/unknown-gents-arabic-aura-watch-4-medium.avif"
-            }
-          ]
-        }
-      ],
-      "availability": "in_stock",
-      "featured": false,
-      "newArrival": true,
-      "bestSeller": false,
-      "variants": [],
-      "attributes": {},
-      "tags": [
-        "stainless steel",
-        "battery powered",
-        "water resistant",
-        "high quality"
-      ],
-      "seo": {
-        "title": "Unknown GENTS ARABIC AURA WATCH",
-        "description": "Unknown GENTS ARABIC AURA WATCH — Stainless steel, Battery powered, Water resistant."
-      },
-      "createdAt": "2026-08-19T20:22:26.611085Z",
-      "updatedAt": "2026-08-19T20:22:26.611092Z",
-      "_source": {
-        "wholesale_price": 1500,
-        "retail_price": 3400
-      },
-      "gender": "men"
     },
     {
       "id": "prd-32",
@@ -10687,7 +9300,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -11118,7 +9731,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -11493,7 +10106,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -11523,325 +10136,6 @@
         "retail_price": 4000
       },
       "gender": "women"
-    },
-    {
-      "id": "prd-35",
-      "slug": "unknown-automatic-gents-watch",
-      "name": "Unknown AUTOMATIC GENTS WATCH",
-      "sku": "MER-7A5695",
-      "price": 6400,
-      "compareAtPrice": null,
-      "currency": "KES",
-      "categoryId": "cat-automatic",
-      "brandId": "br-unknown",
-      "shortDescription": "Unknown AUTOMATIC GENTS WATCH — Automatic 🔥, Bronze casing, Genuine leather straps.",
-      "description": "🔥  AUTOMATIC GENTS WATCH 🔥. ✳️Automatic 🔥. ✳️Bronze casing. ✳️Genuine leather straps. ✳️Water resistant. ✳️strong luminous. ✅ Available in 2 styles",
-      "images": [
-        {
-          "id": "unknown-automatic-gents-watch-1",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-1/unknown-automatic-gents-watch-1-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-1/unknown-automatic-gents-watch-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-1/unknown-automatic-gents-watch-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-1/unknown-automatic-gents-watch-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-1/unknown-automatic-gents-watch-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-automatic-gents-watch-2",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-2/unknown-automatic-gents-watch-2-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-2/unknown-automatic-gents-watch-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-2/unknown-automatic-gents-watch-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-2/unknown-automatic-gents-watch-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-2/unknown-automatic-gents-watch-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-automatic-gents-watch-3",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-3/unknown-automatic-gents-watch-3-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-3/unknown-automatic-gents-watch-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-3/unknown-automatic-gents-watch-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-3/unknown-automatic-gents-watch-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-3/unknown-automatic-gents-watch-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-automatic-gents-watch-4",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-4/unknown-automatic-gents-watch-4-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-4/unknown-automatic-gents-watch-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-4/unknown-automatic-gents-watch-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-4/unknown-automatic-gents-watch-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-4/unknown-automatic-gents-watch-4-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-automatic-gents-watch-5",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-5/unknown-automatic-gents-watch-5-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-5/unknown-automatic-gents-watch-5-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-5/unknown-automatic-gents-watch-5-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-5/unknown-automatic-gents-watch-5-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-5/unknown-automatic-gents-watch-5-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-automatic-gents-watch-6",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-6/unknown-automatic-gents-watch-6-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-6/unknown-automatic-gents-watch-6-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-6/unknown-automatic-gents-watch-6-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-6/unknown-automatic-gents-watch-6-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-6/unknown-automatic-gents-watch-6-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-automatic-gents-watch-7",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-7/unknown-automatic-gents-watch-7-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-7/unknown-automatic-gents-watch-7-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-7/unknown-automatic-gents-watch-7-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-7/unknown-automatic-gents-watch-7-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-7/unknown-automatic-gents-watch-7-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-automatic-gents-watch-8",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-8/unknown-automatic-gents-watch-8-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-8/unknown-automatic-gents-watch-8-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-8/unknown-automatic-gents-watch-8-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-8/unknown-automatic-gents-watch-8-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-8/unknown-automatic-gents-watch-8-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-automatic-gents-watch-9",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-9/unknown-automatic-gents-watch-9-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-9/unknown-automatic-gents-watch-9-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-9/unknown-automatic-gents-watch-9-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-9/unknown-automatic-gents-watch-9-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-9/unknown-automatic-gents-watch-9-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-automatic-gents-watch-10",
-          "src": "assets/media/meridian/products/unknown-automatic-gents-watch-10/unknown-automatic-gents-watch-10-medium.webp",
-          "alt": "Unknown AUTOMATIC GENTS WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-10/unknown-automatic-gents-watch-10-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-10/unknown-automatic-gents-watch-10-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-10/unknown-automatic-gents-watch-10-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-automatic-gents-watch-10/unknown-automatic-gents-watch-10-medium.avif"
-            }
-          ]
-        }
-      ],
-      "availability": "in_stock",
-      "featured": false,
-      "newArrival": true,
-      "bestSeller": false,
-      "variants": [],
-      "attributes": {},
-      "tags": [
-        "automatic 🔥",
-        "bronze casing",
-        "genuine leather straps",
-        "water resistant",
-        "strong luminous"
-      ],
-      "seo": {
-        "title": "Unknown AUTOMATIC GENTS WATCH",
-        "description": "Unknown AUTOMATIC GENTS WATCH — Automatic 🔥, Bronze casing, Genuine leather straps."
-      },
-      "createdAt": "2026-08-19T20:22:26.611423Z",
-      "updatedAt": "2026-08-19T20:22:26.611430Z",
-      "_source": {
-        "wholesale_price": 3000,
-        "retail_price": 6400
-      },
-      "gender": "men"
     },
     {
       "id": "prd-36",
@@ -12307,7 +10601,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -12625,7 +10919,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -12830,7 +11124,7 @@
       "availability": "in_stock",
       "featured": false,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [],
       "attributes": {},
       "tags": [
@@ -13176,7 +11470,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -13520,7 +11814,7 @@
       "availability": "in_stock",
       "featured": false,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [
         {
           "id": "var-prd-40",
@@ -13958,7 +12252,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -14426,7 +12720,7 @@
       "availability": "in_stock",
       "featured": false,
       "newArrival": true,
-      "bestSeller": false,
+      "bestSeller": true,
       "variants": [
         {
           "id": "var-prd-42",
@@ -14724,7 +13018,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -15067,7 +13361,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -15302,7 +13596,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -15792,7 +14086,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -16063,7 +14357,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -16605,7 +14899,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -17035,7 +15329,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -17547,7 +15841,12 @@
             }
           ]
         },
-        "clients/meridian/media/originals/poedagar-gents-849-18.jpg",
+        {
+          "id": "poedagar-gents-849-18",
+          "src": "clients/meridian/media/originals/poedagar-gents-849-18.jpg",
+          "alt": "Poedagar GENTS 849 view 18",
+          "primary": false
+        },
         {
           "id": "poedagar-gents-849-19",
           "src": "assets/media/meridian/products/poedagar-gents-849-19/poedagar-gents-849-19-medium.webp",
@@ -17814,7 +16113,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -17836,213 +16135,6 @@
         "retail_price": 4000
       },
       "gender": "men"
-    },
-    {
-      "id": "prd-52",
-      "slug": "unknown-new-wisme-x30-ultra-3-smartwatch",
-      "name": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH",
-      "sku": "MER-375622",
-      "price": 4400,
-      "compareAtPrice": null,
-      "currency": "KES",
-      "categoryId": "cat-smart",
-      "brandId": "br-unknown",
-      "shortDescription": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH — _NEW WISME- X30 ULTRA 3 SMARTWATCH_*   *KSH 2000*, 3 interchangeable straps(Metallic, leather,rubber), Functions:*.",
-      "description": "✳️3 interchangeable straps(Metallic, leather,rubber). 📌 IOS and Android compatible. Functions:. ✴️calls enabled. ✴️Sports Record : Cycling, Walking,Jogging,Running. ✴️Heart rate monitor ,Blood pressure,Menstrual tracking,Sleep monitor. ✴️Bluetooth calls enabled. ✴️Calculator function. ✴️Weather updates. ✴️Voice assistant. ✴️music. ✴️Camera. 🔱Android and Ios",
-      "images": [
-        {
-          "id": "unknown-new-wisme-x30-ultra-3-smartwatch-1",
-          "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-1/unknown-new-wisme-x30-ultra-3-smartwatch-1-medium.webp",
-          "alt": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-1/unknown-new-wisme-x30-ultra-3-smartwatch-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-1/unknown-new-wisme-x30-ultra-3-smartwatch-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-1/unknown-new-wisme-x30-ultra-3-smartwatch-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-1/unknown-new-wisme-x30-ultra-3-smartwatch-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-wisme-x30-ultra-3-smartwatch-2",
-          "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-2/unknown-new-wisme-x30-ultra-3-smartwatch-2-medium.webp",
-          "alt": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-2/unknown-new-wisme-x30-ultra-3-smartwatch-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-2/unknown-new-wisme-x30-ultra-3-smartwatch-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-2/unknown-new-wisme-x30-ultra-3-smartwatch-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-2/unknown-new-wisme-x30-ultra-3-smartwatch-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-wisme-x30-ultra-3-smartwatch-3",
-          "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-3/unknown-new-wisme-x30-ultra-3-smartwatch-3-medium.webp",
-          "alt": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-3/unknown-new-wisme-x30-ultra-3-smartwatch-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-3/unknown-new-wisme-x30-ultra-3-smartwatch-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-3/unknown-new-wisme-x30-ultra-3-smartwatch-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-3/unknown-new-wisme-x30-ultra-3-smartwatch-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-wisme-x30-ultra-3-smartwatch-4",
-          "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-4/unknown-new-wisme-x30-ultra-3-smartwatch-4-medium.webp",
-          "alt": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-4/unknown-new-wisme-x30-ultra-3-smartwatch-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-4/unknown-new-wisme-x30-ultra-3-smartwatch-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-4/unknown-new-wisme-x30-ultra-3-smartwatch-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-4/unknown-new-wisme-x30-ultra-3-smartwatch-4-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-wisme-x30-ultra-3-smartwatch-5",
-          "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-5/unknown-new-wisme-x30-ultra-3-smartwatch-5-medium.webp",
-          "alt": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-5/unknown-new-wisme-x30-ultra-3-smartwatch-5-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-5/unknown-new-wisme-x30-ultra-3-smartwatch-5-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-5/unknown-new-wisme-x30-ultra-3-smartwatch-5-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-5/unknown-new-wisme-x30-ultra-3-smartwatch-5-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-wisme-x30-ultra-3-smartwatch-6",
-          "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-6/unknown-new-wisme-x30-ultra-3-smartwatch-6-medium.webp",
-          "alt": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-6/unknown-new-wisme-x30-ultra-3-smartwatch-6-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-6/unknown-new-wisme-x30-ultra-3-smartwatch-6-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-6/unknown-new-wisme-x30-ultra-3-smartwatch-6-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-wisme-x30-ultra-3-smartwatch-6/unknown-new-wisme-x30-ultra-3-smartwatch-6-medium.avif"
-            }
-          ]
-        }
-      ],
-      "availability": "in_stock",
-      "featured": false,
-      "newArrival": true,
-      "bestSeller": false,
-      "variants": [],
-      "attributes": {
-        "Functions": "*"
-      },
-      "tags": [
-        "_new wisme- x30 ultra 3 smartwatch_*   *ksh 2000*",
-        "3 interchangeable straps(metallic, leather,rubber)",
-        "functions:*"
-      ],
-      "seo": {
-        "title": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH",
-        "description": "Unknown NEW WISME- X30 ULTRA 3 SMARTWATCH — _NEW WISME- X30 ULTRA 3 SMARTWATCH_*   *KSH 2000*, 3 interchangeable straps(Metallic, leather,rubber), Functions:*."
-      },
-      "createdAt": "2026-08-19T20:22:26.612836Z",
-      "updatedAt": "2026-08-19T20:22:26.612844Z",
-      "_source": {
-        "wholesale_price": 2000,
-        "retail_price": 4400
-      },
-      "gender": "unisex"
     },
     {
       "id": "prd-53",
@@ -18144,7 +16236,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -18527,7 +16619,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -19196,7 +17288,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -19570,7 +17662,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -20065,7 +18157,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -20267,7 +18359,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -20442,7 +18534,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -20761,7 +18853,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -21220,7 +19312,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -21455,7 +19547,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -21483,241 +19575,6 @@
       "_source": {
         "wholesale_price": 1600,
         "retail_price": 3600
-      },
-      "gender": "unisex"
-    },
-    {
-      "id": "prd-64",
-      "slug": "unknown-new-kids-watches",
-      "name": "Unknown NEW KIDS WATCHES",
-      "sku": "MER-6393DC",
-      "price": 1400,
-      "compareAtPrice": null,
-      "currency": "KES",
-      "categoryId": "cat-chronograph",
-      "brandId": "br-unknown",
-      "shortDescription": "Unknown NEW KIDS WATCHES — Kids, Digital time dislay, Alarm clock.",
-      "description": "🔥 NEW KIDS WATCHES 🔥💯. ✳️Kids. ✳️Digital time dislay. ✳️Alarm clock. ✳️stopwatch timer. ✳️Water resistant. ✳️strong luminous backlight. ✳️High quality rubber starps. ✳️calendar display. ✳️Comes in a free tin",
-      "images": [
-        {
-          "id": "unknown-new-kids-watches-1",
-          "src": "assets/media/meridian/products/unknown-new-kids-watches-1/unknown-new-kids-watches-1-medium.webp",
-          "alt": "Unknown NEW KIDS WATCHES",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-1/unknown-new-kids-watches-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-1/unknown-new-kids-watches-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-1/unknown-new-kids-watches-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-1/unknown-new-kids-watches-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-kids-watches-2",
-          "src": "assets/media/meridian/products/unknown-new-kids-watches-2/unknown-new-kids-watches-2-medium.webp",
-          "alt": "Unknown NEW KIDS WATCHES",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-2/unknown-new-kids-watches-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-2/unknown-new-kids-watches-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-2/unknown-new-kids-watches-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-2/unknown-new-kids-watches-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-kids-watches-3",
-          "src": "assets/media/meridian/products/unknown-new-kids-watches-3/unknown-new-kids-watches-3-medium.webp",
-          "alt": "Unknown NEW KIDS WATCHES",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-3/unknown-new-kids-watches-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-3/unknown-new-kids-watches-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-3/unknown-new-kids-watches-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-3/unknown-new-kids-watches-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-kids-watches-4",
-          "src": "assets/media/meridian/products/unknown-new-kids-watches-4/unknown-new-kids-watches-4-medium.webp",
-          "alt": "Unknown NEW KIDS WATCHES",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-4/unknown-new-kids-watches-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-4/unknown-new-kids-watches-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-4/unknown-new-kids-watches-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-4/unknown-new-kids-watches-4-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-kids-watches-5",
-          "src": "assets/media/meridian/products/unknown-new-kids-watches-5/unknown-new-kids-watches-5-medium.webp",
-          "alt": "Unknown NEW KIDS WATCHES",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-5/unknown-new-kids-watches-5-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-5/unknown-new-kids-watches-5-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-5/unknown-new-kids-watches-5-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-5/unknown-new-kids-watches-5-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-kids-watches-6",
-          "src": "assets/media/meridian/products/unknown-new-kids-watches-6/unknown-new-kids-watches-6-medium.webp",
-          "alt": "Unknown NEW KIDS WATCHES",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-6/unknown-new-kids-watches-6-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-6/unknown-new-kids-watches-6-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-6/unknown-new-kids-watches-6-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-6/unknown-new-kids-watches-6-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-kids-watches-7",
-          "src": "assets/media/meridian/products/unknown-new-kids-watches-7/unknown-new-kids-watches-7-medium.webp",
-          "alt": "Unknown NEW KIDS WATCHES",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-7/unknown-new-kids-watches-7-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-7/unknown-new-kids-watches-7-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-7/unknown-new-kids-watches-7-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-kids-watches-7/unknown-new-kids-watches-7-medium.avif"
-            }
-          ]
-        }
-      ],
-      "availability": "in_stock",
-      "featured": false,
-      "newArrival": true,
-      "bestSeller": false,
-      "variants": [],
-      "attributes": {},
-      "tags": [
-        "kids",
-        "digital time dislay",
-        "alarm clock",
-        "stopwatch timer",
-        "water resistant"
-      ],
-      "seo": {
-        "title": "Unknown NEW KIDS WATCHES",
-        "description": "Unknown NEW KIDS WATCHES — Kids, Digital time dislay, Alarm clock."
-      },
-      "createdAt": "2026-08-19T20:22:26.613835Z",
-      "updatedAt": "2026-08-19T20:22:26.613843Z",
-      "_source": {
-        "wholesale_price": 500,
-        "retail_price": 1400
       },
       "gender": "unisex"
     },
@@ -22129,7 +19986,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -22336,7 +20193,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -22623,7 +20480,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -23089,7 +20946,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -23296,7 +21153,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -23623,7 +21480,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -23690,7 +21547,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -24373,7 +22230,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -24607,7 +22464,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {
@@ -24759,7 +22616,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -24850,7 +22707,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -25205,7 +23062,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -25587,7 +23444,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -25914,7 +23771,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -26205,7 +24062,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -26238,14 +24095,14 @@
     },
     {
       "id": "prd-80",
-      "slug": "unknown-new-chenxi-automatic-watch-8870",
-      "name": "Unknown NEW CHENXI AUTOMATIC WATCH 8870",
+      "slug": "chenxi-automatic-8870",
+      "name": "Chenxi Automatic 8870",
       "sku": "MER-926082",
       "price": 7400,
       "compareAtPrice": null,
       "currency": "KES",
       "categoryId": "cat-automatic",
-      "brandId": "br-unknown",
+      "brandId": "br-chenxi",
       "shortDescription": "Unknown NEW CHENXI AUTOMATIC WATCH 8870 — Automatic movement, Tourbillon machine, moonphase function.",
       "description": "✳️Automatic movement. ✳️Tourbillon machine. ✳️moonphase function. ✳️Stainless steel. ✳️3ATM water resistant. 📌 2 color option",
       "images": [
@@ -26445,7 +24302,12 @@
             }
           ]
         },
-        "clients/meridian/media/originals/unknown-new-chenxi-automatic-watch-8870-8.jpg",
+        {
+          "id": "unknown-new-chenxi-automatic-watch-8870-8",
+          "src": "clients/meridian/media/originals/unknown-new-chenxi-automatic-watch-8870-8.jpg",
+          "alt": "Unknown NEW CHENXI AUTOMATIC WATCH 8870 view 8",
+          "primary": false
+        },
         {
           "id": "unknown-new-chenxi-automatic-watch-8870-9",
           "src": "assets/media/meridian/products/unknown-new-chenxi-automatic-watch-8870-9/unknown-new-chenxi-automatic-watch-8870-9-medium.webp",
@@ -26617,7 +24479,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -27084,7 +24946,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -27495,7 +25357,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -27682,7 +25544,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -28029,7 +25891,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -28236,7 +26098,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -28467,7 +26329,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -28758,7 +26620,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -28936,7 +26798,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -29339,7 +27201,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -29363,14 +27225,14 @@
     },
     {
       "id": "prd-90",
-      "slug": "unknown-new-poedagar-ladies-watch-507",
-      "name": "Unknown NEW POEDAGAR LADIES WATCH 507",
+      "slug": "poedagar-ladies-507",
+      "name": "Poedagar LADIES 507",
       "sku": "MER-86DA1E",
       "price": 4000,
       "compareAtPrice": null,
       "currency": "KES",
       "categoryId": "cat-dive",
-      "brandId": "br-unknown",
+      "brandId": "br-poedagar",
       "shortDescription": "Unknown NEW POEDAGAR LADIES WATCH 507 — Ceramic straps, Day and Date display, Water resistant.",
       "description": "✳️Ceramic straps. ✳️ Day and Date display. ✳️Water resistant. ✳️Battery powered. ✳️High quality. 📌  2 color option",
       "images": [
@@ -29769,7 +27631,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -30040,7 +27902,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -30065,14 +27927,14 @@
     },
     {
       "id": "prd-92",
-      "slug": "unknown-ladies-wwoor-8891",
-      "name": "Unknown LADIES WWOOR 8891",
+      "slug": "wwoor-ladies-8891",
+      "name": "Wwoor LADIES 8891",
       "sku": "MER-F165BE",
       "price": 4000,
       "compareAtPrice": null,
       "currency": "KES",
       "categoryId": "cat-dive",
-      "brandId": "br-unknown",
+      "brandId": "br-wwoor",
       "shortDescription": "Unknown LADIES WWOOR 8891 — stainless steel, Water resistant, Battery powered.",
       "description": "✳️stainless steel. ✳️Water resistant. ✳️Battery powered. 📌 4 color option",
       "images": [
@@ -30415,7 +28277,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -30441,323 +28303,6 @@
       "_source": {
         "wholesale_price": 1800,
         "retail_price": 4000
-      },
-      "gender": "women"
-    },
-    {
-      "id": "prd-93",
-      "slug": "unknown-ladies-watch-n277",
-      "name": "Unknown LADIES WATCH N277",
-      "sku": "MER-B42660",
-      "price": 3400,
-      "compareAtPrice": null,
-      "currency": "KES",
-      "categoryId": "cat-dive",
-      "brandId": "br-unknown",
-      "shortDescription": "Unknown LADIES WATCH N277 — Stainless steel, Water resistant, Battery powered.",
-      "description": "✳️Stainless steel. ✳️Water resistant. ✳️Battery powered",
-      "images": [
-        {
-          "id": "unknown-ladies-watch-n277-1",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-1/unknown-ladies-watch-n277-1-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-1/unknown-ladies-watch-n277-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-1/unknown-ladies-watch-n277-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-1/unknown-ladies-watch-n277-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-1/unknown-ladies-watch-n277-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-watch-n277-2",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-2/unknown-ladies-watch-n277-2-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-2/unknown-ladies-watch-n277-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-2/unknown-ladies-watch-n277-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-2/unknown-ladies-watch-n277-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-2/unknown-ladies-watch-n277-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-watch-n277-3",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-3/unknown-ladies-watch-n277-3-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-3/unknown-ladies-watch-n277-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-3/unknown-ladies-watch-n277-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-3/unknown-ladies-watch-n277-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-3/unknown-ladies-watch-n277-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-watch-n277-4",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-4/unknown-ladies-watch-n277-4-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-4/unknown-ladies-watch-n277-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-4/unknown-ladies-watch-n277-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-4/unknown-ladies-watch-n277-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-4/unknown-ladies-watch-n277-4-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-watch-n277-5",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-5/unknown-ladies-watch-n277-5-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-5/unknown-ladies-watch-n277-5-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-5/unknown-ladies-watch-n277-5-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-5/unknown-ladies-watch-n277-5-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-5/unknown-ladies-watch-n277-5-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-watch-n277-6",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-6/unknown-ladies-watch-n277-6-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-6/unknown-ladies-watch-n277-6-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-6/unknown-ladies-watch-n277-6-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-6/unknown-ladies-watch-n277-6-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-6/unknown-ladies-watch-n277-6-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-watch-n277-7",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-7/unknown-ladies-watch-n277-7-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-7/unknown-ladies-watch-n277-7-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-7/unknown-ladies-watch-n277-7-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-7/unknown-ladies-watch-n277-7-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-7/unknown-ladies-watch-n277-7-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-watch-n277-8",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-8/unknown-ladies-watch-n277-8-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-8/unknown-ladies-watch-n277-8-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-8/unknown-ladies-watch-n277-8-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-8/unknown-ladies-watch-n277-8-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-8/unknown-ladies-watch-n277-8-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-watch-n277-9",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-9/unknown-ladies-watch-n277-9-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-9/unknown-ladies-watch-n277-9-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-9/unknown-ladies-watch-n277-9-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-9/unknown-ladies-watch-n277-9-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-9/unknown-ladies-watch-n277-9-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-ladies-watch-n277-10",
-          "src": "assets/media/meridian/products/unknown-ladies-watch-n277-10/unknown-ladies-watch-n277-10-medium.webp",
-          "alt": "Unknown LADIES WATCH N277",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-10/unknown-ladies-watch-n277-10-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-10/unknown-ladies-watch-n277-10-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-10/unknown-ladies-watch-n277-10-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-ladies-watch-n277-10/unknown-ladies-watch-n277-10-medium.avif"
-            }
-          ]
-        }
-      ],
-      "availability": "in_stock",
-      "featured": false,
-      "newArrival": true,
-      "bestSeller": false,
-      "variants": [],
-      "attributes": {},
-      "tags": [
-        "stainless steel",
-        "water resistant",
-        "battery powered"
-      ],
-      "seo": {
-        "title": "Unknown LADIES WATCH N277",
-        "description": "Unknown LADIES WATCH N277 — Stainless steel, Water resistant, Battery powered."
-      },
-      "createdAt": "2026-08-19T20:22:26.615950Z",
-      "updatedAt": "2026-08-19T20:22:26.615957Z",
-      "_source": {
-        "wholesale_price": 1500,
-        "retail_price": 3400
       },
       "gender": "women"
     },
@@ -31001,7 +28546,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -31300,7 +28845,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -31562,7 +29107,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -31769,7 +29314,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -32060,7 +29605,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -32330,7 +29875,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -32565,7 +30110,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -32778,7 +30323,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -32993,7 +30538,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -33228,7 +30773,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -33545,7 +31090,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -34004,7 +31549,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -34575,7 +32120,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -35252,7 +32797,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -35515,7 +33060,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -35868,7 +33413,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -36139,7 +33684,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -36538,7 +34083,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -36809,7 +34354,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -37240,7 +34785,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -37539,7 +35084,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -38006,7 +35551,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -38385,7 +35930,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -38796,7 +36341,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -38828,303 +36373,15 @@
       "gender": "men"
     },
     {
-      "id": "prd-118",
-      "slug": "unknown-new-hw57-smartwatch",
-      "name": "Unknown NEW HW57 SMARTWATCH",
-      "sku": "MER-C88E89",
-      "price": 7400,
-      "compareAtPrice": null,
-      "currency": "KES",
-      "categoryId": "cat-smart",
-      "brandId": "br-unknown",
-      "shortDescription": "Unknown NEW HW57 SMARTWATCH — Interchangeable straps-stainless steel + Rubber straps., LED Flashlight.",
-      "description": "🔥 🔥 NEW HW57 SMARTWATCH 🔥🔥. ✳️ Interchangeable straps-stainless steel + Rubber straps.. ✳️ LED Flashlight. Basic parameters:. Bracelet size :57mm43mm11.5mm. Weight: 65g. Wrist strap dimensions: 255mm long, 22mm wide. Appearance material: Zinc alloy. Waterproof class :IP67. System requirements :Android5.0 and above IOS9.0 and above flash. Memory :128 mb. Screen size :1.96 \"HD. screenResolution: 240  282. Control mode: full touch screen + encoder + double button charging mode: magnetic charging. Software features:. Dial market, scan code connection, multiple sets of UI menu, voice call, OTA upgrade, step count, calories, exercise mode, hand light screen, sleep monitoring, call reminder, SMS reminder, sedentary reminder, alarm clock reminder, stopwatch, dial switch, 3D dynamic dial, music playback, breathing training, all point measurement, heart rate, blood pressure, blood oxygen, calculator, custom dialing Dial, light level adjustment, weather, independent alarm clock,. Function. Passometer,fitness tracker,sleep tracker,Message Reminder,Call Reminder,Answer Call,Dial Call,Push Message,24 hour instruction,Heart Rate Tracker,Interactive MusicSoftware language:. Chinese, English, Korean, Japanese, German, Spanish, French, Italian, Portuguese, Arabic, Polish, Russian, Indonesian, Turkish, Dutch, Czech, Traditional Chinese, Vietnamese",
-      "images": [
-        {
-          "id": "unknown-new-hw57-smartwatch-1",
-          "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-1/unknown-new-hw57-smartwatch-1-medium.webp",
-          "alt": "Unknown NEW HW57 SMARTWATCH",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-1/unknown-new-hw57-smartwatch-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-1/unknown-new-hw57-smartwatch-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-1/unknown-new-hw57-smartwatch-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-1/unknown-new-hw57-smartwatch-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-hw57-smartwatch-2",
-          "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-2/unknown-new-hw57-smartwatch-2-medium.webp",
-          "alt": "Unknown NEW HW57 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-2/unknown-new-hw57-smartwatch-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-2/unknown-new-hw57-smartwatch-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-2/unknown-new-hw57-smartwatch-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-2/unknown-new-hw57-smartwatch-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-hw57-smartwatch-3",
-          "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-3/unknown-new-hw57-smartwatch-3-medium.webp",
-          "alt": "Unknown NEW HW57 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-3/unknown-new-hw57-smartwatch-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-3/unknown-new-hw57-smartwatch-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-3/unknown-new-hw57-smartwatch-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-3/unknown-new-hw57-smartwatch-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-hw57-smartwatch-4",
-          "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-4/unknown-new-hw57-smartwatch-4-medium.webp",
-          "alt": "Unknown NEW HW57 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-4/unknown-new-hw57-smartwatch-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-4/unknown-new-hw57-smartwatch-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-4/unknown-new-hw57-smartwatch-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-4/unknown-new-hw57-smartwatch-4-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-hw57-smartwatch-5",
-          "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-5/unknown-new-hw57-smartwatch-5-medium.webp",
-          "alt": "Unknown NEW HW57 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-5/unknown-new-hw57-smartwatch-5-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-5/unknown-new-hw57-smartwatch-5-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-5/unknown-new-hw57-smartwatch-5-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-5/unknown-new-hw57-smartwatch-5-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-hw57-smartwatch-6",
-          "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-6/unknown-new-hw57-smartwatch-6-medium.webp",
-          "alt": "Unknown NEW HW57 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-6/unknown-new-hw57-smartwatch-6-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-6/unknown-new-hw57-smartwatch-6-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-6/unknown-new-hw57-smartwatch-6-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-6/unknown-new-hw57-smartwatch-6-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-hw57-smartwatch-7",
-          "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-7/unknown-new-hw57-smartwatch-7-medium.webp",
-          "alt": "Unknown NEW HW57 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-7/unknown-new-hw57-smartwatch-7-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-7/unknown-new-hw57-smartwatch-7-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-7/unknown-new-hw57-smartwatch-7-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-7/unknown-new-hw57-smartwatch-7-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-hw57-smartwatch-8",
-          "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-8/unknown-new-hw57-smartwatch-8-medium.webp",
-          "alt": "Unknown NEW HW57 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-8/unknown-new-hw57-smartwatch-8-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-8/unknown-new-hw57-smartwatch-8-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-8/unknown-new-hw57-smartwatch-8-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-8/unknown-new-hw57-smartwatch-8-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "unknown-new-hw57-smartwatch-9",
-          "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-9/unknown-new-hw57-smartwatch-9-medium.webp",
-          "alt": "Unknown NEW HW57 SMARTWATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-9/unknown-new-hw57-smartwatch-9-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-9/unknown-new-hw57-smartwatch-9-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-9/unknown-new-hw57-smartwatch-9-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/unknown-new-hw57-smartwatch-9/unknown-new-hw57-smartwatch-9-medium.avif"
-            }
-          ]
-        }
-      ],
-      "availability": "in_stock",
-      "featured": false,
-      "newArrival": true,
-      "bestSeller": false,
-      "variants": [],
-      "attributes": {},
-      "tags": [
-        "interchangeable straps-stainless steel + rubber straps.",
-        "led flashlight"
-      ],
-      "seo": {
-        "title": "Unknown NEW HW57 SMARTWATCH",
-        "description": "Unknown NEW HW57 SMARTWATCH — Interchangeable straps-stainless steel + Rubber straps., LED Flashlight."
-      },
-      "createdAt": "2026-08-19T20:22:26.617732Z",
-      "updatedAt": "2026-08-19T20:22:26.617740Z",
-      "_source": {
-        "wholesale_price": 3500,
-        "retail_price": 7400
-      },
-      "gender": "unisex"
-    },
-    {
       "id": "prd-119",
-      "slug": "unknown-new-poedagar-ladies-watch-506",
-      "name": "Unknown NEW POEDAGAR LADIES WATCH 506",
+      "slug": "poedagar-ladies-506",
+      "name": "Poedagar LADIES 506",
       "sku": "MER-BC3BB7",
       "price": 4000,
       "compareAtPrice": null,
       "currency": "KES",
       "categoryId": "cat-dive",
-      "brandId": "br-unknown",
+      "brandId": "br-poedagar",
       "shortDescription": "Unknown NEW POEDAGAR LADIES WATCH 506 — Ceramic straps, Day and date display, Water resistant.",
       "description": "✳️Ceramic straps. ✳️Day and date display. ✳️Water resistant. ✳️Battery powered. ✳️High quality. 📌  2 color option",
       "images": [
@@ -39523,7 +36780,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -39934,7 +37191,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -40169,7 +37426,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -40516,7 +37773,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -40975,7 +38232,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -41330,7 +38587,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -41461,7 +38718,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -41780,7 +39037,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -42127,7 +39384,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -42502,7 +39759,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -42765,7 +40022,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -43232,7 +40489,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -43607,7 +40864,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -43842,7 +41099,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -44326,7 +41583,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -44347,14 +41604,14 @@
     },
     {
       "id": "prd-134",
-      "slug": "unknown-new-poedagar-gents-696",
-      "name": "Unknown NEW POEDAGAR GENTS 696",
+      "slug": "poedagar-gents-696",
+      "name": "Poedagar GENTS 696",
       "sku": "MER-92AA75",
       "price": 3600,
       "compareAtPrice": null,
       "currency": "KES",
       "categoryId": "cat-dive",
-      "brandId": "br-unknown",
+      "brandId": "br-poedagar",
       "shortDescription": "Unknown NEW POEDAGAR GENTS 696 — Day and date display, Stainless steel, Battery powered.",
       "description": "✳️Day and date display. ✳️Stainless steel. ✳️Battery powered. ✳️Water resistant. ✳️Strong Luminous. 📌 4 color options",
       "images": [
@@ -44613,7 +41870,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -44940,7 +42197,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -45283,7 +42540,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -45710,7 +42967,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -45973,7 +43230,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -46264,7 +43521,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -46695,7 +43952,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -46930,7 +44187,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -47277,7 +44534,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -47764,7 +45021,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -48147,7 +45404,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -48809,7 +46066,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -49212,7 +46469,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -49819,7 +47076,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -50222,7 +47479,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -50877,7 +48134,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -51336,7 +48593,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -51878,7 +49135,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -52139,7 +49396,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -52485,7 +49742,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [
         {
@@ -52923,7 +50180,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -53296,7 +50553,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},
@@ -53331,7 +50588,12 @@
       "shortDescription": "Cartier LADIES WATCH — Stainless steel, Battery powered, Water resistant.",
       "description": "✳️Stainless steel. ✳️Battery powered. ✳️Water resistant",
       "images": [
-        "clients/meridian/media/originals/cartier-ladies-watch-1.jpg",
+        {
+          "id": "cartier-ladies-watch-1",
+          "src": "clients/meridian/media/originals/cartier-ladies-watch-1.jpg",
+          "alt": "Cartier LADIES WATCH",
+          "primary": true
+        },
         {
           "id": "cartier-ladies-watch-2",
           "src": "assets/media/meridian/products/cartier-ladies-watch-2/cartier-ladies-watch-2-medium.webp",
@@ -53531,7 +50793,7 @@
       ],
       "availability": "in_stock",
       "featured": false,
-      "newArrival": true,
+      "newArrival": false,
       "bestSeller": false,
       "variants": [],
       "attributes": {},

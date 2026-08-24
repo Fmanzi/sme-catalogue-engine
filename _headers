@@ -13,3 +13,7 @@
 /admin/*
   X-Robots-Tag: noindex, nofollow
   Status: 404
+
+/clients/*
+  X-Robots-Tag: noindex, nofollow
+  Status: 404
