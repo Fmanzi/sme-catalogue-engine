@@ -405,6 +405,7 @@
             hero: business.hero || {}, about: business.about || {}, contactPage: business.contactPage || {},
             shopBanner: business.shopBanner || {}, nav: business.nav || {}, home: business.home || {},
             shopFilters: business.shopFilters || {},
+            shippingMethods: (business.commerce || {}).shippingMethods || [],
             social: (business.site || {}).social || {},
             defaultSeoTitle: (business.site || {}).defaultSeoTitle || '', defaultSeoDescription: (business.site || {}).defaultSeoDescription || '',
             business

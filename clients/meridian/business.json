@@ -19,7 +19,12 @@
     "locale": "en-KE",
     "country": "KE",
     "deliveryInfo": "Delivery and payment are arranged directly with our team after you send your WhatsApp order.",
-    "returnPolicy": "Contact us on WhatsApp for help with your order."
+    "returnPolicy": "Contact us on WhatsApp for help with your order.",
+    "shippingMethods": [
+      { "id": "rider-nairobi", "label": "Rider — Nairobi", "fee": 300, "desc": "Delivered to your door by rider" },
+      { "id": "g4s-outside", "label": "G4S — outside Nairobi", "fee": 600, "desc": "Countrywide via G4S courier" },
+      { "id": "pickup", "label": "Pickup at shop", "fee": 0, "desc": "Collect from our store, free" }
+    ]
   },
   "brand": { "primary": "#b8874a", "secondary": "#1f1f1f", "accent": "#b8874a" },
   "site": {

@@ -10,3 +10,8 @@ tools/.venv/
 tools/.tg_session*
 tools/extracted-products.json
 tools/__pycache__/
+product/
+assets/js/client-data.js
+sitemap.xml
+robots.txt
+.tg_session.session

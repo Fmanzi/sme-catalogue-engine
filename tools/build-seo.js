@@ -22,7 +22,8 @@ if (!domain) {
 }
 
 const base = domain ? `https://${domain}` : '';
-const urls = ['/', ...catalogue.categories.map(category => `/category/${category.slug}/`), ...catalogue.products.map(product => `/product/${product.slug}/`)];
+const staticPages = ['/', '/home.html', '/mens.html', '/womens.html', '/unisex.html', '/collections.html', '/best-sellers.html', '/new-arrivals.html', '/about.html', '/contact.html', '/search.html'];
+const urls = [...staticPages, ...catalogue.products.map(product => `/product/${product.slug}/`)];
 const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${base}${url}</loc></url>`).join('\n')}\n</urlset>\n`;
 fs.writeFileSync(path.join(root, 'sitemap.xml'), body);
 console.log(`Generated sitemap.xml with ${urls.length} URLs and robots.txt.`);

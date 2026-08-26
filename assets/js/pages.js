@@ -821,7 +821,7 @@
     });
   }
 
-  const SHIPPING_OPTIONS = [
+  const SHIPPING_OPTIONS_FALLBACK = [
     { id: 'rider-nairobi', label: 'Rider — Nairobi', fee: 300, icon: 'bicycle-outline', desc: 'Delivered to your door by rider' },
     { id: 'g4s-outside', label: 'G4S — outside Nairobi', fee: 600, icon: 'car-outline', desc: 'Countrywide via G4S courier' },
     { id: 'pickup', label: 'Pickup at shop', fee: 0, icon: 'storefront-outline', desc: 'Collect from our store, free' }
@@ -832,6 +832,8 @@
     const wrap = $('#checkout-root');
     if (!wrap) return;
     if (!items.length) { wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your cart is empty.</p><a href="/" class="btn btn-primary">Browse products</a></div>`; return; }
+    const settings = Store.settings();
+    const SHIPPING_OPTIONS = (settings.shippingMethods && settings.shippingMethods.length) ? settings.shippingMethods.map(m => ({ id: m.id || m.name, label: m.label || m.name, fee: m.fee || 0, icon: 'bicycle-outline', desc: m.desc || '' })) : SHIPPING_OPTIONS_FALLBACK;
     const initFee = SHIPPING_OPTIONS[0].fee;
 
     const shipCards = SHIPPING_OPTIONS.map((opt, idx) => `
