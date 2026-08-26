@@ -55,16 +55,27 @@
       'use strict';
       var form = document.querySelector('[data-login-form]');
       var err = document.querySelector('[data-login-error]');
+      console.log('[Login] form found:', !!form);
+      console.log('[Login] AnonStore:', typeof AnonStore, 'AnonAPI:', typeof AnonAPI);
+      console.log('[Login] API base:', (window.AnonAPI && window.AnonAPI.api) ? window.AnonAPI.api.base : 'N/A');
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        err.textContent = '';
         var fd = new FormData(form);
-        var res = AnonStore.adminLogin(fd.get('email'), fd.get('password'));
-        function onSuccess(r) {
-          if (!r.ok) { err.textContent = r.error; return; }
-          window.location.href = 'index.html';
-        }
-        if (res && typeof res.then === 'function') res.then(onSuccess);
-        else onSuccess(res);
+        console.log('[Login] submitting...', fd.get('email'));
+        try {
+          var res = AnonStore.adminLogin(fd.get('email'), fd.get('password'));
+          function onSuccess(r) {
+            console.log('[Login] result:', JSON.stringify(r));
+            if (!r || !r.ok) { err.textContent = (r && r.error) || 'Login failed'; return; }
+            window.location.href = 'index.html';
+          }
+          if (res && typeof res.then === 'function') {
+            res.then(onSuccess).catch(function(e) { console.error('[Login] error:', e); err.textContent = 'Network error: ' + e.message; });
+          } else {
+            onSuccess(res);
+          }
+        } catch(e) { console.error('[Login] exception:', e); err.textContent = 'Error: ' + e.message; }
       });
     })();
   </script>

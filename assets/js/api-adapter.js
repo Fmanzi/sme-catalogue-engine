@@ -223,6 +223,8 @@
 
     /* ---------- cache refresh ---------- */
 
+    setToken(t) { API.setToken(t); },
+
     async refresh(name) {
       const ep = API.endpoint(name);
       if (!ep) return;
