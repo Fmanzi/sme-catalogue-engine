@@ -75,11 +75,14 @@
         if (!token) return;  /* not logged in yet */
         API.token = token;
 
-        const collections = ['categories', 'brands', 'products', 'settings'];
+        /* verify token is still valid */
+        await API.request('GET', '/api/auth/me');
+
+        const collections = ['categories', 'brands', 'products', 'settings', 'orders', 'customers', 'reviews', 'coupons', 'inventory', 'adminUsers'];
         const results = await Promise.all(
           collections.map(name => {
             const ep = API.endpoint(name);
-            return ep ? API.request('GET', ep) : Promise.resolve([]);
+            return ep ? API.request('GET', ep).catch(() => []) : Promise.resolve([]);
           })
         );
 
@@ -94,6 +97,11 @@
 
         _initialized.value = true;
       } catch (err) {
+        if (err.message && err.message.includes('401')) {
+          sessionStorage.removeItem('anon.api_token');
+          window.location.href = 'login.html';
+          return;
+        }
         console.warn('[API adapter] init failed:', err.message, '— falling back to localStorage');
       }
     },
@@ -120,41 +128,54 @@
       return this.list(name).length;
     },
 
-    /* ---------- write-through (API + cache) ---------- */
+    /* ---------- write-through (API + cache, optimistic) ---------- */
 
-    async create(name, obj) {
+    create(name, obj) {
       const ep = API.endpoint(name);
       if (!ep) throw new Error(`No endpoint for ${name}`);
-      const result = (name === 'settings')
-        ? await API.request('PUT', ep, obj)
-        : await API.request('POST', ep, obj);
-      if (Array.isArray(_cache[name])) _cache[name].push(result);
-      else _cache[name] = result;
-      return result;
+      const item = { id: obj.id || 'id_' + Math.random().toString(36).slice(2, 10), createdAt: new Date().toISOString(), ...obj };
+      if (Array.isArray(_cache[name])) _cache[name].push(item);
+      else _cache[name] = item;
+      /* fire API in background */
+      const url = (name === 'settings') ? ep : ep;
+      const method = (name === 'settings') ? 'PUT' : 'POST';
+      API.request(method, url, obj).then(serverItem => {
+        if (Array.isArray(_cache[name])) {
+          const idx = _cache[name].findIndex(x => x.id === item.id);
+          if (idx !== -1) _cache[name][idx] = serverItem;
+        }
+      }).catch(err => console.warn('[API] create failed:', err.message));
+      return item;
     },
 
-    async update(name, id, patch) {
+    update(name, id, patch) {
       const ep = API.endpoint(name);
       if (!ep) throw new Error(`No endpoint for ${name}`);
-      const result = (name === 'settings')
-        ? await API.request('PUT', ep, patch)
-        : await API.request('PUT', `${ep}/${id}`, patch);
+      let updated;
       if (Array.isArray(_cache[name])) {
         const idx = _cache[name].findIndex(x => x.id === id);
-        if (idx !== -1) _cache[name][idx] = result;
-      } else {
-        _cache[name] = result;
+        if (idx !== -1) {
+          _cache[name][idx] = { ..._cache[name][idx], ...patch, updatedAt: new Date().toISOString() };
+          updated = _cache[name][idx];
+        }
+      } else if (name === 'settings') {
+        _cache[name] = { ...(_cache[name] || {}), ...patch };
+        updated = _cache[name];
       }
-      return result;
+      /* fire API in background */
+      const url = (name === 'settings') ? ep : `${ep}/${id}`;
+      API.request('PUT', url, patch).catch(err => console.warn('[API] update failed:', err.message));
+      return updated || patch;
     },
 
-    async remove(name, id) {
+    remove(name, id) {
       const ep = API.endpoint(name);
       if (!ep) throw new Error(`No endpoint for ${name}`);
-      await API.request('DELETE', `${ep}/${id}`);
       if (Array.isArray(_cache[name])) {
         _cache[name] = _cache[name].filter(x => x.id !== id);
       }
+      /* fire API in background */
+      API.request('DELETE', `${ep}/${id}`).catch(err => console.warn('[API] remove failed:', err.message));
       return { ok: true };
     },
 

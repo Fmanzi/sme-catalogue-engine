@@ -10,6 +10,7 @@ const productRoutes = require('./routes/products');
 const catalogRoutes = require('./routes/catalog');
 const settingsRoutes = require('./routes/settings');
 const uploadRoutes = require('./routes/upload');
+const genericRoutes = require('./routes/generic');
 const { getAdminUsers, saveAdminUsers, uid, hashPassword } = require('./data');
 
 const app = express();
@@ -32,6 +33,11 @@ app.use('/api/products', authMiddleware, productRoutes);
 app.use('/api/catalog', authMiddleware, catalogRoutes);
 app.use('/api/settings', authMiddleware, settingsRoutes);
 app.use('/api/upload', authMiddleware, uploadRoutes);
+app.use('/api/orders', authMiddleware, genericRoutes('orders'));
+app.use('/api/customers', authMiddleware, genericRoutes('customers'));
+app.use('/api/reviews', authMiddleware, genericRoutes('reviews'));
+app.use('/api/coupons', authMiddleware, genericRoutes('coupons'));
+app.use('/api/inventory', authMiddleware, genericRoutes('inventory'));
 
 /* health check */
 app.get('/api/health', (req, res) => res.json({ ok: true, version: '1.0.0' }));

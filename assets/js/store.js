@@ -533,11 +533,14 @@
 
     /* ---------- domain helpers ---------- */
 
-    settings() { return getState().settings; },
+    settings() {
+      if (_useApi) return AnonAPI.get('settings', null) || getState().settings;
+      return getState().settings;
+    },
     updateSettings(patch) { return this.update('settings', null, patch); },
 
     products(extra) {
-      let list = computed(getState().products || []);
+      let list = _useApi ? AnonAPI.list('products') : computed(getState().products || []);
       if (extra && extra.activeOnly) list = list.filter(p => p.status === 'active');
       return list.map(p => ({ ...p, brand: this.get('brands', p.brandId), category: this.get('categories', p.categoryId) }));
     },
@@ -567,10 +570,12 @@
 
     /* order status helpers */
     orderCountByStatus(status) {
-      return computed(getState().orders || []).filter(o => o.status === status).length;
+      const orders = _useApi ? AnonAPI.list('orders') : computed(getState().orders || []);
+      return orders.filter(o => o.status === status).length;
     },
     revenue(filterFn) {
-      return computed(getState().orders || [])
+      const orders = _useApi ? AnonAPI.list('orders') : computed(getState().orders || []);
+      return orders
         .filter(filterFn || (() => true))
         .reduce((s, o) => s + o.total, 0);
     },
