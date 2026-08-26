@@ -1,11 +1,11 @@
 node_modules/
-admin/
 .vscode/
 .DS_Store
 Thumbs.db
 *.log
 .env
 .env.*
+!.env.example
 tools/.venv/
 tools/.tg_session*
 tools/extracted-products.json

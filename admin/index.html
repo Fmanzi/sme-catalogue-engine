@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MERIDIAN Admin</title>
+  <link rel="shortcut icon" href="../assets/images/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="admin-shell">
+
+    <aside class="admin-sidebar" data-sidebar>
+      <div class="sidebar-brand">
+        <img src="../assets/images/logo/logo.svg" alt="MERIDIAN" width="160">
+        <span class="sidebar-tag">Admin Console</span>
+      </div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-user" id="sidebar-user"></div>
+    </aside>
+
+    <div class="admin-overlay" data-sidebar-close></div>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <button class="icon-btn" data-sidebar-toggle aria-label="Toggle menu"><ion-icon name="menu-outline"></ion-icon></button>
+        <h1 class="topbar-title" id="page-title">Dashboard</h1>
+        <div class="topbar-actions">
+          <a href="../index.html" class="btn-admin btn-ghost" title="View storefront"><ion-icon name="open-outline"></ion-icon> View store</a>
+          <button class="btn-admin btn-ghost" data-reset-demo title="Restore demo data"><ion-icon name="refresh-outline"></ion-icon> Reset demo</button>
+          <button class="btn-admin btn-ghost" data-logout><ion-icon name="log-out-outline"></ion-icon> Sign out</button>
+        </div>
+      </header>
+
+      <main class="admin-content" id="app-content">
+        <div class="admin-loading">Loading…</div>
+      </main>
+    </div>
+
+  </div>
+
+  <div class="demo-banner" data-demo-banner id="demo-banner">
+    <span><ion-icon name="flask-outline"></ion-icon> Demo store — data is stored locally in your browser and labelled clearly for future backend integration.</span>
+    <button data-demo-close aria-label="Dismiss"><ion-icon name="close-outline"></ion-icon></button>
+  </div>
+
+  <script src="../assets/js/models.js"></script>
+  <script src="../assets/js/api-adapter.js"></script>
+  <script src="../assets/js/store.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/views/dashboard.js"></script>
+  <script src="assets/js/views/products.js"></script>
+  <script src="assets/js/views/catalog.js"></script>
+  <script src="assets/js/views/orders.js"></script>
+  <script src="assets/js/views/customers.js"></script>
+  <script src="assets/js/views/marketing.js"></script>
+  <script src="assets/js/views/reports.js"></script>
+  <script src="assets/js/views/settings.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    /* Hide demo banner when API server is running */
+    (function() {
+      var banner = document.getElementById('demo-banner');
+      if (banner && window.AnonAPI && window.AnonAPI.api && window.AnonAPI.api.base) {
+        banner.style.display = 'none';
+      }
+    })();
+  </script>
+</body>
+
+</html>

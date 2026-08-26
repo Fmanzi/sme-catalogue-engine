@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Login · MERIDIAN Admin</title>
+  <link rel="shortcut icon" href="../assets/images/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="auth-page">
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <img src="../assets/images/logo/logo.svg" alt="MERIDIAN" width="200">
+        <p class="auth-tagline">Admin Console</p>
+      </div>
+      <h1 class="auth-title">Staff Sign in</h1>
+      <p class="auth-sub">Access the MERIDIAN store administration.</p>
+
+      <form data-login-form>
+        <div class="field">
+          <label>Email address</label>
+          <input type="email" name="email" placeholder="you@meridianwatch.com" required autofocus>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <p class="form-error" data-login-error></p>
+        <button type="submit" class="btn-admin btn-primary btn-block">Sign in</button>
+      </form>
+
+      <div class="auth-demo">
+        <p><b>Demo credentials</b> (all users share the password)</p>
+        <p class="mono">admin@meridianwatch.com · admin123</p>
+        <p class="mono">manager@meridianwatch.com · admin123</p>
+        <p class="mono">orders@meridianwatch.com · admin123</p>
+        <p class="mono">catalog@meridianwatch.com · admin123</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="../assets/js/models.js"></script>
+  <script src="../assets/js/api-adapter.js"></script>
+  <script src="../assets/js/store.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var form = document.querySelector('[data-login-form]');
+      var err = document.querySelector('[data-login-error]');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var res = AnonStore.adminLogin(fd.get('email'), fd.get('password'));
+        function onSuccess(r) {
+          if (!r.ok) { err.textContent = r.error; return; }
+          window.location.href = 'index.html';
+        }
+        if (res && typeof res.then === 'function') res.then(onSuccess);
+        else onSuccess(res);
+      });
+    })();
+  </script>
+</body>
+
+</html>

@@ -21,6 +21,17 @@
   const STORAGE_KEY = 'anon.watchstore.v1';
   const SESSION_KEY = 'anon.session.v1';
 
+  /* ---------- API mode detection ---------- */
+  /* When the admin panel is open and the API server is running,
+     all CRUD goes through the REST API instead of localStorage. */
+  const _isLocalAdmin = /\/admin\/?(\?|#|$)/.test(global.location && global.location.href);
+  const _apiUrl = (global.ANON_API_URL || (_isLocalAdmin ? 'http://localhost:3001' : ''));
+  const _useApi = !!(global.AnonAPI && _apiUrl);
+
+  if (_useApi) {
+    global.AnonAPI.api.configure(_apiUrl);
+  }
+
   const hasStorage = (function () {
     try { const t = '__anon_test__'; global.localStorage.setItem(t, '1'); global.localStorage.removeItem(t); return true; }
     catch (e) { return false; }
@@ -453,13 +464,30 @@
     version: '1.0.0',
     subscribe,
 
-    list(name) { return computed(getState()[name] || []); },
-    get(name, id) { return computed(getState()[name] || []).find(x => x.id === id) || null; },
-    find(name, fn) { return computed(getState()[name] || []).find(fn) || null; },
-    filter(name, fn) { return computed(getState()[name] || []).filter(fn); },
-    count(name) { return computed(getState()[name] || []).length; },
+    /* --- repository methods: API mode reads from cache, writes via API --- */
+    list(name) {
+      if (_useApi && name !== 'adminUsers') return AnonAPI.list(name);
+      return computed(getState()[name] || []);
+    },
+    get(name, id) {
+      if (_useApi && name !== 'adminUsers') return AnonAPI.get(name, id);
+      return computed(getState()[name] || []).find(x => x.id === id) || null;
+    },
+    find(name, fn) {
+      if (_useApi && name !== 'adminUsers') return AnonAPI.find(name, fn);
+      return computed(getState()[name] || []).find(fn) || null;
+    },
+    filter(name, fn) {
+      if (_useApi && name !== 'adminUsers') return AnonAPI.filter(name, fn);
+      return computed(getState()[name] || []).filter(fn);
+    },
+    count(name) {
+      if (_useApi && name !== 'adminUsers') return AnonAPI.count(name);
+      return computed(getState()[name] || []).length;
+    },
 
     create(name, obj) {
+      if (_useApi) return AnonAPI.create(name, obj);
       const s = getState();
       const row = { id: obj.id || uid(), createdAt: obj.createdAt || new Date().toISOString(), ...obj };
       s[name].push(row);
@@ -468,6 +496,7 @@
     },
 
     update(name, id, patch) {
+      if (_useApi) return AnonAPI.update(name, id, patch);
       const s = getState();
       if (id === null) {
         if (typeof s[name] === 'object' && !Array.isArray(s[name])) {
@@ -486,6 +515,7 @@
     },
 
     remove(name, id) {
+      if (_useApi) return AnonAPI.remove(name, id);
       const s = getState();
       const i = s[name].findIndex(x => x.id === id);
       if (i === -1) return false;
@@ -649,6 +679,15 @@
        implemented on a backend (JWT/session). The hash used here is a simple
        placeholder and never ships real credentials. */
     adminLogin(email, password) {
+      if (_useApi) {
+        return AnonAPI.login(email, password, 'meridian').then(result => {
+          if (result.ok) {
+            AnonAPI.setToken(result.token);
+            this.setSession({ role: 'admin', user: result.user });
+          }
+          return result;
+        });
+      }
       const user = computed(getState().adminUsers || []).find(u => u.email.toLowerCase() === email.toLowerCase());
       if (!user) return { ok: false, error: 'No admin account found for that email.' };
       if (simpleHash(password) !== user.passwordHash) return { ok: false, error: 'Incorrect password.' };

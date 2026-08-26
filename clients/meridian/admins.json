@@ -1,0 +1,13 @@
+[
+  {
+    "id": "adm-1",
+    "name": "Admin",
+    "email": "admin@meridianwatch.com",
+    "passwordHash": "240be518",
+    "role": "super_admin",
+    "avatar": "",
+    "status": "active",
+    "createdAt": "2026-08-26T16:16:01.900Z",
+    "lastLoginAt": null
+  }
+]
