@@ -10,6 +10,8 @@
   const Store = global.AnonStore;
   const UI = global.AdminUI;
   const esc = UI.esc;
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.from((r || document).querySelectorAll(s)); }
 
   const listState = { q: '', cat: '', status: '', page: 1 };
 

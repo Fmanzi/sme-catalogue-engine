@@ -27,6 +27,7 @@
   const _isLocalAdmin = /\/admin\//.test(global.location && global.location.pathname);
   const _apiUrl = (global.ANON_API_URL || (_isLocalAdmin ? 'http://localhost:3001' : ''));
   const _useApi = !!(global.AnonAPI && _apiUrl);
+  console.log('[Store] pathname:', global.location.pathname, '_isLocalAdmin:', _isLocalAdmin, '_useApi:', _useApi, '_apiUrl:', _apiUrl);
 
   if (_useApi) {
     global.AnonAPI.api.configure(_apiUrl);

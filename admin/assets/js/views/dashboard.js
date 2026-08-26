@@ -11,6 +11,7 @@
   const Store = global.AnonStore;
   const UI = global.AdminUI;
   const esc = UI.esc;
+  function $(s, r) { return (r || document).querySelector(s); }
 
   const daysAgo = (n) => new Date(Date.now() - n * 864e5).toISOString();
   const inRange = (iso, from, to) => iso && iso >= from && iso <= to;

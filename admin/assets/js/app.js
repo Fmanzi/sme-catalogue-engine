@@ -224,16 +224,25 @@
   /* ---------- boot ---------- */
 
   function boot() {
+    console.log('[App] boot() — adminSession:', !!Store.adminSession());
     if (!Store.adminSession()) { global.location.href = 'login.html'; return; }
     AdminApp.content = $('#app-content');
     bindShell();
 
     /* In API mode, preload data from the server before rendering */
-    const apiReady = (global.AnonAPI && global.AnonAPI.api && global.AnonAPI.api.base)
+    const useApiInit = (global.AnonAPI && global.AnonAPI.api && global.AnonAPI.api.base);
+    console.log('[App] useApiInit:', !!useApiInit, 'api.base:', useApiInit ? global.AnonAPI.api.base : 'N/A');
+    const apiReady = useApiInit
       ? global.AnonAPI.init()
       : Promise.resolve();
 
-    apiReady.then(() => render()).catch(() => render());
+    apiReady.then(() => {
+      console.log('[App] init complete, rendering...');
+      render();
+    }).catch(err => {
+      console.error('[App] init failed:', err);
+      render();
+    });
   }
 
   if (typeof document !== 'undefined') {

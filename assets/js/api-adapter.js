@@ -70,13 +70,23 @@
     /* called once on admin page load — fetches everything */
     async init() {
       if (_initialized.value) return;
+      console.log('[API] init() starting...');
       try {
         const token = sessionStorage.getItem('anon.api_token');
-        if (!token) return;  /* not logged in yet */
+        if (!token) {
+          console.log('[API] No token — old session detected, clearing and redirecting to login');
+          sessionStorage.removeItem('anon.api_token');
+          /* clear stale localStorage session from pre-API era */
+          try { localStorage.removeItem('anon.session.v1'); } catch(e) {}
+          window.location.href = 'login.html';
+          return;
+        }
         API.token = token;
+        console.log('[API] Token found, verifying...');
 
         /* verify token is still valid */
         await API.request('GET', '/api/auth/me');
+        console.log('[API] Token valid, loading collections...');
 
         const collections = ['categories', 'brands', 'products', 'settings', 'orders', 'customers', 'reviews', 'coupons', 'inventory', 'adminUsers'];
         const results = await Promise.all(
@@ -96,7 +106,9 @@
         });
 
         _initialized.value = true;
+        console.log('[API] init() complete. Cache:', Object.keys(_cache).map(k => k + ':' + (Array.isArray(_cache[k]) ? _cache[k].length : typeof _cache[k])).join(', '));
       } catch (err) {
+        console.error('[API] init() error:', err);
         if (err.message && err.message.includes('401')) {
           sessionStorage.removeItem('anon.api_token');
           window.location.href = 'login.html';
@@ -109,7 +121,9 @@
     /* ---------- synchronous read (from cache) ---------- */
 
     list(name) {
-      return Array.isArray(_cache[name]) ? _cache[name] : [];
+      const data = Array.isArray(_cache[name]) ? _cache[name] : [];
+      console.log('[API]', 'list(' + name + ')', '→', data.length, 'items');
+      return data;
     },
 
     get(name, id) {
