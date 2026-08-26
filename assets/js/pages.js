@@ -187,24 +187,58 @@
 
   function renderHome() {
     renderShopBanner();
+    const s = Store.settings();
+    const home = s.home || {};
 
     const mensGrid = $('#mens-picks-grid');
     if (mensGrid) {
       const mens = activeProducts().filter(p => p.gender === 'men').sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.soldCount - a.soldCount).slice(0, 8);
       UI.renderProductGrid(mensGrid, mens);
+      const head = mensGrid.closest('.home-section, section')?.querySelector('.section-head');
+      if (head && home.genderA) {
+        const kicker = head.querySelector('.section-kicker');
+        const title = head.querySelector('.section-title');
+        if (kicker) kicker.textContent = home.genderA.kicker || kicker.textContent;
+        if (title) title.textContent = home.genderA.title || title.textContent;
+      }
     }
 
     const womensGrid = $('#womens-picks-grid');
     if (womensGrid) {
       const womens = activeProducts().filter(p => p.gender === 'women').sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.soldCount - a.soldCount).slice(0, 8);
       UI.renderProductGrid(womensGrid, womens);
+      const head = womensGrid.closest('.home-section, section')?.querySelector('.section-head');
+      if (head && home.genderB) {
+        const kicker = head.querySelector('.section-kicker');
+        const title = head.querySelector('.section-title');
+        if (kicker) kicker.textContent = home.genderB.kicker || kicker.textContent;
+        if (title) title.textContent = home.genderB.title || title.textContent;
+      }
     }
 
     const newArrivals = $('#new-arrivals-grid');
-    if (newArrivals) UI.renderProductGrid(newArrivals, activeProducts().filter(p => p.newArrival).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 8));
+    if (newArrivals) {
+      UI.renderProductGrid(newArrivals, activeProducts().filter(p => p.newArrival).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 8));
+      const head = newArrivals.closest('.home-section, section')?.querySelector('.section-head');
+      if (head && home.newArrivals) {
+        const kicker = head.querySelector('.section-kicker');
+        const title = head.querySelector('.section-title');
+        if (kicker) kicker.textContent = home.newArrivals.kicker || kicker.textContent;
+        if (title) title.textContent = home.newArrivals.title || title.textContent;
+      }
+    }
 
     const featured = $('#featured-timepieces-grid');
-    if (featured) UI.renderProductGrid(featured, activeProducts().filter(p => p.featured).slice(0, 8));
+    if (featured) {
+      UI.renderProductGrid(featured, activeProducts().filter(p => p.featured).slice(0, 8));
+      const head = featured.closest('.home-section, section')?.querySelector('.section-head');
+      if (head && home.featured) {
+        const kicker = head.querySelector('.section-kicker');
+        const title = head.querySelector('.section-title');
+        if (kicker) kicker.textContent = home.featured.kicker || kicker.textContent;
+        if (title) title.textContent = home.featured.title || title.textContent;
+      }
+    }
   }
 
   /* ---------- shop / listing ---------- */
@@ -237,6 +271,12 @@
     if (max !== null) list = list.filter(p => (p.salePrice || p.price) <= Number(max));
     const coll = params.get('collection');
     if (coll) list = list.filter(p => p.collectionIds.includes(coll));
+    const shopFilters = Store.settings().shopFilters || {};
+    const attrKeys = shopFilters.attributes || [];
+    attrKeys.forEach(key => {
+      const val = params.get(key);
+      if (val) list = list.filter(p => p.attributes && p.attributes[key] === val);
+    });
     return list;
   }
 
@@ -331,7 +371,8 @@
         toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
       /* auto-expand when a filter has already been applied (e.g. deep links from a category) — desktop only */
-      const hasActiveFilters = ['q', 'cat', 'gender', 'brand', 'movement', 'status', 'min', 'max', 'collection'].some(k => params.get(k));
+      const attrKeys = (Store.settings().shopFilters || {}).attributes || [];
+      const hasActiveFilters = ['q', 'cat', 'gender', 'brand', 'status', 'min', 'max', 'collection', ...attrKeys].some(k => params.get(k));
       if (hasActiveFilters && global.innerWidth > 1023) {
         panel.classList.add('is-open');
         toggleBtn.setAttribute('aria-expanded', 'true');
@@ -360,11 +401,24 @@
         <label class="filter-option"><input type="checkbox" name="f-brand" value="${b.id}" ${selectedBrands.includes(b.id) ? 'checked' : ''}>${esc(b.name)}<span class="count">${activeProducts().filter(p => p.brandId === b.id).length}</span></label>`).join('');
     }
 
-    const movEl = $('#filter-movement');
+    const movEl = $('#filter-attributes');
     if (movEl) {
-      const movOpts = ['automatic', 'mechanical', 'quartz', 'chronograph', 'solar'];
-      movEl.innerHTML = movOpts.map(m => `
-        <label class="filter-option"><input type="radio" name="f-movement" value="${m}" ${params.get('movement') === m ? 'checked' : ''}>${m[0].toUpperCase() + m.slice(1)}<span class="count">${activeProducts().filter(p => p.movement === m).length}</span></label>`).join('');
+      const shopFilters = Store.settings().shopFilters || {};
+      const attrKeys = shopFilters.attributes || [];
+      if (attrKeys.length) {
+        movEl.innerHTML = attrKeys.map(key => {
+          const vals = [...new Set(activeProducts().filter(p => p.attributes && p.attributes[key]).map(p => p.attributes[key]))].sort();
+          if (!vals.length) return '';
+          const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+          return `<div class="filter-group"><h4>${esc(label)}</h4>${vals.map(v => `
+            <label class="filter-option"><input type="radio" name="f-attr-${key}" value="${esc(v)}" ${params.get(key) === v ? 'checked' : ''}>${esc(v[0].toUpperCase() + v.slice(1))}<span class="count">${activeProducts().filter(p => p.attributes && p.attributes[key] === v).length}</span></label>`).join('')}</div>`;
+        }).join('');
+        attrKeys.forEach(key => {
+          $$(`input[name="f-attr-${key}"]`, panel).forEach(i => i.addEventListener('change', () => apply(u => {
+            if (i.checked) u.set(key, i.value); else u.delete(key);
+          })));
+        });
+      }
     }
 
     const statusEl = $('#filter-status');
@@ -394,9 +448,6 @@
     })));
     $$('input[name="f-gender"]', panel).forEach(i => i.addEventListener('change', () => apply(u => {
       if (i.checked) u.set('gender', i.value); else u.delete('gender');
-    })));
-    $$('input[name="f-movement"]', panel).forEach(i => i.addEventListener('change', () => apply(u => {
-      if (i.checked) u.set('movement', i.value); else u.delete('movement');
     })));
     $$('input[name="f-price"]', panel).forEach(i => i.addEventListener('change', () => apply(u => {
       if (i.checked) { const [min, max] = i.value.split('|'); u.set('min', min); u.set('max', max); } else { u.delete('min'); u.delete('max'); }
@@ -534,7 +585,7 @@
       UI.toast(res.msg, res.ok ? 'success' : 'error');
     });
 
-    /* related timepieces — ~8 other watches */
+    /* related products — ~8 similar items */
     const related = $('[data-related-products]', root);
     if (related) {
       const pool = activeProducts().filter(x => x.id !== p.id)

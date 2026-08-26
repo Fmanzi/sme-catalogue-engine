@@ -1,0 +1,99 @@
+{
+  "$schema": "../schema/business.schema.json",
+  "id": "kicks",
+  "name": "KICKS",
+  "description": "Premium sneakers and streetwear for those who move culture forward.",
+  "logo": "assets/images/logo/logo.svg",
+  "favicon": "assets/images/logo/favicon.svg",
+  "contact": {
+    "whatsapp": "254700112233",
+    "phone": "0700 112 233",
+    "email": "hello@kicks.co.ke",
+    "address": "Nairobi, Kenya",
+    "mapsUrl": "",
+    "openingHours": "Monday–Saturday, 10am–7pm"
+  },
+  "commerce": {
+    "currency": "KES",
+    "currencySymbol": "KSh ",
+    "locale": "en-KE",
+    "country": "KE",
+    "deliveryInfo": "Same-day delivery in Nairobi. Countrywide via courier.",
+    "returnPolicy": "Returns accepted within 14 days of delivery."
+  },
+  "brand": { "primary": "#e63946", "secondary": "#1d3557", "accent": "#e63946" },
+  "site": {
+    "domain": "",
+    "defaultSeoTitle": "KICKS — Premium Sneakers & Streetwear",
+    "defaultSeoDescription": "Shop the latest sneakers and streetwear from KICKS. Order directly on WhatsApp.",
+    "social": { "instagram": "", "facebook": "" }
+  },
+  "hero": {
+    "slides": [
+      {
+        "bg": "",
+        "kicker": "New Season",
+        "title": "Step Into Fresh",
+        "text": "The latest drops from Nike, Adidas, New Balance and more. Same-day delivery in Nairobi.",
+        "buttonText": "Shop the drop"
+      },
+      {
+        "bg": "",
+        "kicker": "Summer Collection",
+        "title": "Light Steps",
+        "text": "Breathable mesh runners and canvas low-tops for the warm season.",
+        "buttonText": "Explore Collection"
+      }
+    ]
+  },
+  "about": {
+    "tagline": "Our story",
+    "title": "About KICKS",
+    "subtitle": "Nairobi's home for authenticated sneakers and streetwear.",
+    "heading": "Born on the streets, built for the culture.",
+    "paragraphs": [
+      "KICKS started with a simple idea: every sneaker head in Nairobi deserves access to the latest releases without the markup and hassle of overseas ordering.",
+      "We source directly from authorized retailers and trusted suppliers to bring you authenticated pairs at fair prices."
+    ],
+    "points": [
+      "Authenticated products — every pair verified",
+      "Same-day delivery within Nairobi",
+      "Easy returns within 14 days"
+    ],
+    "values": [
+      { "title": "Culture", "text": "We live and breathe sneaker culture, from OG releases to today's drops." },
+      { "title": "Trust", "text": "Every product is authenticated before it reaches your door." },
+      { "title": "Community", "text": "More than a shop — we're a hub for Nairobi's sneaker community." }
+    ],
+    "image": ""
+  },
+  "contactPage": {
+    "tagline": "Get in touch",
+    "title": "Contact Us",
+    "subtitle": "Questions about sizing, availability or orders? We reply within hours.",
+    "subjects": ["Order enquiry", "Sizing help", "Returns & exchanges", "Something else"]
+  },
+  "shopBanner": {
+    "kicker": "New Drops",
+    "title": "Browse, add to bag, confirm on WhatsApp",
+    "text": "Same-day delivery in Nairobi. Countrywide via courier. Pay on delivery.",
+    "buttonText": "",
+    "link": "",
+    "bg": ""
+  },
+  "nav": {
+    "genderLabelA": "Men's",
+    "genderLabelB": "Women's",
+    "mobileLabelA": "Men's Kicks",
+    "mobileLabelB": "Women's Kicks"
+  },
+  "home": {
+    "genderA": { "kicker": "For Him", "title": "Men's Picks" },
+    "genderB": { "kicker": "For Her", "title": "Women's Picks" },
+    "newArrivals": { "kicker": "Just Dropped", "title": "New Arrivals" },
+    "featured": { "kicker": "Editor's Pick", "title": "Featured Kicks" }
+  },
+  "shopFilters": {
+    "attributes": ["colorway", "silhouette"]
+  }
+}

@@ -72,6 +72,33 @@
         "subtitle": { "type": "string" },
         "subjects": { "type": "array", "items": { "type": "string" } }
       }
+    },
+    "nav": {
+      "type": "object",
+      "description": "Configurable navigation labels.",
+      "properties": {
+        "genderLabelA": { "type": "string", "description": "Desktop nav label for gender A (e.g. Men's)" },
+        "genderLabelB": { "type": "string", "description": "Desktop nav label for gender B (e.g. Women's)" },
+        "mobileLabelA": { "type": "string", "description": "Mobile menu label for gender A (e.g. Men's Watches)" },
+        "mobileLabelB": { "type": "string", "description": "Mobile menu label for gender B (e.g. Women's Watches)" }
+      }
+    },
+    "home": {
+      "type": "object",
+      "description": "Configurable home page section headings.",
+      "properties": {
+        "genderA": { "type": "object", "properties": { "kicker": { "type": "string" }, "title": { "type": "string" } } },
+        "genderB": { "type": "object", "properties": { "kicker": { "type": "string" }, "title": { "type": "string" } } },
+        "newArrivals": { "type": "object", "properties": { "kicker": { "type": "string" }, "title": { "type": "string" } } },
+        "featured": { "type": "object", "properties": { "kicker": { "type": "string" }, "title": { "type": "string" } } }
+      }
+    },
+    "shopFilters": {
+      "type": "object",
+      "description": "Which product attributes to show as shop filters (auto-extracted from products if not specified).",
+      "properties": {
+        "attributes": { "type": "array", "items": { "type": "string" }, "description": "Attribute keys to use as filter panels (e.g. ['movement', 'size']). If empty/missing, filters are auto-extracted from product attributes." }
+      }
     }
   }
 }

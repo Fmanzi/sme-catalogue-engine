@@ -87,5 +87,20 @@
     "buttonText": "",
     "link": "",
     "bg": ""
+  },
+  "nav": {
+    "genderLabelA": "Men's",
+    "genderLabelB": "Women's",
+    "mobileLabelA": "Men's Watches",
+    "mobileLabelB": "Women's Watches"
+  },
+  "home": {
+    "genderA": { "kicker": "For Him", "title": "Men's Picks" },
+    "genderB": { "kicker": "For Her", "title": "Women's Picks" },
+    "newArrivals": { "kicker": "Just In", "title": "New Arrivals" },
+    "featured": { "kicker": "Curated", "title": "Featured Timepieces" }
+  },
+  "shopFilters": {
+    "attributes": ["movement"]
   }
 }

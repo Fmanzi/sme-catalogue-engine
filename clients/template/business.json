@@ -40,5 +40,20 @@
     "buttonText": "Shop now",
     "link": "/",
     "bg": ""
+  },
+  "nav": {
+    "genderLabelA": "Men's",
+    "genderLabelB": "Women's",
+    "mobileLabelA": "Men's Shop",
+    "mobileLabelB": "Women's Shop"
+  },
+  "home": {
+    "genderA": { "kicker": "For Him", "title": "Men's Picks" },
+    "genderB": { "kicker": "For Her", "title": "Women's Picks" },
+    "newArrivals": { "kicker": "Just In", "title": "New Arrivals" },
+    "featured": { "kicker": "Curated", "title": "Featured Products" }
+  },
+  "shopFilters": {
+    "attributes": []
   }
 }

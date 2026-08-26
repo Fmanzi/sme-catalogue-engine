@@ -221,6 +221,11 @@
     const business = s.business || {};
     const social = ((business.site || {}).social) || {};
     const categories = Store.list('categories').filter(category => category.status !== 'archived').slice(0, 6);
+    const nav = s.nav || {};
+    const gLabelA = nav.genderLabelA || "Men's";
+    const gLabelB = nav.genderLabelB || "Women's";
+    const gMobileA = nav.mobileLabelA || (gLabelA + ' Shop');
+    const gMobileB = nav.mobileLabelB || (gLabelB + ' Shop');
     return `
   <div class="header-top">
     <div class="container">
@@ -254,8 +259,8 @@
       <ul class="desktop-nav-list">
         <li class="desktop-nav-item"><a href="home.html" class="desktop-nav-link">Home</a></li>
         <li class="desktop-nav-item"><a href="index.html" class="desktop-nav-link">Shop All</a></li>
-        <li class="desktop-nav-item"><a href="mens.html" class="desktop-nav-link">Men's</a></li>
-        <li class="desktop-nav-item"><a href="womens.html" class="desktop-nav-link">Women's</a></li>
+        <li class="desktop-nav-item"><a href="mens.html" class="desktop-nav-link">${esc(gLabelA)}</a></li>
+        <li class="desktop-nav-item"><a href="womens.html" class="desktop-nav-link">${esc(gLabelB)}</a></li>
         <li class="desktop-nav-item"><a href="collections.html" class="desktop-nav-link">Collections</a></li>
         <li class="desktop-nav-item"><a href="best-sellers.html" class="desktop-nav-link">Best Sellers</a></li>
         <li class="desktop-nav-item"><a href="new-arrivals.html" class="desktop-nav-link">New Arrivals</a></li>
@@ -267,8 +272,8 @@
 
   <div class="mobile-bottom-navigation">
     <a href="home.html" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
-    <a href="mens.html" class="action-btn" aria-label="Men's"><ion-icon name="male-outline"></ion-icon></a>
-    <a href="womens.html" class="action-btn" aria-label="Women's"><ion-icon name="female-outline"></ion-icon></a>
+    <a href="mens.html" class="action-btn" aria-label="${esc(gLabelA)}"><ion-icon name="male-outline"></ion-icon></a>
+    <a href="womens.html" class="action-btn" aria-label="${esc(gLabelB)}"><ion-icon name="female-outline"></ion-icon></a>
     <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:700;line-height:1">0</span></a>
     <button class="action-btn" data-mobile-menu-open-btn><ion-icon name="menu-outline"></ion-icon></button>
   </div>
@@ -281,8 +286,8 @@
     <ul class="mobile-menu-category-list">
       <li class="menu-category"><a href="home.html" class="menu-title">Home</a></li>
       <li class="menu-category"><a href="index.html" class="menu-title">Shop All</a></li>
-      <li class="menu-category"><a href="mens.html" class="menu-title">Men's Watches</a></li>
-      <li class="menu-category"><a href="womens.html" class="menu-title">Women's Watches</a></li>
+      <li class="menu-category"><a href="mens.html" class="menu-title">${esc(gMobileA)}</a></li>
+      <li class="menu-category"><a href="womens.html" class="menu-title">${esc(gMobileB)}</a></li>
       <li class="menu-category"><a href="collections.html" class="menu-title">Collections</a></li>
       <li class="menu-category"><a href="best-sellers.html" class="menu-title">Best Sellers</a></li>
       <li class="menu-category"><a href="new-arrivals.html" class="menu-title">New Arrivals</a></li>

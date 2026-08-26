@@ -403,7 +403,8 @@
             paymentProviders: { whatsapp: { enabled: true, number: (business.contact || {}).whatsapp || '', label: (business.contact || {}).phone || '' },
             },
             hero: business.hero || {}, about: business.about || {}, contactPage: business.contactPage || {},
-            shopBanner: business.shopBanner || {},
+            shopBanner: business.shopBanner || {}, nav: business.nav || {}, home: business.home || {},
+            shopFilters: business.shopFilters || {},
             social: (business.site || {}).social || {},
             defaultSeoTitle: (business.site || {}).defaultSeoTitle || '', defaultSeoDescription: (business.site || {}).defaultSeoDescription || '',
             business
