@@ -24,7 +24,7 @@
   /* ---------- API mode detection ---------- */
   /* When the admin panel is open and the API server is running,
      all CRUD goes through the REST API instead of localStorage. */
-  const _isLocalAdmin = /\/admin\/?(\?|#|$)/.test(global.location && global.location.href);
+  const _isLocalAdmin = /\/admin\//.test(global.location && global.location.pathname);
   const _apiUrl = (global.ANON_API_URL || (_isLocalAdmin ? 'http://localhost:3001' : ''));
   const _useApi = !!(global.AnonAPI && _apiUrl);
 
