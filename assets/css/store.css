@@ -27,6 +27,11 @@ body > main { flex: 1; }
 
 .menu-title.is-active { color: var(--gold); }
 
+/* mobile slide-out menu header "Menu" — override theme's default salmon-pink */
+.mobile-navigation-menu .menu-top .menu-title {
+  color: var(--ink);
+}
+
 .container-wide { padding: 0 15px; margin: 0 auto; }
 @media (min-width: 1200px) { .container-wide { max-width: 1120px; } }
 @media (min-width: 1400px) { .container-wide { max-width: 1240px; } }

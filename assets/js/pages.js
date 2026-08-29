@@ -328,7 +328,7 @@
       sortSel.addEventListener('change', () => {
         const u = new URLSearchParams(params);
         u.set('sort', sortSel.value);
-        global.location.href = '/?' + u.toString();
+        global.location.href = global.location.pathname + '?' + u.toString();
       });
     }
 
@@ -346,7 +346,7 @@
       $$('.pag-btn', pag).forEach(b => b.addEventListener('click', () => {
         const u = new URLSearchParams(params);
         u.set('page', b.dataset.page);
-        global.location.href = '/?' + u.toString();
+        global.location.href = global.location.pathname + '?' + u.toString();
       }));
     }
   }
@@ -355,7 +355,7 @@
     const u = new URLSearchParams(global.location.search);
     names.forEach(n => u.delete(n));
     u.delete('page');
-    return '/?' + u.toString();
+    return global.location.pathname + '?' + u.toString();
   }
 
   function initShopFilters() {
@@ -471,7 +471,7 @@
     });
 
     const clear = $('#filter-clear');
-    if (clear) clear.addEventListener('click', () => { global.location.href = '/'; });
+    if (clear) clear.addEventListener('click', () => { global.location.href = global.location.pathname; });
   }
 
   /* ---------- collections ---------- */
