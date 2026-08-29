@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { login } = require('../auth');
-const { getAdminUsers, saveAdminUsers, uid, hashPassword } = require('../data');
+const { login, hashPassword } = require('../auth');
+const { getAdminUsers, saveAdminUsers, uid } = require('../data');
 const { authMiddleware, requireRole } = require('../auth');
 
 const router = Router();
@@ -46,6 +46,29 @@ router.post('/users', authMiddleware, requireRole('super_admin'), (req, res) => 
   saveAdminUsers(clientId, users);
   const { passwordHash, ...publicUser } = user;
   res.status(201).json(publicUser);
+});
+
+router.put('/users/:id', authMiddleware, requireRole('super_admin'), (req, res) => {
+  const { clientId = 'meridian' } = req.query;
+  const users = getAdminUsers(clientId);
+  const idx = users.findIndex(u => u.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'User not found' });
+  const { password, passwordHash, ...rest } = req.body;
+  users[idx] = { ...users[idx], ...rest, id: users[idx].id };
+  if (password) users[idx].passwordHash = hashPassword(password);
+  saveAdminUsers(clientId, users);
+  const { passwordHash: _ph, ...publicUser } = users[idx];
+  res.json(publicUser);
+});
+
+router.delete('/users/:id', authMiddleware, requireRole('super_admin'), (req, res) => {
+  const { clientId = 'meridian' } = req.query;
+  const users = getAdminUsers(clientId);
+  const idx = users.findIndex(u => u.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'User not found' });
+  users.splice(idx, 1);
+  saveAdminUsers(clientId, users);
+  res.json({ ok: true });
 });
 
 module.exports = router;

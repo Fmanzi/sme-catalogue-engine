@@ -389,40 +389,29 @@
         const source = global.CatalogueData;
         const catalogue = source.catalogue;
         const business = source.business || {};
-        const products = (catalogue.products || []).map(p => ({
-          ...p,
-          salePrice: p.compareAtPrice || null,
-          mainImage: (() => { const im = (p.images || []).find(x => x.primary) || (p.images || [])[0]; return typeof im === 'string' ? im : (im && im.src) || ''; })(),
-          images: (p.images || []).map(im => typeof im === 'string' ? im : im.src),
-          imageMeta: (p.images || []).map(im => typeof im === 'string' ? { src: im, alt: p.name } : im),
-          stockStatus: p.availability || 'in_stock',
-          status: p.status || 'active',
-          brandId: p.brandId || null,
-          categoryId: p.categoryId || null,
-          collectionIds: p.collectionIds || [],
-          attributes: p.attributes || {},
-          tags: p.tags || [],
-          stockQuantity: p.stockQuantity != null ? p.stockQuantity : 10
-        }));
-        memory.data = {
-          version: 3, products, categories: catalogue.categories || [], brands: catalogue.brands || [], collections: [],
-          settings: {
-            storeName: business.name || '', description: business.description || '', logo: business.logo || '', favicon: business.favicon || '',
-            contactEmail: (business.contact || {}).email || '', phone: (business.contact || {}).phone || '',
-            address: (business.contact || {}).address || '', openingHours: (business.contact || {}).openingHours || '',
-            currency: (business.commerce || {}).currency || 'KES', currencySymbol: (business.commerce || {}).currencySymbol || 'KSh ', decimalFormat: '0',
-            deliveryInfo: (business.commerce || {}).deliveryInfo || '', returnPolicy: (business.commerce || {}).returnPolicy || '',
-            paymentProviders: { whatsapp: { enabled: true, number: (business.contact || {}).whatsapp || '', label: (business.contact || {}).phone || '' },
-            },
-            hero: business.hero || {}, about: business.about || {}, contactPage: business.contactPage || {},
-            shopBanner: business.shopBanner || {}, nav: business.nav || {}, home: business.home || {},
-            shopFilters: business.shopFilters || {},
-            shippingMethods: (business.commerce || {}).shippingMethods || [],
-            social: (business.site || {}).social || {},
-            defaultSeoTitle: (business.site || {}).defaultSeoTitle || '', defaultSeoDescription: (business.site || {}).defaultSeoDescription || '',
-            business
-          }, customers: [], orders: [], reviews: [], coupons: [], adminUsers: [], inventory: []
-        };
+        const normalize = global.AnonModels.normalizeProduct;
+        const normalizeSettings = global.AnonModels.normalizeSettings || (function () { const b = arguments[0] || {}; return { business: b }; }());
+        const products = (catalogue.products || []).map(normalize);
+        let collections = (catalogue.collections || []).map(c => {
+          const n = global.AnonModels.normalizeCollection || ((c) => c);
+          return n(c);
+        });
+        const materialize = global.AnonModels.materializeCollections;
+        if (materialize) {
+          const out = materialize(products, collections);
+          memory.data = {
+            version: 3, products: out.products, categories: catalogue.categories || [], brands: catalogue.brands || [], collections: out.collections,
+            settings: normalizeSettings(business),
+            customers: [], orders: [], reviews: [], coupons: [], adminUsers: [], inventory: []
+          };
+        } else {
+          memory.data = {
+            version: 3, products, categories: catalogue.categories || [], brands: catalogue.brands || [], collections,
+            settings: normalizeSettings(business),
+            customers: [], orders: [], reviews: [], coupons: [], adminUsers: [], inventory: []
+          };
+        }
+        if (global.AnonModels.applyTheme) global.AnonModels.applyTheme(business, global.document);
         return memory.data;
       }
       let data = loadFromStorage();
@@ -467,23 +456,23 @@
 
     /* --- repository methods: API mode reads from cache, writes via API --- */
     list(name) {
-      if (_useApi && name !== 'adminUsers') return AnonAPI.list(name);
+      if (_useApi) return AnonAPI.list(name);
       return computed(getState()[name] || []);
     },
     get(name, id) {
-      if (_useApi && name !== 'adminUsers') return AnonAPI.get(name, id);
+      if (_useApi) return AnonAPI.get(name, id);
       return computed(getState()[name] || []).find(x => x.id === id) || null;
     },
     find(name, fn) {
-      if (_useApi && name !== 'adminUsers') return AnonAPI.find(name, fn);
+      if (_useApi) return AnonAPI.find(name, fn);
       return computed(getState()[name] || []).find(fn) || null;
     },
     filter(name, fn) {
-      if (_useApi && name !== 'adminUsers') return AnonAPI.filter(name, fn);
+      if (_useApi) return AnonAPI.filter(name, fn);
       return computed(getState()[name] || []).filter(fn);
     },
     count(name) {
-      if (_useApi && name !== 'adminUsers') return AnonAPI.count(name);
+      if (_useApi) return AnonAPI.count(name);
       return computed(getState()[name] || []).length;
     },
 
@@ -684,9 +673,9 @@
     /* SECURITY NOTE: this is a front-end demonstration. Real auth MUST be
        implemented on a backend (JWT/session). The hash used here is a simple
        placeholder and never ships real credentials. */
-    adminLogin(email, password) {
+    adminLogin(email, password, clientId) {
       if (_useApi) {
-        return AnonAPI.login(email, password, 'meridian').then(result => {
+        return AnonAPI.login(email, password, clientId || 'meridian').then(result => {
           if (result.ok) {
             AnonAPI.setToken(result.token);
             this.setSession({ role: 'admin', user: result.user });

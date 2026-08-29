@@ -10,7 +10,7 @@ function hashPassword(password) {
 }
 
 function generateToken(user) {
-  return jwt.sign({ id: user.id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
+  return jwt.sign({ id: user.id, email: user.email, role: user.role, clientId: user.clientId || null }, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
 }
 
 function verifyToken(token) {
@@ -49,9 +49,18 @@ function login(clientId, email, password) {
   if (!user) return { ok: false, error: 'No account found for that email.' };
   if (hashPassword(password) !== user.passwordHash) return { ok: false, error: 'Incorrect password.' };
   if (user.status !== 'active') return { ok: false, error: 'Account disabled.' };
-  const token = generateToken(user);
+  const token = generateToken({ ...user, clientId });
   const { passwordHash, ...publicUser } = user;
-  return { ok: true, token, user: publicUser };
+  return { ok: true, token, user: { ...publicUser, clientId } };
 }
 
-module.exports = { JWT_SECRET, hashPassword, generateToken, verifyToken, authMiddleware, requireRole, login };
+/* guards cross-store access — non-super admins may only touch their own store */
+function storeScope(req, res, next) {
+  if (req.user && req.user.role === 'super_admin') return next();
+  const target = req.query.clientId || (req.body && req.body.clientId) || 'meridian';
+  const mine = req.user && req.user.clientId;
+  if (mine && target !== mine) return res.status(403).json({ error: 'Cross-store access denied' });
+  next();
+}
+
+module.exports = { JWT_SECRET, hashPassword, generateToken, verifyToken, authMiddleware, requireRole, login, storeScope };

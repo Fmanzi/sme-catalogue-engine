@@ -8,7 +8,12 @@ const catalogue = JSON.parse(fs.readFileSync(path.join(root, 'clients', client, 
 const business = JSON.parse(fs.readFileSync(path.join(root, 'clients', client, 'business.json'), 'utf8'));
 const template = fs.readFileSync(path.join(root, 'product.html'), 'utf8');
 function esc(value) { return String(value || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-for (const product of catalogue.products) {
+
+/* Only public (active) products get crawlable pages. Draft/archived products
+   are hidden from the storefront data bundle, so skip them here too. */
+const active = catalogue.products.filter(p => (p.status || 'active') === 'active');
+
+for (const product of active) {
   const title = product.seo && product.seo.title || `${product.name} | ${business.name}`;
   const description = product.seo && product.seo.description || product.shortDescription || business.description;
   const canonical = (business.site.domain ? `https://${business.site.domain}` : '') + `/product/${product.slug}/`;
@@ -20,4 +25,14 @@ for (const product of catalogue.products) {
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), page);
 }
-console.log(`Generated ${catalogue.products.length} product pages for ${client}`);
+
+/* Remove stale pages for products that are no longer active */
+const buildDir = path.join(root, 'product');
+if (fs.existsSync(buildDir)) {
+  const slugs = new Set(active.map(p => p.slug));
+  for (const entry of fs.readdirSync(buildDir)) {
+    if (!slugs.has(entry)) fs.rmSync(path.join(buildDir, entry), { recursive: true, force: true });
+  }
+}
+
+console.log(`Generated ${active.length} product pages for ${client} (${catalogue.products.length - active.length} hidden).`);

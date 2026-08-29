@@ -99,4 +99,57 @@ router.delete('/brands/:id', (req, res) => {
   res.json({ ok: true });
 });
 
+/* ---------- collections (hybrid: rules + manual override) ---------- */
+router.get('/collections', (req, res) => {
+  const { clientId = 'meridian' } = req.query;
+  const cat = getCatalogue(clientId);
+  res.json(cat.collections || []);
+});
+
+router.post('/collections', (req, res) => {
+  const { clientId = 'meridian' } = req.query;
+  const cat = getCatalogue(clientId);
+  if (!cat.collections) cat.collections = [];
+  const item = {
+    id: uid(),
+    slug: slugify(req.body.name || 'untitled'),
+    name: 'Untitled Collection',
+    description: '',
+    image: '',
+    status: 'active',
+    featured: false,
+    order: cat.collections.length,
+    rules: {},
+    manual: { include: [], exclude: [] },
+    createdAt: new Date().toISOString(),
+    ...req.body
+  };
+  cat.collections.push(item);
+  saveCatalogue(clientId, cat);
+  scheduleRebuild(clientId);
+  res.status(201).json(item);
+});
+
+router.put('/collections/:id', (req, res) => {
+  const { clientId = 'meridian' } = req.query;
+  const cat = getCatalogue(clientId);
+  const idx = (cat.collections || []).findIndex(c => c.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Collection not found' });
+  cat.collections[idx] = { ...cat.collections[idx], ...req.body, id: cat.collections[idx].id };
+  saveCatalogue(clientId, cat);
+  scheduleRebuild(clientId);
+  res.json(cat.collections[idx]);
+});
+
+router.delete('/collections/:id', (req, res) => {
+  const { clientId = 'meridian' } = req.query;
+  const cat = getCatalogue(clientId);
+  const idx = (cat.collections || []).findIndex(c => c.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Collection not found' });
+  cat.collections.splice(idx, 1);
+  saveCatalogue(clientId, cat);
+  scheduleRebuild(clientId);
+  res.json({ ok: true });
+});
+
 module.exports = router;

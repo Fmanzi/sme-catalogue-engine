@@ -148,6 +148,84 @@
       UI.lineChart($('#rev-chart', root), weeklyRevenue());
       UI.donutChart($('#status-chart', root), statusDonut(), { centerLabel: Store.list('orders').length });
     });
+
+    /* ---------- live site · publish panel ---------- */
+
+    const apiUp = global.AnonAPI && global.AnonAPI.api && global.AnonAPI.api.base ? global.AnonAPI : null;
+    const pubBusy = ['building', 'pushing', 'deploying', 'queued'].join(' ');
+
+    function pubHuman(state) {
+      return {
+        idle: 'Ready — saves publish automatically',
+        queued: 'Queued…',
+        building: 'Rebuilding store bundle…',
+        pushing: 'Pushing to repo…',
+        deploying: 'Deploying to Cloudflare Pages…',
+        live: 'Live',
+        error: 'Needs attention'
+      }[state] || state;
+    }
+
+    function pubCardHTML(st) {
+      const last = st.lastEnd ? UI.fmtDateTime(st.lastEnd) : 'Never published yet';
+      const tip = st.pushSkipped
+        ? 'Git auto-push is off (no GIT_PAT token set) — changes are saved locally.'
+        : 'Every save rebuilds and deploys the live store automatically.';
+      const badge = st.state === 'live' ? UI.badge('live')
+        : st.state === 'error' ? UI.badge('ERROR')
+        : `<span class="pub-pulse"></span><span class="pub-badge">${esc(pubHuman(st.state))}</span>`;
+      return `
+        <div class="card mb-20">
+          <div class="card-title">Live site <small>your published storefront</small> ${badge}</div>
+          <div class="kv"><span class="k">Status</span><span class="v" data-pub-state>${esc(pubHuman(st.state))}</span></div>
+          <div class="kv"><span class="k">Last published</span><span class="v" data-pub-last>${esc(last)}</span></div>
+          ${st.lastError ? `<div class="kv"><span class="k">Last error</span><span class="v pub-error">${esc(st.lastError)}</span></div>` : ''}
+          ${st.lastDeployStatus ? `<div class="kv"><span class="k">Deploy hook</span><span class="v">HTTP ${st.lastDeployStatus}</span></div>` : ''}
+          <p class="hint" style="margin-bottom:10px">${esc(tip)}</p>
+          <button class="btn-admin btn-primary btn-sm" data-pub-now ${pubBusy.includes(st.state) ? 'disabled' : ''}>
+            <ion-icon name="cloud-upload-outline"></ion-icon> ${pubBusy.includes(st.state) ? 'Publishing…' : 'Publish now'}
+          </button>
+        </div>`;
+    }
+
+    const pubCard = document.createElement('div');
+    pubCard.className = 'mb-20';
+    pubCard.id = 'publish-card';
+    root.insertBefore(pubCard, root.querySelector('.stat-grid').nextSibling);
+
+    if (!apiUp) {
+      pubCard.innerHTML = `
+        <div class="card mb-20">
+          <div class="card-title">Live site <small>publishing</small></div>
+          <p class="hint">Run the store server (<span class="mono">npm run api</span>) to publish changes to your live store through the free GitHub + Cloudflare pipeline.</p>
+        </div>`;
+    } else {
+      let pollTimer = null;
+      async function refreshPub() {
+        try {
+          const st = await apiUp.publishStatus();
+          pubCard.innerHTML = pubCardHTML(st);
+          const btn = $('[data-pub-now]', pubCard);
+          if (btn) btn.addEventListener('click', async () => {
+            try {
+              await apiUp.publishNow();
+              UI.toast('Publish started — your store is rebuilding.', 'neutral');
+              refreshPub();
+            } catch (err) {
+              UI.toast(err.message || 'Could not start publish.', 'error');
+            }
+          });
+          if (pubBusy.includes(st.state)) {
+            const body = document.body;
+            if (pollTimer) clearTimeout(pollTimer);
+            pollTimer = setTimeout(refreshPub, 3000);
+          }
+        } catch (err) {
+          pubCard.innerHTML = `<div class="card mb-20"><div class="card-title">Live site</div><p class="hint">Could not read publish status: ${esc(err.message || 'network error')}</p></div>`;
+        }
+      }
+      refreshPub();
+    }
   });
 
 })(typeof window !== 'undefined' ? window : globalThis);

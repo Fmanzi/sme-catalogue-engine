@@ -5,60 +5,74 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop — MERIDIAN Fine Timepieces</title>
-  <meta name="description" content="Browse MERIDIAN's full collection of fine timepieces. Men's, women's and unisex watches with same-day delivery in Nairobi.">
+  <title>MERIDIAN — Fine Timepieces</title>
+  <meta name="description" content="Premium watches for every style. Shop men's, women's and unisex timepieces with same-day delivery in Nairobi.">
   <link rel="shortcut icon" href="./assets/images/logo/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./assets/css/style-prefix.css">
   <link rel="stylesheet" href="./assets/css/store.css">
+  <link rel="stylesheet" href="./assets/css/theme.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body data-page="shop">
+<body data-page="home">
   <header id="site-header"></header>
 
   <main>
     <div class="hero-section" id="hero-section"></div>
 
-    <div id="shop-banner"></div>
-
-    <div class="container-wide">
-      <div class="shop-layout">
-        <aside class="filter-panel" id="shop-filters">
-          <button type="button" class="filter-toggle" id="filter-toggle" aria-expanded="false">
-            Filters <ion-icon name="funnel-outline"></ion-icon>
-          </button>
-          <div class="filter-groups">
-            <h3 class="filter-title">Filters</h3>
-            <div class="filter-group"><h4>Gender</h4><div id="filter-gender"></div></div>
-            <div class="filter-group"><h4>Category</h4><div id="filter-cats"></div></div>
-            <div class="filter-group"><h4>Brand</h4><div id="filter-brands"></div></div>
-            <div id="filter-attributes"></div>
-            <div class="filter-group"><h4>Price</h4><div id="filter-price"></div></div>
-            <div class="filter-group"><h4>Status</h4><div id="filter-status"></div></div>
-            <button class="btn btn-outline btn-block" id="filter-clear" style="margin-top:6px">Clear all filters</button>
-          </div>
-        </aside>
-
-        <div>
-          <div class="shop-toolbar">
-            <p class="result-count" id="result-count"></p>
-            <label style="display:flex;align-items:center;gap:10px">
-              <span style="font-size:var(--fs-8);color:var(--text-soft)">Sort by</span>
-              <select id="shop-sort">
-                <option value="featured">Featured</option><option value="newest">Newest</option>
-                <option value="price-asc">Price: Low to High</option><option value="price-desc">Price: High to Low</option>
-                <option value="rating">Top rated</option><option value="name">Name A–Z</option>
-              </select>
-            </label>
-          </div>
-          <div class="chip-row" id="filter-chips"></div>
-          <div class="product-grid" id="shop-grid"></div>
-          <div id="shop-pagination"></div>
+    <section class="home-section">
+      <div class="container-wide">
+        <div class="section-head">
+          <p class="section-kicker">Curated</p>
+          <h2 class="section-title">Featured</h2>
+        </div>
+        <div class="product-grid" id="featured-timepieces-grid"></div>
+        <div style="text-align:center;margin-top:24px">
+          <a href="shop.html" class="btn btn-primary btn-block">View All Products <ion-icon name="arrow-forward-outline"></ion-icon></a>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="home-section">
+      <div class="container-wide">
+        <div class="section-head">
+          <p class="section-kicker">Just In</p>
+          <h2 class="section-title">New Arrivals</h2>
+        </div>
+        <div class="product-grid" id="new-arrivals-grid"></div>
+        <div style="text-align:center;margin-top:24px">
+          <a href="shop.html" class="btn btn-primary btn-block">View All Products <ion-icon name="arrow-forward-outline"></ion-icon></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="container-wide">
+        <div class="section-head">
+          <p class="section-kicker">For Him</p>
+          <h2 class="section-title">Men's Picks</h2>
+        </div>
+        <div class="product-grid" id="mens-picks-grid"></div>
+        <div style="text-align:center;margin-top:24px">
+          <a href="shop.html" class="btn btn-primary btn-block">View All Products <ion-icon name="arrow-forward-outline"></ion-icon></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-section">
+      <div class="container-wide">
+        <div class="section-head">
+          <p class="section-kicker">For Her</p>
+          <h2 class="section-title">Women's Picks</h2>
+        </div>
+        <div class="product-grid" id="womens-picks-grid"></div>
+        <div style="text-align:center;margin-top:24px">
+          <a href="shop.html" class="btn btn-primary btn-block">View All Products <ion-icon name="arrow-forward-outline"></ion-icon></a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer id="site-footer"></footer>

@@ -21,17 +21,39 @@
     "deliveryInfo": "Delivery and payment are arranged directly with our team after you send your WhatsApp order.",
     "returnPolicy": "Contact us on WhatsApp for help with your order.",
     "shippingMethods": [
-      { "id": "rider-nairobi", "label": "Rider — Nairobi", "fee": 300, "desc": "Delivered to your door by rider" },
-      { "id": "g4s-outside", "label": "G4S — outside Nairobi", "fee": 600, "desc": "Countrywide via G4S courier" },
-      { "id": "pickup", "label": "Pickup at shop", "fee": 0, "desc": "Collect from our store, free" }
+      {
+        "id": "rider-nairobi",
+        "label": "Rider — Nairobi",
+        "fee": 300,
+        "desc": "Delivered to your door by rider"
+      },
+      {
+        "id": "g4s-outside",
+        "label": "G4S — outside Nairobi",
+        "fee": 600,
+        "desc": "Countrywide via G4S courier"
+      },
+      {
+        "id": "pickup",
+        "label": "Pickup at shop",
+        "fee": 0,
+        "desc": "Collect from our store, free"
+      }
     ]
   },
-  "brand": { "primary": "#b8874a", "secondary": "#1f1f1f", "accent": "#b8874a" },
+  "brand": {
+    "primary": "#b8874a",
+    "secondary": "#1f1f1f",
+    "accent": "#b8874a"
+  },
   "site": {
     "domain": "",
     "defaultSeoTitle": "MERIDIAN Fine Timepieces",
     "defaultSeoDescription": "Explore MERIDIAN's collection of fine timepieces and order directly on WhatsApp.",
-    "social": { "instagram": "", "facebook": "" }
+    "social": {
+      "instagram": "",
+      "facebook": ""
+    }
   },
   "hero": {
     "slides": [
@@ -73,9 +95,18 @@
       "Certificate of authenticity included with every order"
     ],
     "values": [
-      { "title": "Craft", "text": "Every case is milled, brushed and polished by hand before it meets its dial." },
-      { "title": "Trust", "text": "Insured worldwide delivery and transparent, lifetime service records." },
-      { "title": "Longevity", "text": "Timeless design and serviceable movements mean a watch for generations." }
+      {
+        "title": "Craft",
+        "text": "Every case is milled, brushed and polished by hand before it meets its dial."
+      },
+      {
+        "title": "Trust",
+        "text": "Insured worldwide delivery and transparent, lifetime service records."
+      },
+      {
+        "title": "Longevity",
+        "text": "Timeless design and serviceable movements mean a watch for generations."
+      }
     ],
     "image": "assets/images/watch/hero-2.svg"
   },
@@ -83,7 +114,13 @@
     "tagline": "We're here",
     "title": "Contact Us",
     "subtitle": "Questions, sizing help or service requests — our concierge team replies within one business day.",
-    "subjects": ["Order enquiry", "Returns & exchanges", "Warranty & servicing", "Sizing advice", "Something else"]
+    "subjects": [
+      "Order enquiry",
+      "Returns & exchanges",
+      "Warranty & servicing",
+      "Sizing advice",
+      "Something else"
+    ]
   },
   "shopBanner": {
     "kicker": "Premium Timepieces",
@@ -100,12 +137,46 @@
     "mobileLabelB": "Women's Watches"
   },
   "home": {
-    "genderA": { "kicker": "For Him", "title": "Men's Picks" },
-    "genderB": { "kicker": "For Her", "title": "Women's Picks" },
-    "newArrivals": { "kicker": "Just In", "title": "New Arrivals" },
-    "featured": { "kicker": "Curated", "title": "Featured Timepieces" }
+    "genderA": {
+      "kicker": "For Him",
+      "title": "Men's Picks"
+    },
+    "genderB": {
+      "kicker": "For Her",
+      "title": "Women's Picks"
+    },
+    "newArrivals": {
+      "kicker": "Just In",
+      "title": "New Arrivals"
+    },
+"featured": {
+  "kicker": "Curated",
+  "title": "Featured"
+}
   },
   "shopFilters": {
-    "attributes": ["movement"]
-  }
+    "attributes": [
+      "movement"
+    ]
+  },
+  "shippingMethods": [
+    {
+      "id": "ship-1",
+      "name": "Rider delivery (Nairobi)",
+      "fee": 300,
+      "deliveryDays": "Same day within Nairobi"
+    },
+    {
+      "id": "ship-2",
+      "name": "G4S courier",
+      "fee": 600,
+      "deliveryDays": "2–3 business days countrywide"
+    },
+    {
+      "id": "ship-3",
+      "name": "Store pickup — Nairobi CBD",
+      "fee": 0,
+      "deliveryDays": "Ready for pickup within 24 hours"
+    }
+  ]
 }

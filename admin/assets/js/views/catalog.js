@@ -73,49 +73,140 @@
 
   AdminApp.register('collections', function (root, ctx) {
     const colls = Store.list('collections');
+    const products = Store.products();
     const imgs = ['collection-1.svg', 'collection-2.svg', 'collection-3.svg', 'collection-4.svg', 'collection-5.svg', 'collection-6.svg'];
+
+    const ruleSummary = (c) => {
+      const r = c.rules || {};
+      const parts = [];
+      const cat = Store.get('categories', r.categoryId);
+      const brand = Store.get('brands', r.brandId);
+      if (cat) parts.push(`category: ${cat.name}`);
+      if (brand) parts.push(`brand: ${brand.name}`);
+      if (r.gender) parts.push(`gender: ${r.gender}`);
+      if (r.priceMin != null && r.priceMin !== '') parts.push(`from ${r.priceMin}`);
+      if (r.priceMax != null && r.priceMax !== '') parts.push(`up to ${r.priceMax}`);
+      return parts.length ? parts.join(' · ') : 'No auto rules';
+    };
+
     root.innerHTML = `
       <div class="toolbar"><h2 style="font-family:var(--serif)">Collections</h2><div class="spacer"></div>
         <button class="btn-admin btn-primary" data-new-coll><ion-icon name="add-outline"></ion-icon> New collection</button></div>
-      <div class="grid-3">${colls.map((c, i) => `
+      <p class="muted mb-12" style="font-size:12.5px">Collections are <b>hybrid</b>: auto products are added by rules (category, brand, gender, price), and you can manually include or exclude individual products on top.</p>
+      <div class="grid-3">${colls.map((c, i) => {
+        const count = products.filter(p => (p.collectionIds || []).includes(c.id)).length;
+        const manual = (c.manual && (c.manual.include.length || c.manual.exclude.length)) ? ` · ${c.manual.include.length}in/${c.manual.exclude.length}out` : '';
+        return `
         <div class="card">
           <img src="../assets/images/watch/${imgs[i % imgs.length]}" alt="" style="border-radius:6px;margin-bottom:12px">
           <div class="flex-between"><h3 style="font-family:var(--serif);font-size:15px">${esc(c.name)}</h3>${UI.badge(c.status)}</div>
           <p class="muted mt-8" style="font-size:12.5px">${esc(c.description)}</p>
-          <p class="mt-8" style="font-size:12.5px">${Store.products().filter(p => p.collectionIds.includes(c.id)).length} products · ${c.featured ? 'Featured' : 'Standard'}</p>
+          <p class="mt-8" style="font-size:12.5px"><b>${count} products</b>${c.featured ? ' · Featured' : ''}${manual}</p>
+          <p class="muted mt-8" style="font-size:11.5px">${esc(ruleSummary(c))}</p>
           <div class="row-actions mt-12">
             <button class="btn-admin btn-ghost btn-sm" data-edit-coll="${c.id}">Edit</button>
             <button class="btn-admin btn-danger btn-sm" data-del-coll="${c.id}">Delete</button>
           </div>
-        </div>`).join('')}
+        </div>`;
+      }).join('')}
       </div>`;
 
     $$('[data-del-coll]', root).forEach(b => b.addEventListener('click', () => {
-      UI.confirm('Delete this collection? Products will be removed from it.', 'Delete collection').then(ok => {
+      UI.confirm('Delete this collection? Products will no longer be grouped by it.', 'Delete collection').then(ok => {
         if (ok) { Store.remove('collections', b.dataset.delColl); UI.toast('Collection deleted.'); ctx.refresh(); }
       });
     }));
 
+    const productPicker = (label, which, selected) => {
+      const checked = (selected || []);
+      return `
+        <div class="field" data-pick="${which}">
+          <label>${label}</label>
+          <input type="search" class="mb-8" data-pick-search placeholder="Filter products…" style="width:100%">
+          <div data-pick-list style="max-height:180px;overflow:auto;border:1px solid var(--bd,#ddd);border-radius:6px;padding:8px">
+            ${products.map(p => `
+              <label class="pick-row" style="display:flex;gap:8px;align-items:center;font-size:12.5px;padding:2px 0">
+                <input type="checkbox" value="${esc(p.id)}" ${checked.includes(p.id) ? 'checked' : ''}>
+                <span>${esc(p.name)}</span>
+              </label>`).join('')}
+          </div>
+        </div>`;
+    };
+
     const openForm = (c) => {
+      const r = (c && c.rules) || {};
+      const manual = (c && c.manual) || { include: [], exclude: [] };
+      const catOpts = Store.list('categories').map(x => `<option value="${esc(x.id)}" ${r.categoryId === x.id ? 'selected' : ''}>${esc(x.name)}</option>`).join('');
+      const brandOpts = Store.list('brands').map(x => `<option value="${esc(x.id)}" ${r.brandId === x.id ? 'selected' : ''}>${esc(x.name)}</option>`).join('');
+      const genders = [...new Set(products.map(p => p.gender).filter(Boolean))];
+      const genderOpts = genders.map(g => `<option value="${esc(g)}" ${r.gender === g ? 'selected' : ''}>${g[0].toUpperCase() + g.slice(1)}</option>`).join('');
       const { el, close } = UI.openModal(`
         <h3 class="admin-modal-title">${c ? 'Edit collection' : 'New collection'}</h3>
+        <div style="max-height:70vh;overflow:auto;padding-right:6px">
         <form data-coll-form>
           <div class="field"><label>Name <span class="req">*</span></label><input type="text" name="name" value="${c ? esc(c.name) : ''}" required></div>
           <div class="field"><label>Slug</label><input type="text" name="slug" value="${c ? esc(c.slug) : ''}"></div>
-          <div class="field"><label>Description</label><textarea name="description" rows="3">${c ? esc(c.description) : ''}</textarea></div>
+          <div class="field"><label>Description</label><textarea name="description" rows="2">${c ? esc(c.description) : ''}</textarea></div>
           <div class="form-grid">
             <div class="field"><label>Status</label><select name="status">${['active', 'inactive'].map(s => `<option value="${s}" ${c && c.status === s ? 'selected' : ''}>${s[0].toUpperCase() + s.slice(1)}</option>`).join('')}</select></div>
             <div class="field"><label>Featured</label><select name="featured"><option value="false">No</option><option value="true" ${c && c.featured ? 'selected' : ''}>Yes</option></select></div>
           </div>
+
+          <div style="border-top:1px solid var(--bd,#ddd);margin:14px 0 10px;padding-top:10px">
+            <div class="card-title">Auto rules <small>products matching all rules are added automatically</small></div>
+            <div class="form-grid">
+              <div class="field"><label>Category</label><select name="r_category"><option value="">Any category</option>${catOpts}</select></div>
+              <div class="field"><label>Brand</label><select name="r_brand"><option value="">Any brand</option>${brandOpts}</select></div>
+              <div class="field"><label>Gender</label><select name="r_gender"><option value="">Any gender</option>${genderOpts}</select></div>
+            </div>
+            <div class="form-grid">
+              <div class="field"><label>Price from (KSh)</label><input type="number" name="r_priceMin" value="${r.priceMin != null && r.priceMin !== '' ? r.priceMin : ''}"></div>
+              <div class="field"><label>Price up to (KSh)</label><input type="number" name="r_priceMax" value="${r.priceMax != null && r.priceMax !== '' ? r.priceMax : ''}"></div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid var(--bd,#ddd);margin:14px 0 10px;padding-top:10px">
+            <div class="card-title">Manual override <small>always added / always removed</small></div>
+            ${productPicker('Always include', 'include', manual.include)}
+            ${productPicker('Always exclude', 'exclude', manual.exclude)}
+          </div>
+
           <div class="admin-modal-actions">
             <button type="button" class="btn-admin btn-secondary" data-close-modal>Cancel</button>
             <button type="submit" class="btn-admin btn-primary">Save</button>
           </div>
-        </form>`);
+        </form>
+        </div>`);
+
+      /* filter product checkboxes as you type */
+      $$('[data-pick-search]', el).forEach(inp => inp.addEventListener('input', () => {
+        const q = inp.value.trim().toLowerCase();
+        const list = closest(inp, '[data-pick]');
+        $$('[data-pick-list] label.pick-row', list).forEach(row => {
+          row.style.display = row.textContent.toLowerCase().includes(q) ? 'flex' : 'none';
+        });
+      }));
+
       $('[data-coll-form]', el).addEventListener('submit', (e) => {
         e.preventDefault();
         const f = new FormData(e.target);
-        const data = { name: f.get('name'), slug: f.get('slug') || slugify(f.get('name')), description: f.get('description'), status: f.get('status'), featured: f.get('featured') === 'true' };
+        const pick = (which) => Array.from(el.querySelectorAll(`[data-pick="${which}"] [data-pick-list] input[type="checkbox"]`))
+          .filter(x => x.checked).map(x => x.value);
+        const data = {
+          name: f.get('name'),
+          slug: f.get('slug') || slugify(f.get('name')),
+          description: f.get('description'),
+          status: f.get('status'),
+          featured: f.get('featured') === 'true',
+          rules: {
+            categoryId: f.get('r_category') || '',
+            brandId: f.get('r_brand') || '',
+            gender: f.get('r_gender') || '',
+            priceMin: f.get('r_priceMin') !== '' ? Number(f.get('r_priceMin')) : '',
+            priceMax: f.get('r_priceMax') !== '' ? Number(f.get('r_priceMax')) : ''
+          },
+          manual: { include: pick(), exclude: pick() }
+        };
         if (c) Store.update('collections', c.id, data); else Store.create('collections', data);
         close(); UI.toast('Collection saved.'); ctx.refresh();
       });
@@ -249,7 +340,7 @@
         const newStock = Math.max(0, p.stockQuantity + qty);
         Store.update('products', p.id, {
           stockQuantity: newStock,
-          stockStatus: newStock === 0 ? 'out_of_stock' : newStock <= p.lowStockThreshold ? 'low_stock' : 'in_stock'
+          availability: newStock === 0 ? 'out_of_stock' : newStock <= p.lowStockThreshold ? 'low_stock' : 'in_stock'
         });
         Store.create('inventory', { productId: p.id, type, quantity: qty, note: f.get('note') || type, adminName: (Store.adminSession().user || {}).name || 'Admin' });
         close(); UI.toast('Stock updated.'); ctx.refresh();
@@ -269,5 +360,6 @@
 
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return Array.from((r || document).querySelectorAll(s)); }
+  function closest(el, s) { return el.closest ? el.closest(s) : null; }
 
 })(typeof window !== 'undefined' ? window : globalThis);

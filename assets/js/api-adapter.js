@@ -17,11 +17,13 @@
   const API = {
     base: '',
     token: null,
+    _clientId: 'meridian',
 
     configure(baseUrl) {
       this.base = (baseUrl || '').replace(/\/+$/, '');
       const saved = sessionStorage.getItem('anon.api_token');
       if (saved) this.token = saved;
+      this._clientId = sessionStorage.getItem('anon.api_client') || 'meridian';
     },
 
     setToken(t) {
@@ -30,13 +32,31 @@
       else sessionStorage.removeItem('anon.api_token');
     },
 
+    setClient(cid) {
+      this._clientId = cid || 'meridian';
+      sessionStorage.setItem('anon.api_client', this._clientId);
+    },
+
+    currentClient() {
+      return this._clientId;
+    },
+
+    withClient(path) {
+      const sep = String(path).includes('?') ? '&' : '?';
+      return path + sep + 'clientId=' + encodeURIComponent(this._clientId);
+    },
+
     async request(method, path, body) {
       const opts = { method, headers: { 'Content-Type': 'application/json' } };
       if (this.token) opts.headers['Authorization'] = 'Bearer ' + this.token;
       if (body !== undefined) opts.body = JSON.stringify(body);
-      const res = await fetch(this.base + path, opts);
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Request failed');
+      const res = await fetch(this.base + this.withClient(path), opts);
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const err = new Error(json.error || ('Request failed (' + res.status + ')'));
+        err.status = res.status;
+        throw err;
+      }
       return json;
     },
 
@@ -45,7 +65,7 @@
         products: '/api/products',
         categories: '/api/catalog/categories',
         brands: '/api/catalog/brands',
-        collections: '/api/catalog/brands',
+        collections: '/api/catalog/collections',
         settings: '/api/settings',
         orders: '/api/orders',
         customers: '/api/customers',
@@ -88,7 +108,7 @@
         await API.request('GET', '/api/auth/me');
         console.log('[API] Token valid, loading collections...');
 
-        const collections = ['categories', 'brands', 'products', 'settings', 'orders', 'customers', 'reviews', 'coupons', 'inventory', 'adminUsers'];
+        const collections = ['categories', 'brands', 'collections', 'products', 'settings', 'orders', 'customers', 'reviews', 'coupons', 'inventory', 'adminUsers'];
         const results = await Promise.all(
           collections.map(name => {
             const ep = API.endpoint(name);
@@ -98,23 +118,38 @@
 
         collections.forEach((name, i) => {
           const data = results[i];
-          if (name === 'products' && data && data.products) {
-            _cache[name] = data.products;
+          const normalizeSettings = (global.AnonModels && global.AnonModels.normalizeSettings) || (x => x);
+          const normalize = (global.AnonModels && global.AnonModels.normalizeProduct) || (x => x);
+          const normalizeColl = (global.AnonModels && global.AnonModels.normalizeCollection) || (x => x);
+          if (name === 'products') {
+            /* normalise canonical catalogue records into the UI shape */
+            const items = (data && data.products) ? data.products : (Array.isArray(data) ? data : []);
+            _cache[name] = items.map(normalize);
+          } else if (name === 'collections') {
+            _cache[name] = (Array.isArray(data) ? data : []).map(normalizeColl);
+          } else if (name === 'settings') {
+            _cache[name] = normalizeSettings(data);
           } else {
             _cache[name] = data;
           }
         });
 
+        /* hybrid collection membership: rules + manual override → product.collectionIds */
+        const materialize = global.AnonModels && global.AnonModels.materializeCollections;
+        if (materialize && Array.isArray(_cache.products)) {
+          _cache.products = materialize(_cache.products, _cache.collections || []).products;
+        }
+
         _initialized.value = true;
         console.log('[API] init() complete. Cache:', Object.keys(_cache).map(k => k + ':' + (Array.isArray(_cache[k]) ? _cache[k].length : typeof _cache[k])).join(', '));
       } catch (err) {
         console.error('[API] init() error:', err);
-        if (err.message && err.message.includes('401')) {
+        if (err.status === 401) {
           sessionStorage.removeItem('anon.api_token');
           window.location.href = 'login.html';
           return;
         }
-        console.warn('[API adapter] init failed:', err.message, '— falling back to localStorage');
+        console.warn('[API adapter] init failed:', err.message, '— falling back to empty state');
       }
     },
 
@@ -196,7 +231,9 @@
     /* ---------- auth ---------- */
 
     async login(email, password, clientId) {
-      return await API.request('POST', '/api/auth/login', { email, password, clientId });
+      const result = await API.request('POST', '/api/auth/login', { email, password, clientId });
+      if (clientId) API.setClient(clientId);
+      return result;
     },
 
     async me() {
@@ -205,13 +242,14 @@
 
     /* ---------- image upload ---------- */
 
-    async uploadImage(file, productId, alt, isPrimary) {
+    async uploadImage(file, productId, alt, isPrimary, clientId) {
+      const cid = clientId || API.currentClient();
       const form = new FormData();
       form.append('image', file);
       form.append('productId', productId || 'misc');
       if (alt) form.append('alt', alt);
       if (isPrimary) form.append('primary', 'true');
-      const res = await fetch(API.base + '/api/upload/meridian', {
+      const res = await fetch(API.base + '/api/upload/' + cid, {
         method: 'POST',
         headers: { 'Authorization': 'Bearer ' + API.token },
         body: form
@@ -221,15 +259,45 @@
       return json;
     },
 
+    /* ---------- publish (repo -> live site) ---------- */
+
+    async publishStatus() {
+      return await API.request('GET', '/api/publish/status');
+    },
+
+    async publishNow() {
+      return await API.request('POST', '/api/publish');
+    },
+
     /* ---------- cache refresh ---------- */
 
     setToken(t) { API.setToken(t); },
+    setClient(cid) { API.setClient(cid); },
+    clientId() { return API.currentClient(); },
 
     async refresh(name) {
       const ep = API.endpoint(name);
       if (!ep) return;
       const data = await API.request('GET', ep);
-      _cache[name] = (name === 'products' && data && data.products) ? data.products : data;
+      const normalizeSettings = (global.AnonModels && global.AnonModels.normalizeSettings) || (x => x);
+      const normalize = (global.AnonModels && global.AnonModels.normalizeProduct) || (x => x);
+      const normalizeColl = (global.AnonModels && global.AnonModels.normalizeCollection) || (x => x);
+      if (name === 'products') {
+        const items = (data && data.products) ? data.products : (Array.isArray(data) ? data : []);
+        _cache[name] = items.map(normalize);
+      } else if (name === 'collections') {
+        _cache[name] = (Array.isArray(data) ? data : []).map(normalizeColl);
+      } else if (name === 'settings') {
+        _cache[name] = normalizeSettings(data);
+      } else {
+        _cache[name] = (name === 'products' && data && data.products) ? data.products : data;
+      }
+      if (name === 'products' || name === 'collections') {
+        const materialize = global.AnonModels && global.AnonModels.materializeCollections;
+        if (materialize && Array.isArray(_cache.products)) {
+          _cache.products = materialize(_cache.products, _cache.collections || []).products;
+        }
+      }
     },
 
     api: API

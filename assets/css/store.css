@@ -188,7 +188,7 @@ body > main { flex: 1; }
 
 /* ---------- home sections ---------- */
 
-.home-section { padding: 46px 0 32px; }
+.home-section { padding: 26px 0 18px; }
 .home-section + .home-section { border-top: 1px solid var(--line); }
 
 /* ---------- shop banner (legacy fallback) ---------- */
@@ -200,7 +200,7 @@ body > main { flex: 1; }
 
 /* ---------- section headings ---------- */
 
-.section-head { text-align: center; margin: 46px 0 26px; }
+.section-head { text-align: center; margin: 14px 0 22px; }
 .section-head .section-kicker { text-transform: uppercase; letter-spacing: 4px; color: var(--gold); font-size: var(--fs-9); font-weight: 600; }
 .section-head .section-title { font-family: Georgia, serif; font-size: 2rem; color: var(--ink); margin-top: 8px; }
 .section-head .section-sub { color: var(--text-soft); margin-top: 8px; font-size: var(--fs-6); }

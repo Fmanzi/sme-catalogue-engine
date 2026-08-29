@@ -4,14 +4,16 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 
-const { authMiddleware } = require('./auth');
+const { authMiddleware, storeScope, requireRole, hashPassword } = require('./auth');
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/products');
 const catalogRoutes = require('./routes/catalog');
 const settingsRoutes = require('./routes/settings');
 const uploadRoutes = require('./routes/upload');
+const publishRoutes = require('./routes/publish');
 const genericRoutes = require('./routes/generic');
-const { getAdminUsers, saveAdminUsers, uid, hashPassword } = require('./data');
+const clientRoutes = require('./routes/clients');
+const { getAdminUsers, saveAdminUsers, uid, listClients } = require('./data');
 
 const app = express();
 const PORT = process.env.API_PORT || 3001;
@@ -37,33 +39,26 @@ app.use(express.static(path.join(__dirname, '..')));
 
 /* ---------- routes ---------- */
 app.use('/api/auth', authRoutes);
-app.use('/api/products', authMiddleware, productRoutes);
-app.use('/api/catalog', authMiddleware, catalogRoutes);
-app.use('/api/settings', authMiddleware, settingsRoutes);
-app.use('/api/upload', authMiddleware, uploadRoutes);
-app.use('/api/orders', authMiddleware, genericRoutes('orders'));
-app.use('/api/customers', authMiddleware, genericRoutes('customers'));
-app.use('/api/reviews', authMiddleware, genericRoutes('reviews'));
-app.use('/api/coupons', authMiddleware, genericRoutes('coupons'));
-app.use('/api/inventory', authMiddleware, genericRoutes('inventory'));
+app.use('/api/products', authMiddleware, storeScope, productRoutes);
+app.use('/api/catalog', authMiddleware, storeScope, catalogRoutes);
+app.use('/api/settings', authMiddleware, storeScope, settingsRoutes);
+app.use('/api/upload', authMiddleware, storeScope, uploadRoutes);
+app.use('/api/publish', authMiddleware, storeScope, publishRoutes);
+app.use('/api/orders', authMiddleware, storeScope, genericRoutes('orders'));
+app.use('/api/customers', authMiddleware, storeScope, genericRoutes('customers'));
+app.use('/api/reviews', authMiddleware, storeScope, genericRoutes('reviews'));
+app.use('/api/coupons', authMiddleware, storeScope, genericRoutes('coupons'));
+app.use('/api/inventory', authMiddleware, storeScope, genericRoutes('inventory'));
 
 /* health check */
 app.get('/api/health', (req, res) => res.json({ ok: true, version: '1.0.0' }));
 
-/* list clients */
-app.get('/api/clients', (req, res) => {
-  const dir = path.join(__dirname, '..', 'clients');
-  const clients = fs.readdirSync(dir).filter(f => {
-    const fp = path.join(dir, f);
-    return fs.statSync(fp).isDirectory() && f !== 'schema' && f !== 'template';
-  });
-  res.json(clients);
-});
+/* store registry (platform super-admins only) */
+app.use('/api/clients', authMiddleware, storeScope, requireRole('super_admin'), clientRoutes);
 
 /* ---------- ensure admin users exist ---------- */
 function ensureAdminUsers() {
-  const clients = ['meridian'];
-  for (const clientId of clients) {
+  for (const clientId of listClients()) {
     const file = path.join(__dirname, '..', 'clients', clientId, 'admins.json');
     if (!fs.existsSync(file)) {
       const defaults = [

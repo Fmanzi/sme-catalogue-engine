@@ -26,6 +26,10 @@
 
       <form data-login-form>
         <div class="field">
+          <label>Store</label>
+          <input type="text" name="store" value="meridian" placeholder="meridian" autocomplete="off">
+        </div>
+        <div class="field">
           <label>Email address</label>
           <input type="email" name="email" placeholder="you@meridianwatch.com" required autofocus>
         </div>
@@ -55,6 +59,11 @@
       'use strict';
       var form = document.querySelector('[data-login-form]');
       var err = document.querySelector('[data-login-error]');
+      try {
+        var pref = sessionStorage.getItem('anon.signin_store');
+        var storeInput = form.querySelector('input[name="store"]');
+        if (pref && storeInput) { storeInput.value = pref; sessionStorage.removeItem('anon.signin_store'); }
+      } catch (e) {}
       console.log('[Login] form found:', !!form);
       console.log('[Login] AnonStore:', typeof AnonStore, 'AnonAPI:', typeof AnonAPI);
       console.log('[Login] API base:', (window.AnonAPI && window.AnonAPI.api) ? window.AnonAPI.api.base : 'N/A');
@@ -64,7 +73,7 @@
         var fd = new FormData(form);
         console.log('[Login] submitting...', fd.get('email'));
         try {
-          var res = AnonStore.adminLogin(fd.get('email'), fd.get('password'));
+          var res = AnonStore.adminLogin(fd.get('email'), fd.get('password'), fd.get('store') || 'meridian');
           function onSuccess(r) {
             console.log('[Login] result:', JSON.stringify(r));
             if (!r || !r.ok) { err.textContent = (r && r.error) || 'Login failed'; return; }

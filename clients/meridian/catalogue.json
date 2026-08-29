@@ -278,7 +278,7 @@
       "slug": "montblanc-gents-chronograph-watch",
       "name": "Montblanc GENTS CHRONOGRAPH WATCH",
       "sku": "MER-1A22F8",
-      "price": 4800,
+      "price": 4900,
       "compareAtPrice": null,
       "currency": "KES",
       "categoryId": "cat-chronograph",
@@ -286,118 +286,10 @@
       "shortDescription": "Montblanc GENTS CHRONOGRAPH WATCH — Chronograph, Genuine leather  suede straps, Battery powered.",
       "description": "✳️Chronograph. ✳️Genuine leather  suede straps. ✳️Battery powered. ✳️Water resistant. ✳️Date display",
       "images": [
-        {
-          "id": "montblanc-gents-chronograph-watch-1",
-          "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-1/montblanc-gents-chronograph-watch-1-medium.webp",
-          "alt": "Montblanc GENTS CHRONOGRAPH WATCH",
-          "primary": true,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-1/montblanc-gents-chronograph-watch-1-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-1/montblanc-gents-chronograph-watch-1-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-1/montblanc-gents-chronograph-watch-1-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-1/montblanc-gents-chronograph-watch-1-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "montblanc-gents-chronograph-watch-2",
-          "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-2/montblanc-gents-chronograph-watch-2-medium.webp",
-          "alt": "Montblanc GENTS CHRONOGRAPH WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-2/montblanc-gents-chronograph-watch-2-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-2/montblanc-gents-chronograph-watch-2-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-2/montblanc-gents-chronograph-watch-2-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-2/montblanc-gents-chronograph-watch-2-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "montblanc-gents-chronograph-watch-3",
-          "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-3/montblanc-gents-chronograph-watch-3-medium.webp",
-          "alt": "Montblanc GENTS CHRONOGRAPH WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-3/montblanc-gents-chronograph-watch-3-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-3/montblanc-gents-chronograph-watch-3-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-3/montblanc-gents-chronograph-watch-3-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-3/montblanc-gents-chronograph-watch-3-medium.avif"
-            }
-          ]
-        },
-        {
-          "id": "montblanc-gents-chronograph-watch-4",
-          "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-4/montblanc-gents-chronograph-watch-4-medium.webp",
-          "alt": "Montblanc GENTS CHRONOGRAPH WATCH",
-          "primary": false,
-          "variants": [
-            {
-              "width": 400,
-              "format": "webp",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-4/montblanc-gents-chronograph-watch-4-thumb.webp"
-            },
-            {
-              "width": 400,
-              "format": "avif",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-4/montblanc-gents-chronograph-watch-4-thumb.avif"
-            },
-            {
-              "width": 800,
-              "format": "webp",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-4/montblanc-gents-chronograph-watch-4-medium.webp"
-            },
-            {
-              "width": 800,
-              "format": "avif",
-              "src": "assets/media/meridian/products/montblanc-gents-chronograph-watch-4/montblanc-gents-chronograph-watch-4-medium.avif"
-            }
-          ]
-        }
+        "assets/media/meridian/products/montblanc-gents-chronograph-watch-1/montblanc-gents-chronograph-watch-1-medium.webp",
+        "assets/media/meridian/products/montblanc-gents-chronograph-watch-2/montblanc-gents-chronograph-watch-2-medium.webp",
+        "assets/media/meridian/products/montblanc-gents-chronograph-watch-3/montblanc-gents-chronograph-watch-3-medium.webp",
+        "assets/media/meridian/products/montblanc-gents-chronograph-watch-4/montblanc-gents-chronograph-watch-4-medium.webp"
       ],
       "availability": "in_stock",
       "featured": true,
@@ -417,12 +309,36 @@
         "description": "Montblanc GENTS CHRONOGRAPH WATCH — Chronograph, Genuine leather  suede straps, Battery powered."
       },
       "createdAt": "2026-08-19T20:22:26.607322Z",
-      "updatedAt": "2026-08-19T20:22:26.607390Z",
+      "updatedAt": "2026-08-29T09:50:01.280Z",
       "_source": {
         "wholesale_price": 2200,
         "retail_price": 4800
       },
-      "gender": "men"
+      "gender": "men",
+      "reference": "",
+      "movement": "automatic",
+      "movementType": "Chronograph",
+      "caseSize": "",
+      "caseMaterial": "",
+      "crystal": "",
+      "waterResistance": "3 Bars",
+      "dialColor": "Black | White",
+      "strapColor": "Brown | Black",
+      "strapMaterial": "Genuine Leather",
+      "powerReserve": "Battery Powered",
+      "warrantyPeriod": "",
+      "costPrice": 0,
+      "stockQuantity": 10,
+      "lowStockThreshold": 5,
+      "allowBackorders": false,
+      "collectionIds": [
+        "col-chrono",
+        "col-2500"
+      ],
+      "mainImage": "assets/media/meridian/products/montblanc-gents-chronograph-watch-1/montblanc-gents-chronograph-watch-1-medium.webp",
+      "status": "active",
+      "limited": false,
+      "stockStatus": "in_stock"
     },
     {
       "id": "prd-2",
@@ -1635,12 +1551,13 @@
         "description": "Crrju GENTS WATCH 2323 — Chronograph, Stainless Steel finish, Battery powered."
       },
       "createdAt": "2026-08-19T20:22:26.608898Z",
-      "updatedAt": "2026-08-19T20:22:26.608906Z",
+      "updatedAt": "2026-08-27T15:08:19.789Z",
       "_source": {
         "wholesale_price": 2200,
         "retail_price": 4800
       },
-      "gender": "men"
+      "gender": "men",
+      "status": "active"
     },
     {
       "id": "prd-6",
@@ -50813,6 +50730,81 @@
         "retail_price": 3400
       },
       "gender": "women"
+    }
+  ],
+  "collections": [
+    {
+      "id": "col-chrono",
+      "name": "Gentlemen's Chronographs",
+      "slug": "gentlemens-chronographs",
+      "description": "Precision chronographs built for the modern gentleman.",
+      "status": "active",
+      "featured": true,
+      "order": 0,
+      "rules": {
+        "categoryId": "cat-chronograph",
+        "gender": "men"
+      },
+      "manual": {
+        "include": [],
+        "exclude": []
+      },
+      "createdAt": "2026-08-27T16:32:35.886Z"
+    },
+    {
+      "id": "col-dive",
+      "name": "Dive Ready",
+      "slug": "dive-ready",
+      "description": "Water-resistant divers built for depth and reliability.",
+      "status": "active",
+      "featured": false,
+      "order": 1,
+      "rules": {
+        "categoryId": "cat-dive"
+      },
+      "manual": {
+        "include": [],
+        "exclude": []
+      },
+      "createdAt": "2026-08-27T16:32:35.887Z"
+    },
+    {
+      "id": "col-smart",
+      "name": "Smart & Connected",
+      "slug": "smart-connected",
+      "description": "Connected timepieces for the always-on lifestyle.",
+      "status": "active",
+      "featured": false,
+      "order": 2,
+      "rules": {
+        "categoryId": "cat-smart"
+      },
+      "manual": {
+        "include": [],
+        "exclude": []
+      },
+      "createdAt": "2026-08-27T16:32:35.887Z"
+    },
+    {
+      "id": "col-2500",
+      "name": "The 2500 Club",
+      "slug": "the-2500-club",
+      "description": "Curated pieces under KSh 2,500 — plus a hand-picked extra.",
+      "status": "active",
+      "featured": false,
+      "order": 3,
+      "rules": {
+        "priceMax": 2500
+      },
+      "manual": {
+        "include": [
+          "prd-1"
+        ],
+        "exclude": [
+          "prd-13"
+        ]
+      },
+      "createdAt": "2026-08-27T16:32:35.887Z"
     }
   ]
 }

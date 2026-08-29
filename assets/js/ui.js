@@ -89,7 +89,7 @@
         ${out ? '<p class="showcase-stock-tag">Out of stock</p>' : ''}
       </div>
       <div class="showcase-content">
-        <a href="/?cat=${encodeURIComponent(p.categoryId)}" class="showcase-category">${cat ? AnonUI.escapeHtml(cat.name) : ''}</a>
+        <a href="shop.html?cat=${encodeURIComponent(p.categoryId)}" class="showcase-category">${cat ? AnonUI.escapeHtml(cat.name) : ''}</a>
         <a href="${AnonUI.productUrl(p)}"><h3 class="showcase-title">${AnonUI.escapeHtml(p.name)}</h3></a>
         ${brand ? `<p class="showcase-brand">${AnonUI.escapeHtml(brand.name)}</p>` : ''}
         <div class="price-box"><p class="price">${price}</p>${del}</div>
@@ -227,18 +227,6 @@
     const gMobileA = nav.mobileLabelA || (gLabelA + ' Shop');
     const gMobileB = nav.mobileLabelB || (gLabelB + ' Shop');
     return `
-  <div class="header-top">
-    <div class="container">
-      <ul class="header-social-container">
-        ${social.facebook ? `<li><a href="${social.facebook}" class="social-link" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a></li>` : ''}
-        ${social.instagram ? `<li><a href="${social.instagram}" class="social-link" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a></li>` : ''}
-      </ul>
-      <div class="header-alert-news">
-        <p>${AnonUI.escapeHtml((business.commerce || {}).deliveryInfo || 'Order directly on WhatsApp')}</p>
-      </div>
-    </div>
-  </div>
-
   <div class="header-main">
     <div class="container">
       <a href="/" class="header-logo">
@@ -257,8 +245,8 @@
   <nav class="desktop-nav-bar">
     <div class="container">
       <ul class="desktop-nav-list">
-        <li class="desktop-nav-item"><a href="home.html" class="desktop-nav-link">Home</a></li>
-        <li class="desktop-nav-item"><a href="index.html" class="desktop-nav-link">Shop All</a></li>
+        <li class="desktop-nav-item"><a href="index.html" class="desktop-nav-link">Home</a></li>
+        <li class="desktop-nav-item"><a href="shop.html" class="desktop-nav-link">Shop All</a></li>
         <li class="desktop-nav-item"><a href="mens.html" class="desktop-nav-link">${AnonUI.escapeHtml(gLabelA)}</a></li>
         <li class="desktop-nav-item"><a href="womens.html" class="desktop-nav-link">${AnonUI.escapeHtml(gLabelB)}</a></li>
         <li class="desktop-nav-item"><a href="collections.html" class="desktop-nav-link">Collections</a></li>
@@ -271,7 +259,7 @@
   </nav>
 
   <div class="mobile-bottom-navigation">
-    <a href="home.html" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
+    <a href="index.html" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
     <a href="mens.html" class="action-btn" aria-label="${AnonUI.escapeHtml(gLabelA)}"><ion-icon name="male-outline"></ion-icon></a>
     <a href="womens.html" class="action-btn" aria-label="${AnonUI.escapeHtml(gLabelB)}"><ion-icon name="female-outline"></ion-icon></a>
     <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:700;line-height:1">0</span></a>
@@ -284,14 +272,14 @@
       <button class="menu-close-btn" data-mobile-menu-close-btn><ion-icon name="close-outline"></ion-icon></button>
     </div>
     <ul class="mobile-menu-category-list">
-      <li class="menu-category"><a href="home.html" class="menu-title">Home</a></li>
-      <li class="menu-category"><a href="index.html" class="menu-title">Shop All</a></li>
+      <li class="menu-category"><a href="index.html" class="menu-title">Home</a></li>
+      <li class="menu-category"><a href="shop.html" class="menu-title">Shop All</a></li>
       <li class="menu-category"><a href="mens.html" class="menu-title">${AnonUI.escapeHtml(gMobileA)}</a></li>
       <li class="menu-category"><a href="womens.html" class="menu-title">${AnonUI.escapeHtml(gMobileB)}</a></li>
       <li class="menu-category"><a href="collections.html" class="menu-title">Collections</a></li>
       <li class="menu-category"><a href="best-sellers.html" class="menu-title">Best Sellers</a></li>
       <li class="menu-category"><a href="new-arrivals.html" class="menu-title">New Arrivals</a></li>
-      ${categories.map(category => `<li class="menu-category"><a href="/?cat=${encodeURIComponent(category.id)}" class="menu-title">${AnonUI.escapeHtml(category.name)}</a></li>`).join('')}
+      ${categories.map(category => `<li class="menu-category"><a href="shop.html?cat=${encodeURIComponent(category.id)}" class="menu-title">${AnonUI.escapeHtml(category.name)}</a></li>`).join('')}
       <li class="menu-category"><a href="search.html" class="menu-title">Search</a></li>
       <li class="menu-category"><a href="about.html" class="menu-title">About</a></li>
       <li class="menu-category"><a href="contact.html" class="menu-title">Contact</a></li>
@@ -311,7 +299,7 @@
   <div class="footer-bottom">
     <div class="container">
       <p class="copyright">
-        Copyright &copy; <a href="home.html">${AnonUI.escapeHtml(s.storeName)}</a> all rights reserved.
+        Copyright &copy; <a href="index.html">${AnonUI.escapeHtml(s.storeName)}</a> all rights reserved.
       </p>
     </div>
   </div>`;
@@ -393,7 +381,7 @@
 
   AnonUI.renderProductGrid = (container, products) => {
     container.innerHTML = products.map(AnonUI.productCard).join('') ||
-      `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>No products match your selection.</p><a href="/" class="btn">Browse the collection</a></div>`;
+      `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>No products match your selection.</p><a href="shop.html" class="btn">Browse the collection</a></div>`;
   };
 
   AnonUI.renderSidebarBestSellers = (container) => {

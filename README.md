@@ -188,3 +188,20 @@ The contact form pre-fills a WhatsApp message with name, email, subject, and mes
 - The admin panel (`admin/`) is blocked from deployment via `_headers` and gitignored
 - `package-lock.json` is committed for reproducible installs
 - Images use WebP/AVIF formats for performance; original JPGs stay in `clients/<id>/media/originals/`
+
+## Multi-store & CSV import (admin)
+
+- **Multi-store**: a platform super-admin can create stores from the admin panel
+  (System → Stores). Each store gets its own `clients/<id>/` catalogue, business
+  config, staff logins and publish pipeline. Owners default to `store_manager`
+  (scoped to their own store); sign in at `/admin/login.html` and enter the store
+  slug. Cross-store access is blocked server-side (`storeScope`).
+- **CSV import**: Products → **Import CSV**. Pick a spreadsheet, columns are
+  matched automatically by header name (name, sku, price, category, brand,
+  description, images, tags…), then import in create / update / create-or-update
+  modes. `POST /api/products/import`.
+- **Auto-publish**: the API commits rebuilt catalogue + media to git on publish.
+  Set `GIT_PAT` in `api/.env` (fine-grained PAT, Contents: Read+Write on this
+  repo) so Cloudflare Pages auto-rebuilds the live site.
+- **Cloudflare Worker gate** (`worker/`): optional production replacement for the
+  Node API — commits saves to GitHub and forwards orders to Telegram with no server.

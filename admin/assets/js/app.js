@@ -58,6 +58,7 @@
     },
     {
       label: 'System', items: [
+        { name: 'stores', label: 'Stores', icon: 'storefront-outline', hash: '#/stores', perm: 'stores' },
         { name: 'settings', label: 'Settings', icon: 'settings-outline', hash: '#/settings', perm: 'settings' }
       ]
     }
@@ -116,6 +117,8 @@
   defineRoute('#/content', 'content', 'content');
   defineRoute('#/reports', 'reports', 'reports');
   defineRoute('#/settings', 'settings', 'settings');
+  defineRoute('#/stores', 'stores', 'stores');
+  defineRoute('#/stores/new', 'store-form', 'stores');
 
   function matchRoute(hash) {
     for (const r of AdminApp.routes) {
@@ -135,7 +138,8 @@
     dashboard: 'Dashboard', products: 'Products', 'product-form': 'Product',
     categories: 'Categories', collections: 'Collections', brands: 'Brands', inventory: 'Inventory',
     orders: 'Orders', 'order-detail': 'Order', customers: 'Customers', 'customer-detail': 'Customer',
-    coupons: 'Coupons', reviews: 'Reviews', content: 'Content', reports: 'Reports', settings: 'Settings'
+    coupons: 'Coupons', reviews: 'Reviews', content: 'Content', reports: 'Reports', settings: 'Settings',
+    stores: 'Stores', 'store-form': 'New store'
   };
 
   AdminApp.refresh = () => { render(true); };
