@@ -108,7 +108,7 @@
           <p class="hero-kicker">${esc(sl.kicker)}</p>
           <h2 class="hero-title">${esc(sl.title)}</h2>
           <p class="hero-text">${esc(sl.text)}</p>
-          <a href="shop.html" class="hero-btn">${esc(sl.buttonText || sl.btn)} <ion-icon name="arrow-forward-outline"></ion-icon></a>
+          <a href="/shop" class="hero-btn">${esc(sl.buttonText || sl.btn)} <ion-icon name="arrow-forward-outline"></ion-icon></a>
         </div></div>
       </div>`).join('');
     wrap.insertAdjacentHTML('afterend', `<div class="hero-dots">${slides.map((_, i) => `<button type="button" data-hero-dot="${i}" class="${i === 0 ? 'active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}</div>`);
@@ -144,7 +144,7 @@
             ${sl.kicker ? `<span class="hero-kicker">${esc(sl.kicker)}</span>` : ''}
             <h2 class="hero-title">${esc(sl.title)}</h2>
             ${sl.text ? `<p class="hero-text">${esc(sl.text)}</p>` : ''}
-            ${sl.buttonText ? `<a href="shop.html" class="hero-btn">${esc(sl.buttonText)} <ion-icon name="arrow-forward-outline"></ion-icon></a>` : ''}
+            ${sl.buttonText ? `<a href="/shop" class="hero-btn">${esc(sl.buttonText)} <ion-icon name="arrow-forward-outline"></ion-icon></a>` : ''}
           </div>
           </div>`).join('')}
         <div class="hero-dots container-wide" data-hero-dots>
@@ -307,7 +307,7 @@
     const chips = $('#filter-chips');
     if (chips) {
       const chipHtml = [];
-      if (params.get('q')) chipHtml.push(`<span class="chip">Search: ${esc(params.get('q'))} <a class="chip-close" href="shop.html"><ion-icon name="close"></ion-icon></a></span>`);
+      if (params.get('q')) chipHtml.push(`<span class="chip">Search: ${esc(params.get('q'))} <a class="chip-close" href="/shop"><ion-icon name="close"></ion-icon></a></span>`);
       const cat = params.get('cat') ? Store.category(params.get('cat')) : null;
       if (cat) chipHtml.push(`<span class="chip">${esc(cat.name)} <a class="chip-close" href="${stripParam('cat')}"><ion-icon name="close"></ion-icon></a></span>`);
       const brand = params.get('brand') ? Store.brand(params.get('brand')) : null;
@@ -500,7 +500,7 @@
               <h2>${esc(c.name)}</h2>
               <p>${esc(c.description)}</p>
             </div>
-            <a href="shop.html?collection=${encodeURIComponent(c.id)}" class="btn btn-outline">View all</a>
+            <a href="/shop?collection=${encodeURIComponent(c.id)}" class="btn btn-outline">View all</a>
           </div>
           <div class="product-grid collection-products">${items.slice(0, 4).map(UI.productCard).join('')}</div>
         </section>`;
@@ -517,7 +517,7 @@
     if (!root) return;
     const p = pathSlug ? Store.products().find(product => product.slug === decodeURIComponent(pathSlug)) : Store.getProduct(id);
     if (!p) {
-      root.innerHTML = `<div class="empty-state"><ion-icon name="cube-outline"></ion-icon><p>The requested product could not be found.</p><a href="shop.html" class="btn btn-primary">Back to shop</a></div>`;
+      root.innerHTML = `<div class="empty-state"><ion-icon name="cube-outline"></ion-icon><p>The requested product could not be found.</p><a href="/shop" class="btn btn-primary">Back to shop</a></div>`;
       return;
     }
     const brand = p.brand;
@@ -602,7 +602,7 @@
   function initWishlist() {
     const grid = $('#wishlist-grid') || $('#wishlist-root');
     if (!grid) return;
-    grid.innerHTML = `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>Wishlists are no longer available.</p><a href="shop.html" class="btn btn-primary">Browse products</a></div>`;
+    grid.innerHTML = `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>Wishlists are no longer available.</p><a href="/shop" class="btn btn-primary">Browse products</a></div>`;
   }
 
   /* ---------- cart ---------- */
@@ -613,7 +613,7 @@
     const { items, subtotal } = UI.cartDetail();
 
     if (!items.length) {
-      wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your bag is empty.</p><a href="shop.html" class="btn btn-primary">Start shopping</a></div>`;
+      wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your bag is empty.</p><a href="/shop" class="btn btn-primary">Start shopping</a></div>`;
       return;
     }
 
@@ -641,7 +641,7 @@
       <div class="cart-layout">
         <div class="cart-items">
           ${cards}
-          <a href="shop.html" class="btn btn-outline cart-continue"><ion-icon name="arrow-back-outline"></ion-icon> Continue shopping</a>
+          <a href="/shop" class="btn btn-outline cart-continue"><ion-icon name="arrow-back-outline"></ion-icon> Continue shopping</a>
         </div>
         <aside class="summary-card">
           <h3>Order Summary</h3>
@@ -676,7 +676,7 @@
     const { items, subtotal } = UI.cartDetail();
     if (!items.length) {
       const wrap = $('#checkout-root');
-      if (wrap) wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your bag is empty — nothing to check out.</p><a href="shop.html" class="btn btn-primary">Start shopping</a></div>`;
+      if (wrap) wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your bag is empty — nothing to check out.</p><a href="/shop" class="btn btn-primary">Start shopping</a></div>`;
       return;
     }
     const settings = Store.settings();
@@ -830,7 +830,7 @@
     const { items, subtotal } = UI.cartDetail();
     const wrap = $('#checkout-root');
     if (!wrap) return;
-    if (!items.length) { wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your cart is empty.</p><a href="shop.html" class="btn btn-primary">Browse products</a></div>`; return; }
+    if (!items.length) { wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your cart is empty.</p><a href="/shop" class="btn btn-primary">Browse products</a></div>`; return; }
     const settings = Store.settings();
     const SHIPPING_OPTIONS = (settings.shippingMethods && settings.shippingMethods.length) ? settings.shippingMethods.map(m => ({ id: m.id || m.name, label: m.label || m.name, fee: m.fee || 0, icon: 'bicycle-outline', desc: m.desc || '' })) : SHIPPING_OPTIONS_FALLBACK;
     const initFee = SHIPPING_OPTIONS[0].fee;
@@ -940,7 +940,7 @@
           <ion-icon name="checkmark-circle-outline"></ion-icon>
           <p><strong>Thank you! Your order has been placed.</strong></p>
           <p>We will contact you shortly on <b>${esc(phone)}</b> to confirm your order and arrange delivery.</p>
-          <a href="shop.html" class="btn btn-primary" style="margin-top:16px">Continue shopping</a>
+          <a href="/shop" class="btn btn-primary" style="margin-top:16px">Continue shopping</a>
         </div>`;
       UI.toast('Order placed successfully!', 'success');
     }
@@ -982,7 +982,7 @@
     const orderNo = qs('order');
     const order = orderNo ? Store.find('orders', o => o.orderNumber === orderNo) : null;
     if (!order) {
-      root.innerHTML = `<div class="empty-state"><ion-icon name="help-circle-outline"></ion-icon><p>We could not find that order.</p><a href="shop.html" class="btn btn-primary">Back to shop</a></div>`;
+      root.innerHTML = `<div class="empty-state"><ion-icon name="help-circle-outline"></ion-icon><p>We could not find that order.</p><a href="/shop" class="btn btn-primary">Back to shop</a></div>`;
       return;
     }
     root.innerHTML = `
@@ -1002,7 +1002,7 @@
         </div>
         <div class="conf-actions">
           <a href="order-history.html" class="btn btn-primary">View order history</a>
-          <a href="shop.html" class="btn btn-outline">Continue shopping</a>
+          <a href="/shop" class="btn btn-outline">Continue shopping</a>
         </div>
       </div>`;
   }
@@ -1023,7 +1023,7 @@
           <div class="form-field" style="margin-bottom:14px"><label>Email address</label><input type="email" name="email" placeholder="you@example.com" required></div>
           <button type="submit" class="btn btn-primary btn-block">Sign in</button>
         </form>
-        <p style="text-align:center;margin-top:16px;font-size:var(--fs-8)"><a href="shop.html" style="color:var(--gold)">Continue as guest →</a></p>
+        <p style="text-align:center;margin-top:16px;font-size:var(--fs-8)"><a href="/shop" style="color:var(--gold)">Continue as guest →</a></p>
       </div>`;
       $('[data-login-form]', root).addEventListener('submit', (e) => {
         e.preventDefault();
@@ -1064,7 +1064,7 @@
             </div>`).join('')}
         </div>
         <a href="order-history.html" class="btn btn-outline" style="margin-top:16px">View all orders</a>`
-        : `<div class="empty-state" style="padding:30px;border:1px solid var(--line)"><p>No orders yet.</p><a href="shop.html" class="btn btn-primary" style="margin-top:12px">Shop now</a></div>`}
+        : `<div class="empty-state" style="padding:30px;border:1px solid var(--line)"><p>No orders yet.</p><a href="/shop" class="btn btn-primary" style="margin-top:12px">Shop now</a></div>`}
       </div>
     </div>`;
     $('[data-logout]', root).addEventListener('click', (e) => {
@@ -1131,7 +1131,7 @@
               <td><a href="order-history.html?order=${encodeURIComponent(o.orderNumber)}" class="btn btn-outline" style="padding:8px 14px">View</a></td>
             </tr>`).join('')}</tbody>
         </table>
-      </div>`       : `<div class="empty-state"><p>You have not placed any orders yet.</p><a href="shop.html" class="btn btn-primary">Start shopping</a></div>`;
+      </div>`       : `<div class="empty-state"><p>You have not placed any orders yet.</p><a href="/shop" class="btn btn-primary">Start shopping</a></div>`;
   }
 
   /* ---------- about ---------- */

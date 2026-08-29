@@ -89,7 +89,7 @@
         ${out ? '<p class="showcase-stock-tag">Out of stock</p>' : ''}
       </div>
       <div class="showcase-content">
-        <a href="shop.html?cat=${encodeURIComponent(p.categoryId)}" class="showcase-category">${cat ? AnonUI.escapeHtml(cat.name) : ''}</a>
+        <a href="/shop?cat=${encodeURIComponent(p.categoryId)}" class="showcase-category">${cat ? AnonUI.escapeHtml(cat.name) : ''}</a>
         <a href="${AnonUI.productUrl(p)}"><h3 class="showcase-title">${AnonUI.escapeHtml(p.name)}</h3></a>
         ${brand ? `<p class="showcase-brand">${AnonUI.escapeHtml(brand.name)}</p>` : ''}
         <div class="price-box"><p class="price">${price}</p>${del}</div>
@@ -246,7 +246,7 @@
     <div class="container">
       <ul class="desktop-nav-list">
         <li class="desktop-nav-item"><a href="index.html" class="desktop-nav-link">Home</a></li>
-        <li class="desktop-nav-item"><a href="shop.html" class="desktop-nav-link">Shop All</a></li>
+        <li class="desktop-nav-item"><a href="/shop" class="desktop-nav-link">Shop All</a></li>
         <li class="desktop-nav-item"><a href="mens.html" class="desktop-nav-link">${AnonUI.escapeHtml(gLabelA)}</a></li>
         <li class="desktop-nav-item"><a href="womens.html" class="desktop-nav-link">${AnonUI.escapeHtml(gLabelB)}</a></li>
         <li class="desktop-nav-item"><a href="collections.html" class="desktop-nav-link">Collections</a></li>
@@ -273,13 +273,13 @@
     </div>
     <ul class="mobile-menu-category-list">
       <li class="menu-category"><a href="index.html" class="menu-title">Home</a></li>
-      <li class="menu-category"><a href="shop.html" class="menu-title">Shop All</a></li>
+      <li class="menu-category"><a href="/shop" class="menu-title">Shop All</a></li>
       <li class="menu-category"><a href="mens.html" class="menu-title">${AnonUI.escapeHtml(gMobileA)}</a></li>
       <li class="menu-category"><a href="womens.html" class="menu-title">${AnonUI.escapeHtml(gMobileB)}</a></li>
       <li class="menu-category"><a href="collections.html" class="menu-title">Collections</a></li>
       <li class="menu-category"><a href="best-sellers.html" class="menu-title">Best Sellers</a></li>
       <li class="menu-category"><a href="new-arrivals.html" class="menu-title">New Arrivals</a></li>
-      ${categories.map(category => `<li class="menu-category"><a href="shop.html?cat=${encodeURIComponent(category.id)}" class="menu-title">${AnonUI.escapeHtml(category.name)}</a></li>`).join('')}
+      ${categories.map(category => `<li class="menu-category"><a href="/shop?cat=${encodeURIComponent(category.id)}" class="menu-title">${AnonUI.escapeHtml(category.name)}</a></li>`).join('')}
       <li class="menu-category"><a href="search.html" class="menu-title">Search</a></li>
       <li class="menu-category"><a href="about.html" class="menu-title">About</a></li>
       <li class="menu-category"><a href="contact.html" class="menu-title">Contact</a></li>
@@ -381,7 +381,7 @@
 
   AnonUI.renderProductGrid = (container, products) => {
     container.innerHTML = products.map(AnonUI.productCard).join('') ||
-      `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>No products match your selection.</p><a href="shop.html" class="btn">Browse the collection</a></div>`;
+      `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>No products match your selection.</p><a href="/shop" class="btn">Browse the collection</a></div>`;
   };
 
   AnonUI.renderSidebarBestSellers = (container) => {

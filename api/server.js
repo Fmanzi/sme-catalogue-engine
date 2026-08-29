@@ -34,8 +34,23 @@ app.use((req, res, next) => {
 /* serve the admin panel */
 app.use('/admin', express.static(path.join(__dirname, '..', 'admin')));
 
+/* extensionless clean URLs for local dev (mirrors Cloudflare Pages clean URLs) */
+const ROOT = path.join(__dirname, '..');
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  const p = req.path;
+  if (p.startsWith('/api') || p.startsWith('/admin') || p.endsWith('/') || path.extname(p)) return next();
+  for (const c of [p + '.html', p + '/index.html']) {
+    if (fs.existsSync(path.join(ROOT, c)) && fs.statSync(path.join(ROOT, c)).isFile()) {
+      req.url = c + req.url.slice(p.length);
+      break;
+    }
+  }
+  next();
+});
+
 /* serve the storefront */
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(ROOT));
 
 /* ---------- routes ---------- */
 app.use('/api/auth', authRoutes);
