@@ -31,6 +31,84 @@ body > main { flex: 1; }
 .mobile-navigation-menu .menu-top .menu-title {
   color: var(--ink);
 }
+.mobile-navigation-menu .menu-top .menu-brand {
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: var(--weight-700);
+}
+
+/* mobile menu: search box */
+.menu-search {
+  display: flex;
+  align-items: stretch;
+  margin: 14px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  overflow: hidden;
+}
+.menu-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--ink);
+}
+.menu-search input::placeholder { color: var(--text-soft); }
+.menu-search button {
+  border: 0;
+  background: transparent;
+  color: var(--text-soft);
+  padding: 0 14px;
+  font-size: 17px;
+  cursor: pointer;
+}
+.menu-search button:hover { color: var(--gold); }
+
+/* mobile menu: collapsible categories */
+.mobile-menu-category-list .menu-cat-toggle {
+  background: none;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.menu-cat-chevron { transition: transform 0.25s ease; }
+.menu-cat-group.is-open .menu-cat-chevron { transform: rotate(-180deg); }
+.menu-cat-group.is-open .menu-cat-toggle { color: var(--gold); }
+.menu-cat-sublist[hidden] { display: none; }
+.menu-cat-sublist {
+  list-style: none;
+  margin: 4px 0 8px;
+  padding: 0 0 0 14px;
+  border-left: 2px solid var(--line);
+}
+
+/* mobile menu: contact footer */
+.menu-contact {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.menu-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: var(--fs-8);
+  text-decoration: none;
+}
+.menu-contact-link:hover { color: var(--gold); }
 
 .container-wide { padding: 0 15px; margin: 0 auto; }
 @media (min-width: 1200px) { .container-wide { max-width: 1120px; } }

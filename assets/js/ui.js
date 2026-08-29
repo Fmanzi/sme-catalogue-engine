@@ -220,6 +220,7 @@
     const s = Store.settings();
     const business = s.business || {};
     const social = ((business.site || {}).social) || {};
+    const contact = (business.contact || {});
     const categories = Store.list('categories').filter(category => category.status !== 'archived').slice(0, 6);
     const nav = s.nav || {};
     const gLabelA = nav.genderLabelA || "Men's";
@@ -268,27 +269,40 @@
 
   <nav class="mobile-navigation-menu has-scrollbar" data-mobile-menu>
     <div class="menu-top">
-      <h2 class="menu-title">Menu</h2>
+      <a href="index.html" class="menu-title menu-brand">${AnonUI.escapeHtml(Store.settings().storeName)}</a>
       <button class="menu-close-btn" data-mobile-menu-close-btn><ion-icon name="close-outline"></ion-icon></button>
     </div>
+
+    <form class="menu-search" data-mobile-menu-search>
+      <input type="search" name="q" placeholder="Search watches" aria-label="Search watches">
+      <button type="submit" aria-label="Search"><ion-icon name="search-outline"></ion-icon></button>
+    </form>
+
     <ul class="mobile-menu-category-list">
-      <li class="menu-category"><a href="index.html" class="menu-title">Home</a></li>
       <li class="menu-category"><a href="/shop" class="menu-title">Shop All</a></li>
-      <li class="menu-category"><a href="mens.html" class="menu-title">${AnonUI.escapeHtml(gMobileA)}</a></li>
-      <li class="menu-category"><a href="womens.html" class="menu-title">${AnonUI.escapeHtml(gMobileB)}</a></li>
+      <li class="menu-category"><a href="/shop?gender=men" class="menu-title">${AnonUI.escapeHtml(gMobileA)}</a></li>
+      <li class="menu-category"><a href="/shop?gender=women" class="menu-title">${AnonUI.escapeHtml(gMobileB)}</a></li>
       <li class="menu-category"><a href="collections.html" class="menu-title">Collections</a></li>
-      <li class="menu-category"><a href="best-sellers.html" class="menu-title">Best Sellers</a></li>
-      <li class="menu-category"><a href="new-arrivals.html" class="menu-title">New Arrivals</a></li>
-      ${categories.map(category => `<li class="menu-category"><a href="/shop?cat=${encodeURIComponent(category.id)}" class="menu-title">${AnonUI.escapeHtml(category.name)}</a></li>`).join('')}
-      <li class="menu-category"><a href="search.html" class="menu-title">Search</a></li>
-      <li class="menu-category"><a href="about.html" class="menu-title">About</a></li>
-      <li class="menu-category"><a href="contact.html" class="menu-title">Contact</a></li>
+      <li class="menu-category"><a href="/shop?status=new" class="menu-title">New Arrivals</a></li>
+      <li class="menu-category"><a href="/shop?status=featured" class="menu-title">Best Sellers</a></li>
+      ${categories.length ? `
+      <li class="menu-category menu-cat-group">
+        <button type="button" class="menu-title menu-cat-toggle">Categories <ion-icon class="menu-cat-chevron" name="chevron-down-outline"></ion-icon></button>
+        <ul class="menu-cat-sublist" hidden>
+          ${categories.map(category => `<li class="menu-category"><a href="/shop?cat=${encodeURIComponent(category.id)}" class="menu-title">${AnonUI.escapeHtml(category.name)}</a></li>`).join('')}
+        </ul>
+      </li>` : ''}
     </ul>
+
     <div class="menu-bottom">
       <ul class="menu-social-container">
         ${social.facebook ? `<li><a href="${social.facebook}" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>` : ''}
         ${social.instagram ? `<li><a href="${social.instagram}" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>` : ''}
       </ul>
+      <div class="menu-contact">
+        ${contact.phone ? `<a href="tel:${contact.phone.replace(/[^0-9+]/g, '')}" class="menu-contact-link"><ion-icon name="call-outline"></ion-icon>${AnonUI.escapeHtml(contact.phone)}</a>` : ''}
+        ${contact.whatsapp ? `<a href="https://wa.me/${contact.whatsapp.replace(/\D/g, '')}" class="menu-contact-link" target="_blank" rel="noopener"><ion-icon name="logo-whatsapp"></ion-icon>WhatsApp</a>` : ''}
+      </div>
     </div>
   </nav>`;
   };
@@ -362,6 +376,28 @@
     $$('[data-mobile-menu-open-btn]').forEach(b => b.addEventListener('click', openMenu));
     $$('[data-mobile-menu-close-btn]').forEach(b => b.addEventListener('click', closeMenu));
     overlay.addEventListener('click', closeMenu);
+
+    /* mobile menu: in-panel search */
+    const menuSearch = document.querySelector('[data-mobile-menu-search]');
+    if (menuSearch) {
+      menuSearch.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const q = menuSearch.querySelector('input').value.trim();
+        if (q) global.location.href = '/search?q=' + encodeURIComponent(q);
+      });
+    }
+
+    /* mobile menu: collapsible categories */
+    const catGroup = document.querySelector('.menu-cat-group');
+    if (catGroup) {
+      const toggle = catGroup.querySelector('.menu-cat-toggle');
+      const sub = catGroup.querySelector('.menu-cat-sublist');
+      toggle.addEventListener('click', () => {
+        const open = sub.hidden;
+        sub.hidden = !open;
+        catGroup.classList.toggle('is-open', open);
+      });
+    }
 
     /* cart actions on product cards (delegated) */
     document.addEventListener('click', (e) => {
