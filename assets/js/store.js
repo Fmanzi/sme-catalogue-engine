@@ -24,10 +24,12 @@
   /* ---------- API mode detection ---------- */
   /* When the admin panel is open and the API server is running,
      all CRUD goes through the REST API instead of localStorage. */
-  const _isLocalAdmin = /\/admin\//.test(global.location && global.location.pathname);
-  const _apiUrl = (global.ANON_API_URL || (_isLocalAdmin ? 'http://localhost:3001' : ''));
+  const _admin = /\/admin\//.test((global.location && global.location.pathname) || '');
+  const _host = (global.location && global.location.hostname) || '';
+  const _local = _host === 'localhost' || _host === '127.0.0.1' || _host === '';
+  const _apiUrl = (global.ANON_API_URL || (_admin ? (_local ? 'http://localhost:3001' : (global.location ? global.location.origin : '')) : ''));
   const _useApi = !!(global.AnonAPI && _apiUrl);
-  console.log('[Store] pathname:', global.location.pathname, '_isLocalAdmin:', _isLocalAdmin, '_useApi:', _useApi, '_apiUrl:', _apiUrl);
+  console.log('[Store] pathname:', global.location.pathname, '_isLocalAdmin:', _admin, '_useApi:', _useApi, '_apiUrl:', _apiUrl);
 
   if (_useApi) {
     global.AnonAPI.api.configure(_apiUrl);
