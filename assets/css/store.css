@@ -42,13 +42,27 @@ body > main { flex: 1; }
 
 .header-main .header-logo img { width: 200px; height: auto; margin: 0; }
 @media (max-width: 767px) {
-  .header-main .container { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 14px; align-items: center; }
+  .header-main .container { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; column-gap: 10px; align-items: center; }
   .header-main .header-logo { display: block; margin: 0; grid-column: 1; grid-row: 1; }
-  .header-main .header-logo img { width: 168px; margin: 0; }
-  .header-main .header-user-actions { display: flex; grid-column: 2; grid-row: 1; align-items: center; }
-  .header-main .header-user-actions .action-btn { position: relative; padding: 6px; color: var(--ink); font-size: 30px; line-height: 1; }
+  .header-main .header-logo img { width: 112px; margin: 0; }
+  .header-main .header-search-container { grid-column: 2; grid-row: 1; min-width: 0; margin-top: 0; }
+  .header-main .header-search-container .search-field { width: 100%; min-width: 0; padding: 8px 34px 8px 10px; font-size: 13px; }
+  .header-main .header-search-container .search-btn { padding: 6px 9px; font-size: 16px; }
+  .header-main .header-user-actions { display: flex; grid-column: 3; grid-row: 1; align-items: center; }
+  .header-main .header-user-actions .action-btn { position: relative; padding: 4px; color: var(--ink); font-size: 24px; line-height: 1; }
   .header-main .header-user-actions .count { position: absolute; top: -3px; right: -5px; min-width: 17px; height: 17px; display: grid; place-items: center; border-radius: 50%; background: var(--gold); color: #fff; font-size: 10px; font-weight: 700; }
-  .header-main .header-search-container { grid-column: 1 / -1; grid-row: 2; margin-top: 16px; }
+}
+
+/* Homepage section action buttons: stacked on mobile, one row on desktop */
+.section-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+
+/* Slimmer desktop header row + section buttons share one row */
+@media (min-width: 768px) {
+  .header-main { padding: 14px 0; }
+  .header-main .container { gap: 40px; }
+  .header-main .header-logo img { width: 180px; }
+  .section-actions { flex-direction: row; }
+  .section-actions .btn { flex: 1 1 0; margin: 0; }
 }
 
 /* ---------- desktop navigation bar ---------- */
