@@ -119,9 +119,13 @@ async function pushToGit(clientId) {
   const safeAddList = [
     `clients/${clientId}`,
     `assets/media/${clientId}`,
-    `assets/css/theme.css`
+    `assets/css/theme.css`,
+    `assets/js/client-data.js`,
+    `robots.txt`,
+    `sitemap.xml`,
+    `product`
   ];
-  await exec('git', ['add', '--', ...safeAddList], { cwd: ROOT });
+  await exec('git', ['add', '-f', '--', ...safeAddList], { cwd: ROOT });
 
   const status = await exec('git', ['status', '--porcelain'], { cwd: ROOT });
   if (!status.stdout.trim()) {
