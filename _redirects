@@ -2,3 +2,7 @@
 /product.html /product/ 302
 /wishlist.html / 302
 /wishlist/ / 302
+
+# Serve shop.html directly (200) so no redirect is involved — browsers that
+# cached the old "/shop.html -> /" 301 would otherwise bounce to the homepage.
+/shop.html /shop.html 200
