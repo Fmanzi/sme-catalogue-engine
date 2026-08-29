@@ -261,8 +261,7 @@
 
   <div class="mobile-bottom-navigation">
     <a href="index.html" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
-    <a href="mens.html" class="action-btn" aria-label="${AnonUI.escapeHtml(gLabelA)}"><ion-icon name="male-outline"></ion-icon></a>
-    <a href="womens.html" class="action-btn" aria-label="${AnonUI.escapeHtml(gLabelB)}"><ion-icon name="female-outline"></ion-icon></a>
+    <a href="/shop" class="action-btn" aria-label="Shop All"><ion-icon name="storefront-outline"></ion-icon></a>
     <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:700;line-height:1">0</span></a>
     <button class="action-btn" data-mobile-menu-open-btn><ion-icon name="menu-outline"></ion-icon></button>
   </div>
