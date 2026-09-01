@@ -45,7 +45,8 @@
       return srcset ? `<source type="image/${format}" srcset="${srcset}" sizes="${(opts || {}).sizes || '(max-width: 600px) 50vw, 300px'}">` : '';
     }).join('');
     const loading = (opts || {}).priority ? 'eager' : 'lazy';
-    return `<picture>${sources}<img src="${AnonUI.img(meta.src || image)}" alt="${AnonUI.escapeHtml(meta.alt || fallbackAlt)}" width="${meta.width || 300}" height="${meta.height || 300}" loading="${loading}" decoding="async" class="${className || ''}"></picture>`;
+    const ariaHidden = (opts || {}).ariaHidden ? ' aria-hidden="true"' : '';
+    return `<picture>${sources}<img src="${AnonUI.img(meta.src || image)}" alt="${AnonUI.escapeHtml(meta.alt || fallbackAlt)}" width="${meta.width || 300}" height="${meta.height || 300}" loading="${loading}" decoding="async" class="${className || ''}"${ariaHidden}></picture>`;
   };
 
   AnonUI.stars = (rating) => {
@@ -58,6 +59,12 @@
   };
 
   AnonUI.discount = (p) => p.salePrice && p.salePrice < p.price ? Math.round((1 - p.salePrice / p.price) * 100) : 0;
+
+  AnonUI.soldCount = (n) => {
+    const v = Number(n || 0);
+    if (v >= 1000) return (v / 1000).toLocaleString('en-US', { maximumFractionDigits: 1 }) + 'K';
+    return String(v);
+  };
 
   AnonUI.badges = (p) => {
     let b = '';
@@ -72,27 +79,32 @@
     const price = AnonUI.money(p.salePrice || p.price);
     const del = p.salePrice ? `<del>${AnonUI.money(p.price)}</del>` : '';
     const out = p.stockStatus === 'out_of_stock' || p.availability === 'out_of_stock';
-    const brand = Store.brand(p.brandId);
+    const low = !out && (p.stockStatus === 'low_stock' || (p.stockQuantity != null && p.stockQuantity > 0 && p.stockQuantity <= (p.lowStockThreshold || 5)));
+    const sold = p.soldCount > 0 ? `<p class="showcase-sold">${AnonUI.soldCount(p.soldCount)}+ sold</p>` : '';
+    const ratings = p.rating > 0 ? `<div class="showcase-rating">${AnonUI.stars(p.rating)}<span class="showcase-reviews">(${p.ratingCount || 0})</span></div>` : '';
     const cat = Store.category(p.categoryId);
+    const imgs = p.imageMeta || [];
+    const primary = imgs[0] || p.mainImage;
+    const hasHover = imgs.length > 1 && !!(primary && imgs[1] && imgs[1].src !== primary.src);
     return `
     <div class="showcase">
       <div class="showcase-banner">
         <a href="${AnonUI.productUrl(p)}">
-          ${AnonUI.responsiveImage((p.imageMeta || [])[0] || p.mainImage, p.name, 'product-img default')}
-          ${AnonUI.responsiveImage((p.imageMeta || [])[1] || (p.imageMeta || [])[0] || p.mainImage, p.name, 'product-img hover')}
+          ${AnonUI.responsiveImage(primary, p.name, 'product-img default')}
+          ${hasHover ? AnonUI.responsiveImage(imgs[1], p.name, 'product-img hover', { ariaHidden: true }) : ''}
         </a>
-        ${AnonUI.badges(p)}
         <div class="showcase-actions">
           <a class="btn-action" href="${AnonUI.productUrl(p)}" title="View product" aria-label="View product"><ion-icon name="eye-outline"></ion-icon></a>
           <button class="btn-action" data-add-cart="${p.id}" title="Add to cart" aria-label="Add to cart" ${out ? 'disabled' : ''}><ion-icon name="bag-add-outline"></ion-icon></button>
         </div>
-        ${out ? '<p class="showcase-stock-tag">Out of stock</p>' : ''}
+        ${out ? '<p class="showcase-stock-tag">Out of stock</p>' : low ? `<p class="showcase-stock-tag is-low">Only ${p.stockQuantity} left</p>` : ''}
       </div>
       <div class="showcase-content">
-        <a href="/shop?cat=${encodeURIComponent(p.categoryId)}" class="showcase-category">${cat ? AnonUI.escapeHtml(cat.name) : ''}</a>
+        <a href="/?cat=${encodeURIComponent(p.categoryId)}" class="showcase-category">${cat ? AnonUI.escapeHtml(cat.name) : ''}</a>
         <a href="${AnonUI.productUrl(p)}"><h3 class="showcase-title">${AnonUI.escapeHtml(p.name)}</h3></a>
-        ${brand ? `<p class="showcase-brand">${AnonUI.escapeHtml(brand.name)}</p>` : ''}
+        ${ratings}
         <div class="price-box"><p class="price">${price}</p>${del}</div>
+        ${sold}
       </div>
     </div>`;
   };
@@ -246,8 +258,7 @@
   <nav class="desktop-nav-bar">
     <div class="container">
       <ul class="desktop-nav-list">
-        <li class="desktop-nav-item"><a href="index.html" class="desktop-nav-link">Home</a></li>
-        <li class="desktop-nav-item"><a href="/shop" class="desktop-nav-link">Shop All</a></li>
+        <li class="desktop-nav-item"><a href="/" class="desktop-nav-link">Shop All</a></li>
         <li class="desktop-nav-item"><a href="mens.html" class="desktop-nav-link">${AnonUI.escapeHtml(gLabelA)}</a></li>
         <li class="desktop-nav-item"><a href="womens.html" class="desktop-nav-link">${AnonUI.escapeHtml(gLabelB)}</a></li>
         <li class="desktop-nav-item"><a href="collections.html" class="desktop-nav-link">Collections</a></li>
@@ -260,15 +271,14 @@
   </nav>
 
   <div class="mobile-bottom-navigation">
-    <a href="index.html" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
-    <a href="/shop" class="action-btn" aria-label="Shop All"><ion-icon name="storefront-outline"></ion-icon></a>
+    <a href="/" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
     <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:700;line-height:1">0</span></a>
     <button class="action-btn" data-mobile-menu-open-btn><ion-icon name="menu-outline"></ion-icon></button>
   </div>
 
   <nav class="mobile-navigation-menu has-scrollbar" data-mobile-menu>
     <div class="menu-top">
-      <a href="index.html" class="menu-title menu-brand">${AnonUI.escapeHtml(Store.settings().storeName)}</a>
+      <a href="/" class="menu-title menu-brand">${AnonUI.escapeHtml(Store.settings().storeName)}</a>
       <button class="menu-close-btn" data-mobile-menu-close-btn><ion-icon name="close-outline"></ion-icon></button>
     </div>
 
@@ -278,17 +288,17 @@
     </form>
 
     <ul class="mobile-menu-category-list">
-      <li class="menu-category"><a href="/shop" class="menu-title">Shop All</a></li>
-      <li class="menu-category"><a href="/shop?gender=men" class="menu-title">${AnonUI.escapeHtml(gMobileA)}</a></li>
-      <li class="menu-category"><a href="/shop?gender=women" class="menu-title">${AnonUI.escapeHtml(gMobileB)}</a></li>
+      <li class="menu-category"><a href="/" class="menu-title">Shop All</a></li>
+      <li class="menu-category"><a href="/?gender=men" class="menu-title">${AnonUI.escapeHtml(gMobileA)}</a></li>
+      <li class="menu-category"><a href="/?gender=women" class="menu-title">${AnonUI.escapeHtml(gMobileB)}</a></li>
       <li class="menu-category"><a href="collections.html" class="menu-title">Collections</a></li>
-      <li class="menu-category"><a href="/shop?status=new" class="menu-title">New Arrivals</a></li>
-      <li class="menu-category"><a href="/shop?status=featured" class="menu-title">Best Sellers</a></li>
+      <li class="menu-category"><a href="/?status=new" class="menu-title">New Arrivals</a></li>
+      <li class="menu-category"><a href="/?status=featured" class="menu-title">Best Sellers</a></li>
       ${categories.length ? `
       <li class="menu-category menu-cat-group">
         <button type="button" class="menu-title menu-cat-toggle">Categories <ion-icon class="menu-cat-chevron" name="chevron-down-outline"></ion-icon></button>
         <ul class="menu-cat-sublist" hidden>
-          ${categories.map(category => `<li class="menu-category"><a href="/shop?cat=${encodeURIComponent(category.id)}" class="menu-title">${AnonUI.escapeHtml(category.name)}</a></li>`).join('')}
+          ${categories.map(category => `<li class="menu-category"><a href="/?cat=${encodeURIComponent(category.id)}" class="menu-title">${AnonUI.escapeHtml(category.name)}</a></li>`).join('')}
         </ul>
       </li>` : ''}
     </ul>
@@ -314,6 +324,9 @@
       <p class="copyright">
         Copyright &copy; <a href="index.html">${AnonUI.escapeHtml(s.storeName)}</a> all rights reserved.
       </p>
+      <p class="footer-powered">
+        Powered by <a href="https://catalogue.co.ke" target="_blank" rel="noopener">Catalogue.co.ke</a>
+      </p>
     </div>
   </div>`;
   };
@@ -322,7 +335,7 @@
     const header = $('#site-header');
     const footer = $('#site-footer');
     const page = (document.body.dataset.page || '');
-    const searchPages = ['home', 'shop', 'listing', 'search', 'best-sellers', 'new-arrivals', 'collections', 'mens', 'womens', 'unisex', 'product'];
+    const searchPages = ['shop', 'listing', 'search', 'best-sellers', 'new-arrivals', 'collections', 'mens', 'womens', 'unisex', 'product'];
     if (header) header.innerHTML = AnonUI.headerHTML(searchPages.includes(page));
     if (footer) footer.innerHTML = AnonUI.footerHTML();
     AnonUI.updateBadges();
@@ -334,7 +347,7 @@
       const href = link.getAttribute('href');
       if (!href) return;
       const linkPath = new URL(href, global.location.origin).pathname;
-      if (currentPath === linkPath || (linkPath === '/' && currentPath === '/index.html')) {
+      if (currentPath === linkPath || (linkPath === '/' && (currentPath === '/index.html' || currentPath === '/shop'))) {
         link.classList.add('is-active');
       }
     });
@@ -404,19 +417,47 @@
       if (cartBtn) {
         const res = AnonUI.addToCart(cartBtn.getAttribute('data-add-cart'), 1);
         AnonUI.toast(res.msg, res.ok ? 'success' : 'error');
+        if (res.ok) global.setTimeout(() => { global.location.href = 'cart.html'; }, 400);
         return;
       }
       const quickBtn = e.target.closest('[data-quick-add]');
       if (quickBtn) {
         const res = AnonUI.addToCart(quickBtn.getAttribute('data-quick-add'), 1);
         AnonUI.toast(res.msg, res.ok ? 'success' : 'error');
+        if (res.ok) global.setTimeout(() => { global.location.href = 'cart.html'; }, 400);
       }
     });
   }
 
   AnonUI.renderProductGrid = (container, products) => {
     container.innerHTML = products.map(AnonUI.productCard).join('') ||
-      `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>No products match your selection.</p><a href="/shop" class="btn">Browse the collection</a></div>`;
+      `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>No products match your selection.</p><a href="/" class="btn">Browse the collection</a></div>`;
+  };
+
+  /* ---------- loading presentation (skeleton + fade-in) ---------- */
+
+  AnonUI.skeletonCard = () => `
+    <div class="showcase skeleton-card" aria-hidden="true">
+      <div class="showcase-banner"><div class="sk sk-img"></div></div>
+      <div class="showcase-content">
+        <div class="sk sk-line sk-line--sm"></div>
+        <div class="sk sk-line"></div>
+        <div class="sk sk-line sk-line--sm"></div>
+        <div class="sk sk-line sk-line--btn"></div>
+      </div>
+    </div>`;
+
+  AnonUI.skeletonGrid = (container, count) => {
+    container.classList.add('is-loading');
+    const skeletonCount = count || (global.innerWidth <= 767 ? 4 : global.innerWidth <= 1023 ? 6 : 10);
+    container.innerHTML = Array.from({ length: skeletonCount }, AnonUI.skeletonCard).join('');
+  };
+
+  AnonUI.reveal = (el) => {
+    el.classList.remove('is-loading');
+    el.classList.remove('fade-in');
+    void el.offsetWidth;
+    el.classList.add('fade-in');
   };
 
   AnonUI.renderSidebarBestSellers = (container) => {

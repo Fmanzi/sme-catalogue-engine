@@ -108,7 +108,7 @@
           <p class="hero-kicker">${esc(sl.kicker)}</p>
           <h2 class="hero-title">${esc(sl.title)}</h2>
           <p class="hero-text">${esc(sl.text)}</p>
-          <a href="/shop" class="hero-btn">${esc(sl.buttonText || sl.btn)} <ion-icon name="arrow-forward-outline"></ion-icon></a>
+          <a href="/" class="hero-btn">${esc(sl.buttonText || sl.btn)} <ion-icon name="arrow-forward-outline"></ion-icon></a>
         </div></div>
       </div>`).join('');
     wrap.insertAdjacentHTML('afterend', `<div class="hero-dots">${slides.map((_, i) => `<button type="button" data-hero-dot="${i}" class="${i === 0 ? 'active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}</div>`);
@@ -127,6 +127,21 @@
     const el = $('#hero-section') || $('#shop-banner');
     if (!el) return;
     const s = Store.settings();
+
+    /* pages 2+ get a slim brand bar instead of the full hero carousel */
+    const pageNum = Math.max(1, Number(qs('page')) || 1);
+    if (pageNum > 1) {
+      const totalPages = Math.max(1, Math.ceil(filteredProducts().length / SHOP_PER_PAGE));
+      el.innerHTML = `
+      <div class="shop-paging-bar">
+        <div class="container-wide shop-paging-inner">
+          <span class="shop-paging-crumb"><a href="/">${esc(s.storeName)}</a> <span class="shop-paging-sep">/</span> All products</span>
+          <span class="shop-paging-count">Page ${Math.min(pageNum, totalPages)} of ${totalPages}</span>
+        </div>
+      </div>`;
+      return;
+    }
+
     const b = s.business || {};
     const heroSlides = (b.hero && b.hero.slides) || [];
 
@@ -144,7 +159,7 @@
             ${sl.kicker ? `<span class="hero-kicker">${esc(sl.kicker)}</span>` : ''}
             <h2 class="hero-title">${esc(sl.title)}</h2>
             ${sl.text ? `<p class="hero-text">${esc(sl.text)}</p>` : ''}
-            ${sl.buttonText ? `<a href="/shop" class="hero-btn">${esc(sl.buttonText)} <ion-icon name="arrow-forward-outline"></ion-icon></a>` : ''}
+            ${sl.buttonText ? `<a href="/" class="hero-btn">${esc(sl.buttonText)} <ion-icon name="arrow-forward-outline"></ion-icon></a>` : ''}
           </div>
           </div>`).join('')}
         <div class="hero-dots container-wide" data-hero-dots>
@@ -185,67 +200,13 @@
     startTimer();
   }
 
-  function renderHome() {
-    renderShopBanner();
-    const s = Store.settings();
-    const home = s.home || {};
-
-    const mensGrid = $('#mens-picks-grid');
-    if (mensGrid) {
-      const mens = activeProducts().filter(p => p.gender === 'men').sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.soldCount - a.soldCount).slice(0, 8);
-      UI.renderProductGrid(mensGrid, mens);
-      const head = mensGrid.closest('.home-section, section')?.querySelector('.section-head');
-      if (head && home.genderA) {
-        const kicker = head.querySelector('.section-kicker');
-        const title = head.querySelector('.section-title');
-        if (kicker) kicker.textContent = home.genderA.kicker || kicker.textContent;
-        if (title) title.textContent = home.genderA.title || title.textContent;
-      }
-    }
-
-    const womensGrid = $('#womens-picks-grid');
-    if (womensGrid) {
-      const womens = activeProducts().filter(p => p.gender === 'women').sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.soldCount - a.soldCount).slice(0, 8);
-      UI.renderProductGrid(womensGrid, womens);
-      const head = womensGrid.closest('.home-section, section')?.querySelector('.section-head');
-      if (head && home.genderB) {
-        const kicker = head.querySelector('.section-kicker');
-        const title = head.querySelector('.section-title');
-        if (kicker) kicker.textContent = home.genderB.kicker || kicker.textContent;
-        if (title) title.textContent = home.genderB.title || title.textContent;
-      }
-    }
-
-    const newArrivals = $('#new-arrivals-grid');
-    if (newArrivals) {
-      UI.renderProductGrid(newArrivals, activeProducts().filter(p => p.newArrival).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 8));
-      const head = newArrivals.closest('.home-section, section')?.querySelector('.section-head');
-      if (head && home.newArrivals) {
-        const kicker = head.querySelector('.section-kicker');
-        const title = head.querySelector('.section-title');
-        if (kicker) kicker.textContent = home.newArrivals.kicker || kicker.textContent;
-        if (title) title.textContent = home.newArrivals.title || title.textContent;
-      }
-    }
-
-    const featured = $('#featured-timepieces-grid');
-    if (featured) {
-      UI.renderProductGrid(featured, activeProducts().filter(p => p.featured).slice(0, 8));
-      const head = featured.closest('.home-section, section')?.querySelector('.section-head');
-      if (head && home.featured) {
-        const kicker = head.querySelector('.section-kicker');
-        const title = head.querySelector('.section-title');
-        if (kicker) kicker.textContent = home.featured.kicker || kicker.textContent;
-        if (title) title.textContent = home.featured.title || title.textContent;
-      }
-    }
-  }
-
   /* ---------- shop / listing ---------- */
 
   const PRICE_PAGES = [
     [0, 2000], [2000, 4000], [4000, 6000], [6000, 8000], [8000, Infinity]
   ];
+
+  const SHOP_PER_PAGE = 20;
 
   function filteredProducts(paramsOverride) {
     const params = paramsOverride || new URLSearchParams(global.location.search);
@@ -270,7 +231,7 @@
     if (min !== null) list = list.filter(p => (p.salePrice || p.price) >= Number(min));
     if (max !== null) list = list.filter(p => (p.salePrice || p.price) <= Number(max));
     const coll = params.get('collection');
-    if (coll) list = list.filter(p => p.collectionIds.includes(coll));
+    if (coll) list = list.filter(p => (p.collectionIds || []).includes(coll));
     const shopFilters = Store.settings().shopFilters || {};
     const attrKeys = shopFilters.attributes || [];
     attrKeys.forEach(key => {
@@ -289,8 +250,11 @@
     Object.keys(defaults).forEach(k => { if (!merged.get(k)) merged.set(k, defaults[k]); });
     const params = merged;
 
-    const sort = params.get('sort') || 'featured';
-    let list = filteredProducts(params);
+    /* present a skeleton while the catalogue "loads", then reveal content */
+    UI.skeletonGrid(grid);
+    global.setTimeout(() => {
+      const sort = params.get('sort') || 'featured';
+      let list = filteredProducts(params);
 
     switch (sort) {
       case 'price-asc': list = list.sort((a, b) => (a.salePrice || a.price) - (b.salePrice || b.price)); break;
@@ -307,13 +271,9 @@
     const chips = $('#filter-chips');
     if (chips) {
       const chipHtml = [];
-      if (params.get('q')) chipHtml.push(`<span class="chip">Search: ${esc(params.get('q'))} <a class="chip-close" href="/shop"><ion-icon name="close"></ion-icon></a></span>`);
-      const cat = params.get('cat') ? Store.category(params.get('cat')) : null;
-      if (cat) chipHtml.push(`<span class="chip">${esc(cat.name)} <a class="chip-close" href="${stripParam('cat')}"><ion-icon name="close"></ion-icon></a></span>`);
+      if (params.get('q')) chipHtml.push(`<span class="chip">Search: ${esc(params.get('q'))} <a class="chip-close" href="/"><ion-icon name="close"></ion-icon></a></span>`);
       const brand = params.get('brand') ? Store.brand(params.get('brand')) : null;
       if (brand) chipHtml.push(`<span class="chip">${esc(brand.name)} <a class="chip-close" href="${stripParam('brand')}"><ion-icon name="close"></ion-icon></a></span>`);
-      const gender = params.get('gender');
-      if (gender) { const gLabel = { men: "Men's", women: "Women's", unisex: 'Unisex' }[gender] || gender; chipHtml.push(`<span class="chip">${esc(gLabel)} <a class="chip-close" href="${stripParam('gender')}"><ion-icon name="close"></ion-icon></a></span>`); }
       const min = params.get('min'), max = params.get('max');
       if (min || max) chipHtml.push(`<span class="chip">${UI.money(min || 0)} – ${UI.money(max || '∞')} <a class="chip-close" href="${stripParam('min', 'max')}"><ion-icon name="close"></ion-icon></a></span>`);
       if (params.get('status')) chipHtml.push(`<span class="chip">${esc(params.get('status'))} <a class="chip-close" href="${stripParam('status')}"><ion-icon name="close"></ion-icon></a></span>`);
@@ -333,7 +293,7 @@
     }
 
     /* pagination */
-    const perPage = 12;
+    const perPage = SHOP_PER_PAGE;
     const page = Math.max(1, Number(params.get('page')) || 1);
     const totalPages = Math.max(1, Math.ceil(list.length / perPage));
     const slice = list.slice((page - 1) * perPage, page * perPage);
@@ -349,6 +309,9 @@
         global.location.href = global.location.pathname + '?' + u.toString();
       }));
     }
+
+    UI.reveal(grid);
+    }, 420);
   }
 
   function stripParam(...names) {
@@ -358,25 +321,64 @@
     return global.location.pathname + '?' + u.toString();
   }
 
+  /* current browse scope label: "All Products" or the active category/gender */
+  function scopeLabel(params) {
+    const nav = Store.settings().nav || {};
+    const genderLabel = {
+      men: nav.genderLabelA || "Men's",
+      women: nav.genderLabelB || "Women's",
+      unisex: nav.unisexLabel || 'Unisex'
+    };
+    const cat = params.get('cat') ? Store.category(params.get('cat')) : null;
+    if (cat) return cat.name;
+    const gender = params.get('gender');
+    if (gender && genderLabel[gender]) return genderLabel[gender];
+    return 'All Products';
+  }
+
   function initShopFilters() {
     const panel = $('#shop-filters');
     if (!panel) return;
     const params = new URLSearchParams(global.location.search);
+    const allScope = $('input[name="f-scope"]', panel);
 
     /* mobile collapsible filter panel */
     const toggleBtn = $('#filter-toggle');
     if (toggleBtn) {
+      /* label reflects the current browse scope */
+      const grid = $('#shop-grid');
+      let defaults = {};
+      try { defaults = grid && grid.dataset.defaultFilter ? JSON.parse(grid.dataset.defaultFilter) : {}; } catch (e) {}
+      const merged = new URLSearchParams(global.location.search);
+      Object.keys(defaults).forEach(k => { if (!merged.get(k)) merged.set(k, defaults[k]); });
+      const labelEl = $('#filter-toggle-label') || toggleBtn;
+      labelEl.textContent = scopeLabel(merged);
+
       toggleBtn.addEventListener('click', () => {
         const open = panel.classList.toggle('is-open');
+        panel.hidden = !open;
         toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-      /* auto-expand when a filter has already been applied (e.g. deep links from a category) — desktop only */
+      /* auto-expand when a filter inside this accordion is already applied — desktop only */
       const attrKeys = (Store.settings().shopFilters || {}).attributes || [];
-      const hasActiveFilters = ['q', 'cat', 'gender', 'brand', 'status', 'min', 'max', 'collection', ...attrKeys].some(k => params.get(k));
+      const hasActiveFilters = ['cat', 'gender', 'collection', 'brand', 'status', 'min', 'max', ...attrKeys].some(k => params.get(k));
       if (hasActiveFilters && global.innerWidth > 1023) {
         panel.classList.add('is-open');
+        panel.hidden = false;
         toggleBtn.setAttribute('aria-expanded', 'true');
       }
+    }
+
+    const genderEl = $('#filter-gender');
+    if (genderEl) {
+      const nav = Store.settings().nav || {};
+      const genderOpts = [
+        ['men', nav.genderLabelA || "Men's"],
+        ['women', nav.genderLabelB || "Women's"],
+        ['unisex', nav.unisexLabel || 'Unisex']
+      ];
+      genderEl.innerHTML = genderOpts.map(g => `
+        <label class="filter-option"><input type="radio" name="f-gender" value="${g[0]}" ${params.get('gender') === g[0] ? 'checked' : ''}>${esc(g[1])}<span class="count">${activeProducts().filter(p => p.gender === g[0]).length}</span></label>`).join('');
     }
 
     const catsEl = $('#filter-cats');
@@ -386,11 +388,13 @@
         <label class="filter-option"><input type="radio" name="f-cat" value="${c.id}" ${params.get('cat') === c.id ? 'checked' : ''}>${esc(c.name)}<span class="count">${activeProducts().filter(p => p.categoryId === c.id).length}</span></label>`).join('');
     }
 
-    const genderEl = $('#filter-gender');
-    if (genderEl) {
-      const genderOpts = [['men', 'Men'], ['women', 'Women'], ['unisex', 'Unisex']];
-      genderEl.innerHTML = genderOpts.map(g => `
-        <label class="filter-option"><input type="radio" name="f-gender" value="${g[0]}" ${params.get('gender') === g[0] ? 'checked' : ''}>${g[1]}<span class="count">${activeProducts().filter(p => p.gender === g[0]).length}</span></label>`).join('');
+    const collEl = $('#filter-collections');
+    if (collEl) {
+      const collOpts = Store.list('collections').filter(c => c.status === 'active').sort((a, b) => a.order - b.order);
+      collEl.innerHTML = collOpts.map(c => {
+        const count = activeProducts().filter(p => (p.collectionIds || []).indexOf(c.id) !== -1).length;
+        return `<label class="filter-option"><input type="radio" name="f-collection" value="${c.id}" ${params.get('collection') === c.id ? 'checked' : ''}>${esc(c.name)}<span class="count">${count}</span></label>`;
+      }).join('');
     }
 
     const brandsEl = $('#filter-brands');
@@ -443,15 +447,31 @@
       global.location.search = u.toString();
     };
 
-    $$('input[name="f-cat"]', panel).forEach(i => i.addEventListener('change', () => apply(u => {
-      if (i.checked) u.set('cat', i.value); else u.delete('cat');
-    })));
-    $$('input[name="f-gender"]', panel).forEach(i => i.addEventListener('change', () => apply(u => {
-      if (i.checked) u.set('gender', i.value); else u.delete('gender');
-    })));
     $$('input[name="f-price"]', panel).forEach(i => i.addEventListener('change', () => apply(u => {
       if (i.checked) { const [min, max] = i.value.split('|'); u.set('min', min); u.set('max', max); } else { u.delete('min'); u.delete('max'); }
     })));
+    $$('input[name="f-cat"]', panel).forEach(i => i.addEventListener('change', () => {
+      if (i.checked && allScope) allScope.checked = false;
+      apply(u => { if (i.checked) u.set('cat', i.value); else u.delete('cat'); });
+    }));
+    $$('input[name="f-gender"]', panel).forEach(i => i.addEventListener('change', () => {
+      if (i.checked && allScope) allScope.checked = false;
+      apply(u => { if (i.checked) u.set('gender', i.value); else u.delete('gender'); });
+    }));
+    $$('input[name="f-collection"]', panel).forEach(i => i.addEventListener('change', () => {
+      if (i.checked && allScope) allScope.checked = false;
+      apply(u => { if (i.checked) u.set('collection', i.value); else u.delete('collection'); });
+    }));
+    if (allScope) {
+      allScope.checked = !params.get('cat') && !params.get('gender') && !params.get('collection');
+      allScope.addEventListener('change', () => {
+        if (!allScope.checked) return;
+        const u = new URLSearchParams();
+        const sort = params.get('sort');
+        if (sort) u.set('sort', sort);
+        global.location.search = u.toString();
+      });
+    }
     $$('input[name="f-brand"]', panel).forEach(i => i.addEventListener('change', () => apply(u => {
       const checked = $$('input[name="f-brand"]', panel).filter(x => x.checked);
       u.set('brand', checked.map(x => x.value).join(','));
@@ -500,7 +520,7 @@
               <h2>${esc(c.name)}</h2>
               <p>${esc(c.description)}</p>
             </div>
-            <a href="/shop?collection=${encodeURIComponent(c.id)}" class="btn btn-outline">View all</a>
+            <a href="/?collection=${encodeURIComponent(c.id)}" class="btn btn-outline">View all</a>
           </div>
           <div class="product-grid collection-products">${items.slice(0, 4).map(UI.productCard).join('')}</div>
         </section>`;
@@ -517,7 +537,7 @@
     if (!root) return;
     const p = pathSlug ? Store.products().find(product => product.slug === decodeURIComponent(pathSlug)) : Store.getProduct(id);
     if (!p) {
-      root.innerHTML = `<div class="empty-state"><ion-icon name="cube-outline"></ion-icon><p>The requested product could not be found.</p><a href="/shop" class="btn btn-primary">Back to shop</a></div>`;
+      root.innerHTML = `<div class="empty-state"><ion-icon name="cube-outline"></ion-icon><p>The requested product could not be found.</p><a href="/" class="btn btn-primary">Back to shop</a></div>`;
       return;
     }
     const brand = p.brand;
@@ -582,6 +602,7 @@
     $('[data-add-bag]', root).addEventListener('click', () => {
       const res = UI.addToCart(p.id, Math.max(1, Number(qtyInput.value) || 1));
       UI.toast(res.msg, res.ok ? 'success' : 'error');
+      if (res.ok) global.setTimeout(() => { global.location.href = 'cart.html'; }, 400);
     });
 
     /* related products — ~8 similar items */
@@ -595,6 +616,8 @@
         .slice(0, 8);
       UI.renderProductGrid(related, pool);
     }
+
+    UI.reveal(root);
   }
 
   /* ---------- wishlist ---------- */
@@ -602,18 +625,23 @@
   function initWishlist() {
     const grid = $('#wishlist-grid') || $('#wishlist-root');
     if (!grid) return;
-    grid.innerHTML = `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>Wishlists are no longer available.</p><a href="/shop" class="btn btn-primary">Browse products</a></div>`;
+    grid.innerHTML = `<div class="empty-state"><ion-icon name="time-outline"></ion-icon><p>Wishlists are no longer available.</p><a href="/" class="btn btn-primary">Browse products</a></div>`;
   }
 
   /* ---------- cart ---------- */
 
-  function initCart() {
+  function initCart() { renderCart(true); }
+
+  let reinitCart = () => { renderCart(false); };
+
+  function renderCart(fade) {
     const wrap = $('#cart-root');
     if (!wrap) return;
     const { items, subtotal } = UI.cartDetail();
 
     if (!items.length) {
-      wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your bag is empty.</p><a href="/shop" class="btn btn-primary">Start shopping</a></div>`;
+      wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your bag is empty.</p><a href="/" class="btn btn-primary">Start shopping</a></div>`;
+      if (fade) UI.reveal(wrap);
       return;
     }
 
@@ -641,7 +669,6 @@
       <div class="cart-layout">
         <div class="cart-items">
           ${cards}
-          <a href="/shop" class="btn btn-outline cart-continue"><ion-icon name="arrow-back-outline"></ion-icon> Continue shopping</a>
         </div>
         <aside class="summary-card">
           <h3>Order Summary</h3>
@@ -649,7 +676,8 @@
           <div class="summary-row"><span>Shipping</span><span data-sum-shipping>Calculated at checkout</span></div>
           <div class="summary-row total"><span>Estimated total</span><span data-sum-total>${UI.money(subtotal)}</span></div>
           <p class="pod-note"><ion-icon name="wallet-outline"></ion-icon> Pay on delivery — M-Pesa or cash.</p>
-          <a href="checkout.html" class="btn btn-outline btn-block" style="margin-top:10px">Proceed to Checkout</a>
+          <a href="/" class="btn btn-outline btn-block" style="margin-top:10px"><ion-icon name="arrow-back-outline"></ion-icon> Continue shopping</a>
+          <a href="checkout.html" class="btn btn-outline btn-block" style="margin-top:10px">Proceed to Checkout <ion-icon name="arrow-forward-outline"></ion-icon></a>
         </aside>
       </div>`;
 
@@ -666,9 +694,9 @@
     document.querySelectorAll('[data-cart-remove]').forEach(b => b.addEventListener('click', () => {
       UI.removeFromCart(b.dataset.cartRemove); reinitCart();
     }));
-  }
 
-  let reinitCart = () => { initCart(); };
+    if (fade) UI.reveal(wrap);
+  }
 
   /* ---------- checkout ---------- */
 
@@ -676,7 +704,7 @@
     const { items, subtotal } = UI.cartDetail();
     if (!items.length) {
       const wrap = $('#checkout-root');
-      if (wrap) wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your bag is empty — nothing to check out.</p><a href="/shop" class="btn btn-primary">Start shopping</a></div>`;
+      if (wrap) wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your bag is empty — nothing to check out.</p><a href="/" class="btn btn-primary">Start shopping</a></div>`;
       return;
     }
     const settings = Store.settings();
@@ -830,7 +858,7 @@
     const { items, subtotal } = UI.cartDetail();
     const wrap = $('#checkout-root');
     if (!wrap) return;
-    if (!items.length) { wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your cart is empty.</p><a href="/shop" class="btn btn-primary">Browse products</a></div>`; return; }
+    if (!items.length) { wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your cart is empty.</p><a href="/" class="btn btn-primary">Browse products</a></div>`; return; }
     const settings = Store.settings();
     const SHIPPING_OPTIONS = (settings.shippingMethods && settings.shippingMethods.length) ? settings.shippingMethods.map(m => ({ id: m.id || m.name, label: m.label || m.name, fee: m.fee || 0, icon: 'bicycle-outline', desc: m.desc || '' })) : SHIPPING_OPTIONS_FALLBACK;
     const initFee = SHIPPING_OPTIONS[0].fee;
@@ -890,6 +918,8 @@
         </aside>
       </div>`;
 
+    UI.reveal(wrap);
+
     /* shipping card selection */
     wrap.querySelectorAll('[name="shipping"]').forEach(r => r.addEventListener('change', () => {
       wrap.querySelectorAll('.ship-card').forEach(c => c.classList.toggle('selected', c.querySelector('input').checked));
@@ -940,7 +970,7 @@
           <ion-icon name="checkmark-circle-outline"></ion-icon>
           <p><strong>Thank you! Your order has been placed.</strong></p>
           <p>We will contact you shortly on <b>${esc(phone)}</b> to confirm your order and arrange delivery.</p>
-          <a href="/shop" class="btn btn-primary" style="margin-top:16px">Continue shopping</a>
+          <a href="/" class="btn btn-primary" style="margin-top:16px">Continue shopping</a>
         </div>`;
       UI.toast('Order placed successfully!', 'success');
     }
@@ -982,7 +1012,7 @@
     const orderNo = qs('order');
     const order = orderNo ? Store.find('orders', o => o.orderNumber === orderNo) : null;
     if (!order) {
-      root.innerHTML = `<div class="empty-state"><ion-icon name="help-circle-outline"></ion-icon><p>We could not find that order.</p><a href="/shop" class="btn btn-primary">Back to shop</a></div>`;
+      root.innerHTML = `<div class="empty-state"><ion-icon name="help-circle-outline"></ion-icon><p>We could not find that order.</p><a href="/" class="btn btn-primary">Back to shop</a></div>`;
       return;
     }
     root.innerHTML = `
@@ -1002,7 +1032,7 @@
         </div>
         <div class="conf-actions">
           <a href="order-history.html" class="btn btn-primary">View order history</a>
-          <a href="/shop" class="btn btn-outline">Continue shopping</a>
+          <a href="/" class="btn btn-outline">Continue shopping</a>
         </div>
       </div>`;
   }
@@ -1023,7 +1053,7 @@
           <div class="form-field" style="margin-bottom:14px"><label>Email address</label><input type="email" name="email" placeholder="you@example.com" required></div>
           <button type="submit" class="btn btn-primary btn-block">Sign in</button>
         </form>
-        <p style="text-align:center;margin-top:16px;font-size:var(--fs-8)"><a href="/shop" style="color:var(--gold)">Continue as guest →</a></p>
+        <p style="text-align:center;margin-top:16px;font-size:var(--fs-8)"><a href="/" style="color:var(--gold)">Continue as guest →</a></p>
       </div>`;
       $('[data-login-form]', root).addEventListener('submit', (e) => {
         e.preventDefault();
@@ -1064,7 +1094,7 @@
             </div>`).join('')}
         </div>
         <a href="order-history.html" class="btn btn-outline" style="margin-top:16px">View all orders</a>`
-        : `<div class="empty-state" style="padding:30px;border:1px solid var(--line)"><p>No orders yet.</p><a href="/shop" class="btn btn-primary" style="margin-top:12px">Shop now</a></div>`}
+        : `<div class="empty-state" style="padding:30px;border:1px solid var(--line)"><p>No orders yet.</p><a href="/" class="btn btn-primary" style="margin-top:12px">Shop now</a></div>`}
       </div>
     </div>`;
     $('[data-logout]', root).addEventListener('click', (e) => {
@@ -1131,7 +1161,7 @@
               <td><a href="order-history.html?order=${encodeURIComponent(o.orderNumber)}" class="btn btn-outline" style="padding:8px 14px">View</a></td>
             </tr>`).join('')}</tbody>
         </table>
-      </div>`       : `<div class="empty-state"><p>You have not placed any orders yet.</p><a href="/shop" class="btn btn-primary">Start shopping</a></div>`;
+      </div>`       : `<div class="empty-state"><p>You have not placed any orders yet.</p><a href="/" class="btn btn-primary">Start shopping</a></div>`;
   }
 
   /* ---------- about ---------- */
@@ -1235,7 +1265,6 @@
     const page = document.body.dataset.page || '';
     try {
       switch (page) {
-        case 'home': renderHome(); break;
         case 'shop': renderShopBanner(); initShopFilters(); renderShop(); break;
         case 'listing': renderShop(); break;
         case 'collections': initCollections(); break;
@@ -1255,7 +1284,7 @@
       const titleEl = $('title');
       if (titleEl && !titleEl.dataset.fixed) {
         const t = $('.page-title');
-        const label = t ? t.textContent.trim() : (page === 'home' ? '' : page.replace(/-/g, ' '));
+        const label = t ? t.textContent.trim() : page.replace(/-/g, ' ');
         titleEl.textContent = label ? `${label} · ${settings.storeName}` : (settings.defaultSeoTitle || settings.storeName);
       }
     } catch (err) {
