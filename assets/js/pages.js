@@ -342,7 +342,7 @@
     const params = new URLSearchParams(global.location.search);
     const allScope = $('input[name="f-scope"]', panel);
 
-    /* mobile collapsible filter panel */
+    /* filter panel — mega-menu (desktop) or slide-in drawer (mobile) */
     const toggleBtn = $('#filter-toggle');
     if (toggleBtn) {
       /* label reflects the current browse scope */
@@ -354,19 +354,37 @@
       const labelEl = $('#filter-toggle-label') || toggleBtn;
       labelEl.textContent = scopeLabel(merged);
 
+      const backdrop = $('#filter-backdrop');
+      const backBtn = $('#filter-back');
+      const isMobile = () => global.innerWidth <= 1023;
+
+      function openPanel() {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        if (isMobile() && backdrop) {
+          backdrop.classList.add('is-visible');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+      function closePanel() {
+        panel.classList.remove('is-open');
+        panel.hidden = true;
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        if (backdrop) backdrop.classList.remove('is-visible');
+        document.body.style.overflow = '';
+      }
+
       toggleBtn.addEventListener('click', () => {
-        const open = panel.classList.toggle('is-open');
-        panel.hidden = !open;
-        toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        panel.classList.contains('is-open') ? closePanel() : openPanel();
       });
+      if (backdrop) backdrop.addEventListener('click', closePanel);
+      if (backBtn) backBtn.addEventListener('click', closePanel);
+
       /* auto-expand when a filter inside this accordion is already applied — desktop only */
       const attrKeys = (Store.settings().shopFilters || {}).attributes || [];
       const hasActiveFilters = ['cat', 'gender', 'collection', 'brand', 'status', 'min', 'max', ...attrKeys].some(k => params.get(k));
-      if (hasActiveFilters && global.innerWidth > 1023) {
-        panel.classList.add('is-open');
-        panel.hidden = false;
-        toggleBtn.setAttribute('aria-expanded', 'true');
-      }
+      if (hasActiveFilters && global.innerWidth > 1023) openPanel();
     }
 
     const genderEl = $('#filter-gender');
