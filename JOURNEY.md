@@ -90,6 +90,32 @@ client" into "a platform store owners run themselves, at zero cost."
 
 ---
 
+## 02 Sep 2026 — Live Telegram order notifications confirmed on Cloudflare
+
+- Ordered the secure order→Telegram path end-to-end and **confirmed it live on the
+  hosted site**: checkout posts to `/api/order-notify`, a Cloudflare Pages Function
+  (`functions/api/order-notify.js`) reads the bot token from Pages env vars (never in
+  the repo/browser) and forwards to the owner's Telegram channel.
+- The free-tier Pages Function was the sticking point initially; a forced redeploy
+  (empty commit + push) fixed it.
+- Verified the full loop works on the hosted site: add to cart → checkout → `🛍️ NEW
+  ORDER` appears in Telegram.
+
+### Minor polish noted (not yet done)
+- Notification shows `NEW ORDER — unknown` because `orderNumber` is `null` — generate a
+  proper order number server-side (e.g. `M-000123`) and include it.
+- Include the selected shipping method label in the notification; watch the `Delivery`
+  field quality (it can show a postal/postcode value).
+
+### Next: Choice A — real hosted admin
+The deployed `_headers` serves `/admin/*` as `Status: 404`, and the Worker only
+implements publish/order routes — it does NOT implement the admin API
+(login/auth, products, settings, catalog, uploads). So on the hosted site the owner
+cannot yet log in to a `.pages.dev` admin to edit data. Building the hosted admin is
+the next milestone.
+
+---
+
 ## 02 Sep 2026 — Per-store isolation architecture (the "no limits ever" model)
 
 ### The goal
