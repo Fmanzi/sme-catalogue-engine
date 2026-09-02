@@ -306,7 +306,9 @@
       $$('.pag-btn', pag).forEach(b => b.addEventListener('click', () => {
         const u = new URLSearchParams(params);
         u.set('page', b.dataset.page);
-        global.location.href = global.location.pathname + '?' + u.toString();
+        const target = global.location.pathname + '?' + u.toString();
+        global.scrollTo({ top: 0, behavior: 'smooth' });
+        global.setTimeout(() => { global.location.href = target; }, 450);
       }));
     }
 
@@ -346,6 +348,7 @@
     const toggleBtn = $('#filter-toggle');
     const backdrop = $('#filter-backdrop');
     const closeBtn = $('#filter-close');
+    const mobileFilterBtn = $('[data-mobile-filter-btn]');
     const isMobile = () => global.innerWidth <= 1023;
 
     function openPanel() {
@@ -362,6 +365,16 @@
       if (backdrop) backdrop.classList.remove('is-visible');
       document.body.style.overflow = '';
     }
+    /* click outside the panel (on the backdrop / page) closes it — like the hamburger drawer */
+    function onDocClick(e) {
+      if (!panel.classList.contains('is-open')) return;
+      if (panel.contains(e.target)) return;
+      if (toggleBtn && toggleBtn.contains(e.target)) return;
+      if (mobileFilterBtn && mobileFilterBtn.contains(e.target)) return;
+      closePanel();
+    }
+    document.addEventListener('click', onDocClick);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
 
     if (toggleBtn) {
       /* label reflects the current browse scope */
@@ -379,7 +392,6 @@
       if (backdrop) backdrop.addEventListener('click', closePanel);
       if (closeBtn) closeBtn.addEventListener('click', closePanel);
 
-      const mobileFilterBtn = $('[data-mobile-filter-btn]');
       if (mobileFilterBtn) mobileFilterBtn.addEventListener('click', () => {
         panel.classList.contains('is-open') ? closePanel() : openPanel();
       });

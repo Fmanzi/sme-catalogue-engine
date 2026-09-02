@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search — MERIDIAN</title>
+  <title data-fixed="1">Search — MERIDIAN</title>
   <meta name="description" content="Search MERIDIAN's collection of fine timepieces.">
   <link rel="shortcut icon" href="./assets/images/logo/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./assets/css/style-prefix.css">
@@ -21,28 +21,14 @@
   <header id="site-header"></header>
 
   <main>
-    <div class="page-header">
-      <p class="page-kicker">Results</p>
-      <h1 class="page-title">Search</h1>
-      <p class="page-sub" id="search-sub">Matching products from our collection.</p>
-      <nav class="breadcrumb"><a href="/">Shop</a> / <span>Search</span></nav>
+    <div class="search-strip">
+      <div class="container-wide search-strip-inner">
+        <span class="search-strip-title">Search</span>
+        <span class="search-strip-count" id="result-count"></span>
+      </div>
     </div>
 
     <div class="container-wide" style="padding:34px 15px 60px">
-      <div class="shop-toolbar">
-        <p class="result-count" id="result-count"></p>
-        <label style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:var(--fs-8);color:var(--text-soft)">Sort by</span>
-          <select id="shop-sort">
-            <option value="featured">Featured</option>
-            <option value="newest">Newest</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="rating">Top rated</option>
-            <option value="name">Name A–Z</option>
-          </select>
-        </label>
-      </div>
       <div class="product-grid" id="shop-grid"></div>
       <div id="shop-pagination"></div>
     </div>
