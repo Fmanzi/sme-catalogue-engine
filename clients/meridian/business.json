@@ -2,7 +2,7 @@
   "$schema": "../schema/business.schema.json",
   "id": "meridian",
   "name": "MERIDIAN",
-  "description": "LIVE-LOOP-TEST-92837 temporary description for publish verification.",
+  "description": "Fine timepieces selected for collectors who value precision, heritage and quiet luxury.",
   "logo": "assets/images/logo/logo.svg",
   "favicon": "assets/images/logo/favicon.svg",
   "contact": {
