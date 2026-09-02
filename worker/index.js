@@ -55,6 +55,12 @@ async function handle(request, env) {
     return await forwardOrder(await request.json(), env);
   }
 
+  /* Same-origin order alert the storefront posts to (matches the Express API
+     and the Pages Function at functions/api/order-notify.js). */
+  if (request.method === 'POST' && path === '/api/order-notify') {
+    return await forwardOrder(await request.json(), env);
+  }
+
   return json({ error: `No route for ${request.method} ${path}` }, 404);
 }
 

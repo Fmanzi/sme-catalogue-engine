@@ -344,6 +344,25 @@
 
     /* filter panel — mega-menu (desktop) or slide-in drawer (mobile) */
     const toggleBtn = $('#filter-toggle');
+    const backdrop = $('#filter-backdrop');
+    const closeBtn = $('#filter-close');
+    const isMobile = () => global.innerWidth <= 1023;
+
+    function openPanel() {
+      panel.classList.add('is-open');
+      toggleBtn && toggleBtn.setAttribute('aria-expanded', 'true');
+      if (isMobile() && backdrop) {
+        backdrop.classList.add('is-visible');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function closePanel() {
+      panel.classList.remove('is-open');
+      toggleBtn && toggleBtn.setAttribute('aria-expanded', 'false');
+      if (backdrop) backdrop.classList.remove('is-visible');
+      document.body.style.overflow = '';
+    }
+
     if (toggleBtn) {
       /* label reflects the current browse scope */
       const grid = $('#shop-grid');
@@ -354,32 +373,16 @@
       const labelEl = $('#filter-toggle-label') || toggleBtn;
       labelEl.textContent = scopeLabel(merged);
 
-      const backdrop = $('#filter-backdrop');
-      const backBtn = $('#filter-back');
-      const isMobile = () => global.innerWidth <= 1023;
-
-      function openPanel() {
-        panel.hidden = false;
-        panel.classList.add('is-open');
-        toggleBtn.setAttribute('aria-expanded', 'true');
-        if (isMobile() && backdrop) {
-          backdrop.classList.add('is-visible');
-          document.body.style.overflow = 'hidden';
-        }
-      }
-      function closePanel() {
-        panel.classList.remove('is-open');
-        panel.hidden = true;
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        if (backdrop) backdrop.classList.remove('is-visible');
-        document.body.style.overflow = '';
-      }
-
       toggleBtn.addEventListener('click', () => {
         panel.classList.contains('is-open') ? closePanel() : openPanel();
       });
       if (backdrop) backdrop.addEventListener('click', closePanel);
-      if (backBtn) backBtn.addEventListener('click', closePanel);
+      if (closeBtn) closeBtn.addEventListener('click', closePanel);
+
+      const mobileFilterBtn = $('[data-mobile-filter-btn]');
+      if (mobileFilterBtn) mobileFilterBtn.addEventListener('click', () => {
+        panel.classList.contains('is-open') ? closePanel() : openPanel();
+      });
 
       /* auto-expand when a filter inside this accordion is already applied — desktop only */
       const attrKeys = (Store.settings().shopFilters || {}).attributes || [];
@@ -471,6 +474,7 @@
     $$('input[name="f-cat"]', panel).forEach(i => i.addEventListener('change', () => {
       if (i.checked && allScope) allScope.checked = false;
       apply(u => { if (i.checked) u.set('cat', i.value); else u.delete('cat'); });
+      if (global.innerWidth > 1023) closePanel();
     }));
     $$('input[name="f-gender"]', panel).forEach(i => i.addEventListener('change', () => {
       if (i.checked && allScope) allScope.checked = false;
@@ -993,6 +997,36 @@
       UI.toast('Order placed successfully!', 'success');
     }
 
+    /* Post the order to the server so the shop owner gets a Telegram alert.
+       The bot token lives server-side (Pages Function / API); it never ships
+       in this bundle. Fire-and-forget — never block checkout on it. */
+    function notifyTelegram({ name, phone, address, shipOpt, shipFee }) {
+      const payload = {
+        orderNumber: null,
+        clientId: (Store.settings() || {}).id || 'meridian',
+        customerName: name,
+        phone: phone,
+        deliveryAddress: address,
+        currency: ((Store.settings() || {}).commerce || {}).currency || 'KES',
+        items: items.map(i => ({
+          name: i.product.name,
+          quantity: i.quantity,
+          price: i.product.salePrice || i.product.price
+        })),
+        subtotal: subtotal,
+        total: subtotal + (shipFee || 0),
+        shipping: shipOpt ? shipOpt.label : null,
+        note: ''
+      };
+      try {
+        fetch('/api/order-notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(() => {});
+      } catch (e) { /* noop */ }
+    }
+
     /* whatsapp checkout */
     $('[data-wa-checkout]', wrap).addEventListener('click', () => {
       const data = getFormData();
@@ -1003,8 +1037,8 @@
       const waUrl = 'https://wa.me/' + waNum.replace(/\D/g, '') + '?text=' + encodeURIComponent(msg);
       global.open(waUrl, '_blank', 'noopener');
 
-      /* Send order to Telegram (fire-and-forget, non-blocking) */
-      /* TODO: Replace with Cloudflare Pages Function proxy to hide bot token */
+      /* Fire-and-forget Telegram alert via the server-side proxy */
+      notifyTelegram(data);
       UI.clearCart();
       showConfirmation(data.phone);
     });
@@ -1014,9 +1048,8 @@
       const data = getFormData();
       if (!validateFields(data)) return;
 
-      const msg = buildWhatsAppMessage(items, subtotal, data);
-      /* TODO: Send to Cloudflare Pages Function → Telegram bot */
-      console.log('Order data (will be sent to server):', msg);
+      /* Fire-and-forget Telegram alert via the server-side proxy */
+      notifyTelegram(data);
 
       showConfirmation(data.phone);
     });

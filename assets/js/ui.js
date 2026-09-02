@@ -228,7 +228,7 @@
 
   AnonUI.currentPage = () => global.location.pathname.split('/').pop().toLowerCase() || 'index.html';
 
-  AnonUI.headerHTML = (showSearch) => {
+  AnonUI.headerHTML = (showSearch, showFilter) => {
     const s = Store.settings();
     const business = s.business || {};
     const social = ((business.site || {}).social) || {};
@@ -273,6 +273,7 @@
   <div class="mobile-bottom-navigation">
     <a href="/" class="action-btn" aria-label="Home"><ion-icon name="home-outline"></ion-icon></a>
     <a href="cart.html" class="action-btn"><ion-icon name="bag-handle-outline"></ion-icon><span class="count" data-cart-count style="background:var(--gold);min-width:20px;height:20px;padding:0;display:grid;place-items:center;border-radius:50%;font-size:11px;font-weight:700;line-height:1">0</span></a>
+    ${showFilter ? `<button class="action-btn" data-mobile-filter-btn aria-label="Filters"><ion-icon name="funnel-outline"></ion-icon></button>` : ''}
     <button class="action-btn" data-mobile-menu-open-btn><ion-icon name="menu-outline"></ion-icon></button>
   </div>
 
@@ -336,7 +337,7 @@
     const footer = $('#site-footer');
     const page = (document.body.dataset.page || '');
     const searchPages = ['shop', 'listing', 'search', 'best-sellers', 'new-arrivals', 'collections', 'mens', 'womens', 'unisex', 'product'];
-    if (header) header.innerHTML = AnonUI.headerHTML(searchPages.includes(page));
+    if (header) header.innerHTML = AnonUI.headerHTML(searchPages.includes(page), page === 'shop');
     if (footer) footer.innerHTML = AnonUI.footerHTML();
     AnonUI.updateBadges();
     bindChromeEvents();

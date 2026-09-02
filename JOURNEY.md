@@ -90,6 +90,51 @@ client" into "a platform store owners run themselves, at zero cost."
 
 ---
 
+## 02 Sep 2026 — Per-store isolation architecture (the "no limits ever" model)
+
+### The goal
+Each new store gets its own infrastructure so no store ever hits a platform-level
+Cloudflare/GitHub limit, and no store can break or outgrow another. We sketched the
+options and chose a **balanced "half-isolate"** design — separate the things that
+provide real isolation, share the platform fabric (engines/accounts) to keep ops sane.
+
+### What we decided (and the reasoning)
+
+| Layer | Decision | Why |
+|---|---|---|
+| **GitHub repo** | **One repo per store** (`store-<name>`) | Isolated data + versioned backups; one store's blunder/history can never touch another's; each store gets its own `origin` + deploy trigger. Engine code lives in a separate shared repo. |
+| **Cloudflare account** | **One** central account | The free limits are per-account/per-project anyway, so extra accounts do **not** dodge caps — they only multiply token chaos. One account hosts hundreds of Pages projects. |
+| **Cloudflare Pages project** | **One per store** | Isolated deploys + domains + independent publish triggers. |
+| **Worker (API gate)** | **One shared** | Stateless auth + publish routing for the whole platform. |
+| **Durable Object (orders/stock)** | **One per store** | Isolates the 1M-req/month ceiling per store; gives clean namespacing for the POS/stock sync ledger. |
+| **Telegram** | **One platform bot, per-store channel** | One bot token to secure can post to many chats; a dedicated bot per store is only worth it if a store hosts its own interactive commands. |
+| **Secrets** | Manage centrally (one config table) | `store -> {repo, pagesProject, durableObject, telegramChat}`. Never commit tokens; rotation must be centralised or the per-store PAT problem becomes unmanageable. |
+
+### The tradeoffs we accepted (known costs)
+1. **Credentials sprawl** is the biggest risk — per-store PATs multiply. Mitigate with a
+   central config table + centralised secret rotation; never store tokens in repos
+   (we still have one **exposed `GIT_PAT`** in `api/.env` to revoke as a priority).
+2. **Deploy orchestration complexity** — the publish flow must resolve which repo/project/
+   object/chat each store maps to (a config table), instead of today's single-repo push.
+3. **Engine vs. store split** — build tools (`build-client-data.js`,
+   `build-static-pages.js`) currently assume one repo; need a refactor so the engine is
+   shared but each store's data + build output is isolated.
+4. **Local harness diverges** — `npm run dev` / `api/server.js` / single repo will need
+   to emulate multi-repo publishing.
+5. **Onboarding a new store is heavier** — more provisioning steps than today's
+   "make a folder".
+
+### Pricing implication
+Business/POS plan carries the per-store paid infra if a store outgrows free. See
+`pricing.md` (Free / Pro / Business tiers).
+
+### Status
+**Decision recorded, not yet implemented.** This is the target architecture for the
+POS sync (Warehouse/Durable Object) work and for any future "spin up a new store from
+the dashboard" automation.
+
+---
+
 ## 26 Aug 2026 — Real admin → REST API (multi-tenant parameterisation)
 
 - Parameterised the engine for multi-tenant use: `clients/` directory per store,

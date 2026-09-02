@@ -13,6 +13,7 @@ const uploadRoutes = require('./routes/upload');
 const publishRoutes = require('./routes/publish');
 const genericRoutes = require('./routes/generic');
 const clientRoutes = require('./routes/clients');
+const orderNotifyRoutes = require('./routes/order-notify');
 const { getAdminUsers, saveAdminUsers, uid, listClients } = require('./data');
 
 const app = express();
@@ -64,6 +65,9 @@ app.use('/api/customers', authMiddleware, storeScope, genericRoutes('customers')
 app.use('/api/reviews', authMiddleware, storeScope, genericRoutes('reviews'));
 app.use('/api/coupons', authMiddleware, storeScope, genericRoutes('coupons'));
 app.use('/api/inventory', authMiddleware, storeScope, genericRoutes('inventory'));
+
+/* order notification — public, storefront checkout posts here */
+app.use('/api/order-notify', orderNotifyRoutes);
 
 /* health check */
 app.get('/api/health', (req, res) => res.json({ ok: true, version: '1.0.0' }));

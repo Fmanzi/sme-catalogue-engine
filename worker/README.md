@@ -32,6 +32,16 @@ It also forwards new orders to a Telegram chat.
 | `POST` | `/api/publish` | `{ clientId, files: { "path": "content" } }` | Commit files as one commit → Pages rebuilds |
 | `GET`  | `/api/publish/status?clientId=…` | — | Latest commit that touched a store |
 | `POST` | `/api/orders` | order object | Forward order to Telegram |
+| `POST` | `/api/order-notify` | order object | Same-origin order alert (see below) |
+
+> **Order notification wiring (recommended).** The storefront checkout posts a new
+> order to **`/api/order-notify`** (same-origin). The bot token is read **server-side**
+> from env and is never shipped in the browser bundle. There are three implementations
+> of this one endpoint — pick the one that matches your deployment:
+> - **Cloudflare Pages Function** — `functions/api/order-notify.js` (free tier,
+>   same-origin, runs automatically with the Pages deploy). **Preferred for production.**
+> - **This Worker** — the `/api/order-notify` route above (if you route `/api/*` here).
+> - **Local Node API** — `api/routes/order-notify.js` via `npm run api` (dev only).
 
 ## Points-payment gate (optional)
 
