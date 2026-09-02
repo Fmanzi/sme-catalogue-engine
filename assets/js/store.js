@@ -399,20 +399,20 @@
           return n(c);
         });
         const materialize = global.AnonModels.materializeCollections;
+        const base = {
+          products: [], categories: catalogue.categories || [], brands: catalogue.brands || [], collections: [],
+          settings: normalizeSettings(business),
+          customers: [], orders: [], reviews: [], coupons: [], adminUsers: [], inventory: []
+        };
         if (materialize) {
           const out = materialize(products, collections);
-          memory.data = {
-            version: 3, products: out.products, categories: catalogue.categories || [], brands: catalogue.brands || [], collections: out.collections,
-            settings: normalizeSettings(business),
-            customers: [], orders: [], reviews: [], coupons: [], adminUsers: [], inventory: []
-          };
+          base.products = out.products;
+          base.collections = out.collections;
         } else {
-          memory.data = {
-            version: 3, products, categories: catalogue.categories || [], brands: catalogue.brands || [], collections,
-            settings: normalizeSettings(business),
-            customers: [], orders: [], reviews: [], coupons: [], adminUsers: [], inventory: []
-          };
+          base.products = products;
+          base.collections = collections;
         }
+        memory.data = base;
         if (global.AnonModels.applyTheme) global.AnonModels.applyTheme(business, global.document);
         return memory.data;
       }

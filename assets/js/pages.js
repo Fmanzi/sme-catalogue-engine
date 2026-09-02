@@ -734,154 +734,6 @@
 
   /* ---------- checkout ---------- */
 
-  function initCheckout() {
-    const { items, subtotal } = UI.cartDetail();
-    if (!items.length) {
-      const wrap = $('#checkout-root');
-      if (wrap) wrap.innerHTML = `<div class="empty-state"><ion-icon name="bag-handle-outline"></ion-icon><p>Your bag is empty — nothing to check out.</p><a href="/" class="btn btn-primary">Start shopping</a></div>`;
-      return;
-    }
-    const settings = Store.settings();
-    const cust = Store.currentCustomer();
-
-    const shippingMethods = settings.shippingMethods;
-    const tax = +((subtotal) * settings.taxRates.standard / 100).toFixed(2);
-
-    const wrap = $('#checkout-root');
-    wrap.innerHTML = `
-    <div class="checkout-layout">
-      <div>
-        <form data-checkout-form>
-          <div class="form-section">
-            <h3><span class="step-num">1</span> Your details</h3>
-            <div class="form-grid">
-              <div class="form-field"><label>First name <span class="req">*</span></label><input name="firstName" value="${esc(cust ? cust.firstName : '')}" required></div>
-              <div class="form-field"><label>Last name <span class="req">*</span></label><input name="lastName" value="${esc(cust ? cust.lastName : '')}" required></div>
-              <div class="form-field full"><label>Email (optional)</label><input type="email" name="email" value="${esc(cust ? cust.email : '')}"></div>
-              <div class="form-field full"><label>Phone <span class="req">*</span></label><input name="phone" value="${esc(cust ? cust.phone : '')}" required></div>
-            </div>
-          </div>
-          <div class="form-section">
-            <h3><span class="step-num">2</span> Delivery</h3>
-            <div class="form-grid">
-              <div class="form-field full"><label>Address <span class="req">*</span></label><input name="line1" required></div>
-              <div class="form-field"><label>City / Town <span class="req">*</span></label><input name="city" required></div>
-              <div class="form-field"><label>Country <span class="req">*</span></label><input name="country" required></div>
-              <div class="form-field full"><label>Delivery method</label>
-                ${shippingMethods.map((m, i) => `
-                  <label class="pay-option ${i === 0 ? 'selected' : ''}">
-                    <input type="radio" name="shippingMethod" value="${esc(m.name)}" ${i === 0 ? 'checked' : ''}>
-                    <span><span class="pay-label">${esc(m.name)}</span><br><span class="pay-note">${esc(m.deliveryDays)} · ${m.fee === 0 ? 'Free' : UI.money(m.fee)}</span></span>
-                  </label>`).join('')}
-              </div>
-            </div>
-          </div>
-          <div class="form-section">
-            <h3><span class="step-num">3</span> Payment — on delivery</h3>
-            <p class="pod-banner"><ion-icon name="wallet-outline"></ion-icon> Payment is on delivery — pay with M-Pesa or cash when your order arrives.</p>
-            <label class="pay-option selected"><input type="radio" name="paymentMethod" value="M-Pesa on delivery" checked><span><span class="pay-label">M-Pesa — pay on delivery</span><br><span class="pay-note">We send the M-Pesa payment request when your order arrives</span></span></label>
-            <label class="pay-option"><input type="radio" name="paymentMethod" value="Cash on delivery"><span><span class="pay-label">Cash on delivery</span><br><span class="pay-note">Pay cash to the rider or at store pickup</span></span></label>
-            <div class="form-field" style="margin-top:12px"><label>Order notes (optional)</label><textarea name="notes" rows="2"></textarea></div>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Place order — pay ${UI.money(total())} on delivery</button>
-          <button type="button" class="btn wa-btn btn-block" data-wa-checkout>Complete order via WhatsApp</button>
-        </form>
-      </div>
-      <aside class="summary-card order-summary">
-        <h3>Your Order</h3>
-        ${items.map(i => `
-          <div class="summary-item">
-            <img src="${UI.img(i.product.mainImage)}" alt="${esc(i.product.name)}">
-            <div><p class="si-name">${esc(i.product.name)}</p><p class="si-meta">Qty ${i.quantity} × ${UI.money(i.product.salePrice || i.product.price)}</p></div>
-          </div>`).join('')}
-        <div class="summary-row" style="margin-top:12px"><span>Subtotal</span><span>${UI.money(subtotal)}</span></div>
-        <div class="summary-row"><span>Shipping</span><span data-shipping-display></span></div>
-        <div class="summary-row"><span>Tax (${settings.taxRates.standard}%)</span><span>${UI.money(tax)}</span></div>
-        <div class="summary-row total"><span>Total</span><span data-checkout-total>${UI.money(total())}</span></div>
-        <p class="pod-note"><ion-icon name="wallet-outline"></ion-icon> Pay on delivery — M-Pesa or cash.</p>
-      </aside>
-    </div>`;
-
-    function total() { return Math.max(0, subtotal + shippingFee() + tax); }
-    function shippingFee() {
-      const method = $$('input[name="shippingMethod"]', wrap).find(r => r.checked);
-      if (!method) return shippingMethods[0] ? shippingMethods[0].fee : 0;
-      const m = shippingMethods.find(x => x.name === method.value);
-      return m ? m.fee : (shippingMethods[0] ? shippingMethods[0].fee : 0);
-    }
-    function currentShipping() {
-      const method = $$('input[name="shippingMethod"]', wrap).find(r => r.checked);
-      return method ? shippingMethods.find(x => x.name === method.value) : shippingMethods[0];
-    }
-    $$('input[name="shippingMethod"]', wrap).forEach(r => r.addEventListener('change', () => {
-      $$('.pay-option', wrap).forEach(o => o.classList.remove('selected'));
-      r.closest('.pay-option').classList.add('selected');
-      const m = shippingMethods.find(x => x.name === r.value);
-      const el = $('[data-shipping-display]', wrap);
-      if (el) el.textContent = m ? (m.fee === 0 ? 'Free' : UI.money(m.fee)) : '';
-      const t = $('[data-checkout-total]', wrap);
-      if (t) t.textContent = UI.money(total());
-    }));
-    $$('input[name="paymentMethod"]', wrap).forEach(r => r.addEventListener('change', () => {
-      $$('.pay-option', wrap).forEach(o => o.classList.remove('selected'));
-      r.closest('.pay-option').classList.add('selected');
-    }));
-    const shipInit = $$('input[name="shippingMethod"]', wrap)[0];
-    if (shipInit) {
-      const m = shippingMethods.find(x => x.name === shipInit.value);
-      const el = $('[data-shipping-display]', wrap);
-      if (el) el.textContent = m && m.fee === 0 ? 'Free' : (m ? UI.money(m.fee) : UI.money(0));
-    }
-
-    const readForm = () => {
-      const f = new FormData($('[data-checkout-form]', wrap));
-      const method = $('input[name="shippingMethod"]:checked', wrap).value;
-      const m = shippingMethods.find(x => x.name === method);
-      return {
-        f, method, m,
-        address: {
-          firstName: f.get('firstName'), lastName: f.get('lastName'), email: f.get('email'),
-          phone: f.get('phone'), line1: f.get('line1'), line2: f.get('line2'),
-          city: f.get('city'), postalCode: '', country: f.get('country')
-        },
-        addressText: [f.get('line1'), f.get('line2'), f.get('city'), f.get('country')].filter(Boolean).join(', ')
-      };
-    };
-    const submitOrder = (data) => {
-      const order = Store.placeOrder({
-        customer: cust,
-        cart: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
-        address: data.address,
-        shippingMethod: data.method,
-        paymentMethod: $('input[name="paymentMethod"]:checked', wrap).value,
-        couponCode: null,
-        notes: data.f.get('notes')
-      });
-      UI.clearCart();
-      UI.toast('Order placed successfully! Pay on delivery.');
-      setTimeout(() => { global.location.href = 'order-confirmation.html?order=' + encodeURIComponent(order.orderNumber); }, 400);
-      return order;
-    };
-
-    $('[data-checkout-form]', wrap).addEventListener('submit', (e) => {
-      e.preventDefault();
-      submitOrder(readForm());
-    });
-    $('[data-wa-checkout]', wrap).addEventListener('click', () => {
-      const data = readForm();
-      const m = data.m;
-      const link = waOrderLink(items, subtotal, {
-        shippingLabel: m ? m.name : '',
-        shippingFee: m ? (m.fee === 0 ? 'Free' : UI.money(m.fee)) : '',
-        address: data.addressText,
-        total: total()
-      });
-      global.open(link, '_blank', 'noopener');
-      UI.toast('Opening WhatsApp — send the message to confirm your order.', 'neutral');
-      submitOrder(data);
-    });
-  }
-
   const SHIPPING_OPTIONS_FALLBACK = [
     { id: 'rider-nairobi', label: 'Rider — Nairobi', fee: 300, icon: 'bicycle-outline', desc: 'Delivered to your door by rider' },
     { id: 'g4s-outside', label: 'G4S — outside Nairobi', fee: 600, icon: 'car-outline', desc: 'Countrywide via G4S courier' },
@@ -997,13 +849,13 @@
       return msg;
     }
 
-    function showConfirmation(phone) {
+    function showConfirmation(orderNumber, phone) {
       UI.clearCart();
       wrap.innerHTML = `
         <div class="empty-state">
           <ion-icon name="checkmark-circle-outline"></ion-icon>
           <p><strong>Thank you! Your order has been placed.</strong></p>
-          <p>We will contact you shortly on <b>${esc(phone)}</b> to confirm your order and arrange delivery.</p>
+          <p>${orderNumber ? `Order <b>${esc(orderNumber)}</b> has been received. ` : ''}We will contact you shortly on <b>${esc(phone)}</b> to confirm your order and arrange delivery.</p>
           <a href="/" class="btn btn-primary" style="margin-top:16px">Continue shopping</a>
         </div>`;
       UI.toast('Order placed successfully!', 'success');
@@ -1051,29 +903,15 @@
       const data = getFormData();
       if (!validateFields(data)) return;
 
-      /* Create the order first so we have a proper order number */
-      const order = Store.placeOrder({
-        customer: cust,
-        cart: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
-        address: data.address,
-        shippingMethod: data.method,
-        paymentMethod: 'whatsapp',
-        couponCode: null,
-        notes: data.f.get('notes')
-      });
-      UI.clearCart();
-
-      const msg = buildWhatsAppMessage(items, subtotal, {
-        ...data,
-        orderNumber: order.orderNumber
-      });
+      const orderNumber = genOrderNumber();
+      const msg = buildWhatsAppMessage(items, subtotal, data);
       const waNum = ((Store.settings().business || {}).contact || {}).whatsapp || '';
       const waUrl = 'https://wa.me/' + waNum.replace(/\D/g, '') + '?text=' + encodeURIComponent(msg);
       global.open(waUrl, '_blank', 'noopener');
 
-      notifyTelegram({ ...data, orderNumber: order.orderNumber });
+      notifyTelegram({ ...data, orderNumber });
       UI.toast('Order placed — send the WhatsApp message to confirm.', 'success');
-      setTimeout(() => { global.location.href = 'order-confirmation.html?order=' + encodeURIComponent(order.orderNumber); }, 400);
+      showConfirmation(orderNumber, data.phone);
     });
 
     /* place order via website — shows confirmation immediately */
@@ -1081,182 +919,12 @@
       const data = getFormData();
       if (!validateFields(data)) return;
 
-      const order = Store.placeOrder({
-        customer: cust,
-        cart: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
-        address: data.address,
-        shippingMethod: data.method,
-        paymentMethod: $('input[name="paymentMethod"]:checked', wrap).value,
-        couponCode: null,
-        notes: data.f.get('notes')
-      });
-      UI.clearCart();
-
+      const orderNumber = genOrderNumber();
       /* Fire-and-forget Telegram alert via the server-side proxy */
-      notifyTelegram({ ...data, orderNumber: order.orderNumber });
+      notifyTelegram({ ...data, orderNumber });
       UI.toast('Order placed successfully!', 'success');
-      setTimeout(() => { global.location.href = 'order-confirmation.html?order=' + encodeURIComponent(order.orderNumber); }, 400);
+      showConfirmation(orderNumber, data.phone);
     });
-  }
-
-  /* ---------- order confirmation ---------- */
-
-  function initConfirmation() {
-    const root = $('#confirmation-root');
-    if (!root) return;
-    const orderNo = qs('order');
-    const order = orderNo ? Store.find('orders', o => o.orderNumber === orderNo) : null;
-    if (!order) {
-      root.innerHTML = `<div class="empty-state"><ion-icon name="help-circle-outline"></ion-icon><p>We could not find that order.</p><a href="/" class="btn btn-primary">Back to shop</a></div>`;
-      return;
-    }
-    root.innerHTML = `
-      <div class="confirmation">
-        <span class="conf-icon"><ion-icon name="checkmark-outline"></ion-icon></span>
-        <h1>Thank you for your order</h1>
-        <p>Your order <span class="order-no">${esc(order.orderNumber)}</span> has been received and is now being prepared. ${order.customerEmail
-          ? `A confirmation email is on its way to <b>${esc(order.customerEmail)}</b>.`
-          : 'Our team will contact you by phone shortly to confirm your delivery.'}</p>
-        <div class="summary-card" style="text-align:left;margin:28px 0">
-          <div class="summary-row"><span>Order number</span><span>${esc(order.orderNumber)}</span></div>
-          <div class="summary-row"><span>Date</span><span>${new Date(order.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span></div>
-          <div class="summary-row"><span>Items</span><span>${order.items.reduce((s, i) => s + i.quantity, 0)}</span></div>
-          <div class="summary-row"><span>Shipping method</span><span>${esc(order.shippingMethod)}</span></div>
-          <div class="summary-row"><span>Payment</span><span>${esc(order.paymentStatus === 'paid' ? 'Paid' : (order.paymentMethod || 'On delivery'))}</span></div>
-          <div class="summary-row total"><span>Total</span><span>${UI.money(order.total)}</span></div>
-        </div>
-        <div class="conf-actions">
-          <a href="order-history.html" class="btn btn-primary">View order history</a>
-          <a href="/" class="btn btn-outline">Continue shopping</a>
-        </div>
-      </div>`;
-  }
-
-  /* ---------- account ---------- */
-
-  function initAccount() {
-    const cust = Store.currentCustomer();
-    const root = $('#account-root');
-    if (!root) return;
-    if (!cust) {
-      root.innerHTML = `
-      <div class="auth-card">
-        <h1>Welcome back</h1>
-        <p class="auth-sub">Sign in with your email to view orders and addresses.</p>
-        <div class="demo-hint"><b>Demo store:</b> enter any email address to sign in. No password is stored in the browser.</div>
-        <form data-login-form>
-          <div class="form-field" style="margin-bottom:14px"><label>Email address</label><input type="email" name="email" placeholder="you@example.com" required></div>
-          <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-        </form>
-        <p style="text-align:center;margin-top:16px;font-size:var(--fs-8)"><a href="/" style="color:var(--gold)">Continue as guest →</a></p>
-      </div>`;
-      $('[data-login-form]', root).addEventListener('submit', (e) => {
-        e.preventDefault();
-        const res = Store.customerLogin(new FormData(e.target).get('email'));
-        if (!res.ok) { UI.toast(res.error, 'error'); return; }
-        UI.toast('Signed in successfully.');
-        setTimeout(() => global.location.reload(), 400);
-      });
-      return;
-    }
-    const orders = Store.list('orders').filter(o => o.customerId === cust.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    const totalSpent = orders.reduce((s, o) => s + o.total, 0);
-    root.innerHTML = `
-    <div class="account-layout">
-      <nav class="account-nav">
-        <a href="account.html" class="active"><ion-icon name="person-outline"></ion-icon> My account</a>
-        <a href="order-history.html"><ion-icon name="list-outline"></ion-icon> Order history</a>
-        <a href="cart.html"><ion-icon name="bag-handle-outline"></ion-icon> Shopping bag</a>
-        <a href="#" data-logout><ion-icon name="log-out-outline"></ion-icon> Sign out</a>
-      </nav>
-      <div>
-        <h1 style="font-family:Georgia,serif;color:var(--ink);margin-bottom:6px">Hello, ${esc(cust.firstName || cust.email)}</h1>
-        <p style="color:var(--text-soft);font-size:var(--fs-7);margin-bottom:24px">${esc(cust.email)}</p>
-        <div class="value-strip" style="margin-bottom:24px"><div class="container" style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px">
-          <div class="value-item"><ion-icon name="cube-outline"></ion-icon><span><b style="display:block;font-size:var(--fs-5)">${orders.length}</b> Orders</span></div>
-          <div class="value-item"><ion-icon name="cash-outline"></ion-icon><span><b style="display:block;font-size:var(--fs-5)">${UI.money(totalSpent)}</b> Total spent</span></div>
-        </div></div>
-        <h2 style="font-family:Georgia,serif;color:var(--ink);margin-bottom:14px;font-size:1.3rem">Recent orders</h2>
-        ${orders.length ? `
-        <div style="border:1px solid var(--line)">
-          ${orders.slice(0, 4).map(o => `
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap">
-              <div><p style="font-weight:600;color:var(--ink)">${esc(o.orderNumber)}</p>
-              <p style="font-size:var(--fs-9);color:var(--text-soft)">${new Date(o.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} · ${o.items.length} item(s)</p></div>
-              <div style="text-align:right"><span class="status-badge status-${esc(o.status)}">${esc(o.status.replace(/_/g, ' '))}</span>
-              <p style="font-weight:600;color:var(--ink);margin-top:6px">${UI.money(o.total)}</p></div>
-              <a href="order-history.html?order=${encodeURIComponent(o.orderNumber)}" class="btn btn-outline" style="padding:8px 16px">View</a>
-            </div>`).join('')}
-        </div>
-        <a href="order-history.html" class="btn btn-outline" style="margin-top:16px">View all orders</a>`
-        : `<div class="empty-state" style="padding:30px;border:1px solid var(--line)"><p>No orders yet.</p><a href="/" class="btn btn-primary" style="margin-top:12px">Shop now</a></div>`}
-      </div>
-    </div>`;
-    $('[data-logout]', root).addEventListener('click', (e) => {
-      e.preventDefault();
-      Store.logout();
-      global.location.reload();
-    });
-  }
-
-  function initOrderHistory() {
-    const cust = Store.currentCustomer();
-    const root = $('#orders-root') || $('#order-history-root');
-    if (!root) return;
-    if (!cust) {
-      root.innerHTML = `<div class="empty-state"><ion-icon name="lock-closed-outline"></ion-icon><p>Please sign in to view your order history.</p><a href="account.html" class="btn btn-primary">Sign in</a></div>`;
-      return;
-    }
-    const viewOrder = qs('order');
-    if (viewOrder) {
-      const order = Store.find('orders', o => o.orderNumber === viewOrder && o.customerId === cust.id);
-      if (!order) { root.innerHTML = `<div class="empty-state"><p>Order not found.</p></div>`; return; }
-      root.innerHTML = `
-        <div style="max-width:760px;margin:0 auto">
-          <a href="order-history.html" class="btn btn-outline" style="margin-bottom:20px"><ion-icon name="arrow-back-outline"></ion-icon> Back to orders</a>
-          <div class="summary-card" style="margin-bottom:20px">
-            <h3>Order ${esc(order.orderNumber)}</h3>
-            <div class="summary-row"><span>Placed</span><span>${new Date(order.createdAt).toLocaleString('en-US')}</span></div>
-            <div class="summary-row"><span>Status</span><span class="status-badge status-${esc(order.status)}">${esc(order.status.replace(/_/g, ' '))}</span></div>
-            <div class="summary-row"><span>Payment</span><span class="status-badge status-${esc(order.paymentStatus)}">${esc(order.paymentStatus.replace(/_/g, ' '))}</span></div>
-            <div class="summary-row"><span>Shipping</span><span>${esc(order.shippingMethod)}</span></div>
-          </div>
-          <div class="summary-card" style="margin-bottom:20px">
-            <h3>Items</h3>
-            ${order.items.map(i => `
-              <div class="summary-item">
-                <img src="${UI.img(i.image)}" alt="${esc(i.name)}">
-                <div style="flex:1"><p class="si-name">${esc(i.name)}</p><p class="si-meta">Qty ${i.quantity} × ${UI.money(i.price)}</p></div>
-                <p style="font-weight:600;color:var(--ink)">${UI.money(i.total)}</p>
-              </div>`).join('')}
-          </div>
-          <div class="summary-card">
-            <h3>Summary</h3>
-            <div class="summary-row"><span>Subtotal</span><span>${UI.money(order.subtotal)}</span></div>
-            ${order.discount ? `<div class="summary-row"><span>Discount</span><span>− ${UI.money(order.discount)}</span></div>` : ''}
-            <div class="summary-row"><span>Shipping</span><span>${order.shipping === 0 ? 'Free' : UI.money(order.shipping)}</span></div>
-            <div class="summary-row"><span>Tax</span><span>${UI.money(order.tax)}</span></div>
-            <div class="summary-row total"><span>Total</span><span>${UI.money(order.total)}</span></div>
-          </div>
-        </div>`;
-      return;
-    }
-    const orders = Store.list('orders').filter(o => o.customerId === cust.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    root.innerHTML = orders.length ? `
-      <div style="border:1px solid var(--line)">
-        <table class="cart-table">
-          <thead><tr><th>Order</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th></th></tr></thead>
-          <tbody>${orders.map(o => `
-            <tr>
-              <td><b style="color:var(--ink)">${esc(o.orderNumber)}</b></td>
-              <td>${new Date(o.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
-              <td>${o.items.length}</td>
-              <td style="font-weight:600;color:var(--ink)">${UI.money(o.total)}</td>
-              <td><span class="status-badge status-${esc(o.status)}">${esc(o.status.replace(/_/g, ' '))}</span></td>
-              <td><a href="order-history.html?order=${encodeURIComponent(o.orderNumber)}" class="btn btn-outline" style="padding:8px 14px">View</a></td>
-            </tr>`).join('')}</tbody>
-        </table>
-      </div>`       : `<div class="empty-state"><p>You have not placed any orders yet.</p><a href="/" class="btn btn-primary">Start shopping</a></div>`;
   }
 
   /* ---------- about ---------- */
@@ -1367,9 +1035,6 @@
         case 'wishlist': initWishlist(); break;
         case 'cart': initCart(); break;
         case 'checkout': initWhatsAppCheckout(); break;
-        case 'confirmation': initConfirmation(); break;
-        case 'account': initAccount(); break;
-        case 'order-history': initOrderHistory(); break;
         case 'contact': initContact(); break;
         case 'about': initAbout(); break;
         default: break;
