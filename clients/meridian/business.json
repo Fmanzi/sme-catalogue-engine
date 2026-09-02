@@ -2,7 +2,7 @@
   "$schema": "../schema/business.schema.json",
   "id": "meridian",
   "name": "MERIDIAN",
-  "description": "Fine timepieces selected for collectors who value precision, heritage and quiet luxury.",
+  "description": "LIVE-LOOP-TEST-92837 temporary description for publish verification.",
   "logo": "assets/images/logo/logo.svg",
   "favicon": "assets/images/logo/favicon.svg",
   "contact": {
@@ -149,10 +149,10 @@
       "kicker": "Just In",
       "title": "New Arrivals"
     },
-"featured": {
-  "kicker": "Curated",
-  "title": "Featured"
-}
+    "featured": {
+      "kicker": "Curated",
+      "title": "Featured"
+    }
   },
   "shopFilters": {
     "attributes": [
