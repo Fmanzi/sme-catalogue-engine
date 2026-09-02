@@ -50805,6 +50805,28 @@
         ]
       },
       "createdAt": "2026-08-27T16:32:35.887Z"
+    },
+    {
+      "id": "id_hc31g6np58xw",
+      "slug": "valentines-gifts",
+      "name": "Valentines Gifts",
+      "description": "Perfect gifts for your valentine",
+      "image": "",
+      "status": "active",
+      "featured": false,
+      "order": 4,
+      "rules": {
+        "categoryId": "cat-sports",
+        "brandId": "",
+        "gender": "",
+        "priceMin": "",
+        "priceMax": ""
+      },
+      "manual": {
+        "include": [],
+        "exclude": []
+      },
+      "createdAt": "2026-09-02T12:13:45.476Z"
     }
   ]
 }
