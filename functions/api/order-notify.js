@@ -53,14 +53,23 @@ function json(data, status = 200) {
 
 function buildMessage(order) {
   const currency = order.currency || 'KES';
+
+  /* Generate a fallback order number if none provided */
+  if (!order.orderNumber) {
+    const d = new Date();
+    const ds = String(d.getFullYear()).slice(2) + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+    const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+    order.orderNumber = 'ORD-' + ds + '-' + rand;
+  }
   const lines = [
     `🛍️ NEW ORDER — ${order.orderNumber || order.id || 'unknown'}`,
     `Store: ${order.clientId || '—'}`,
     `Name: ${order.customerName || order.name || '—'}`,
     `Phone: ${order.phone || '—'}`,
     `Delivery: ${order.deliveryAddress || order.shippingAddress || order.address || '—'}`,
-    '--- items ---'
   ];
+  if (order.shipping) lines.push(`Shipping: ${order.shipping}`);
+  lines.push('--- items ---');
   (order.items || []).forEach(it => {
     const price = it.price != null ? it.price : (it.product && (it.product.salePrice || it.product.price));
     const name = it.name || (it.product && it.product.name) || 'item';

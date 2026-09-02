@@ -1000,9 +1000,16 @@
     /* Post the order to the server so the shop owner gets a Telegram alert.
        The bot token lives server-side (Pages Function / API); it never ships
        in this bundle. Fire-and-forget — never block checkout on it. */
-    function notifyTelegram({ name, phone, address, shipOpt, shipFee }) {
+    function genOrderNumber() {
+      const d = new Date();
+      const ds = String(d.getFullYear()).slice(2) + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+      const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+      return 'ORD-' + ds + '-' + rand;
+    }
+
+    function notifyTelegram({ name, phone, address, shipOpt, shipFee, orderNumber }) {
       const payload = {
-        orderNumber: null,
+        orderNumber: orderNumber || genOrderNumber(),
         clientId: (Store.settings() || {}).id || 'meridian',
         customerName: name,
         phone: phone,
@@ -1032,15 +1039,29 @@
       const data = getFormData();
       if (!validateFields(data)) return;
 
-      const msg = buildWhatsAppMessage(items, subtotal, data);
+      /* Create the order first so we have a proper order number */
+      const order = Store.placeOrder({
+        customer: cust,
+        cart: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
+        address: data.address,
+        shippingMethod: data.method,
+        paymentMethod: 'whatsapp',
+        couponCode: null,
+        notes: data.f.get('notes')
+      });
+      UI.clearCart();
+
+      const msg = buildWhatsAppMessage(items, subtotal, {
+        ...data,
+        orderNumber: order.orderNumber
+      });
       const waNum = ((Store.settings().business || {}).contact || {}).whatsapp || '';
       const waUrl = 'https://wa.me/' + waNum.replace(/\D/g, '') + '?text=' + encodeURIComponent(msg);
       global.open(waUrl, '_blank', 'noopener');
 
-      /* Fire-and-forget Telegram alert via the server-side proxy */
-      notifyTelegram(data);
-      UI.clearCart();
-      showConfirmation(data.phone);
+      notifyTelegram({ ...data, orderNumber: order.orderNumber });
+      UI.toast('Order placed — send the WhatsApp message to confirm.', 'success');
+      setTimeout(() => { global.location.href = 'order-confirmation.html?order=' + encodeURIComponent(order.orderNumber); }, 400);
     });
 
     /* place order via website — shows confirmation immediately */
@@ -1048,10 +1069,21 @@
       const data = getFormData();
       if (!validateFields(data)) return;
 
-      /* Fire-and-forget Telegram alert via the server-side proxy */
-      notifyTelegram(data);
+      const order = Store.placeOrder({
+        customer: cust,
+        cart: items.map(i => ({ productId: i.productId, quantity: i.quantity })),
+        address: data.address,
+        shippingMethod: data.method,
+        paymentMethod: $('input[name="paymentMethod"]:checked', wrap).value,
+        couponCode: null,
+        notes: data.f.get('notes')
+      });
+      UI.clearCart();
 
-      showConfirmation(data.phone);
+      /* Fire-and-forget Telegram alert via the server-side proxy */
+      notifyTelegram({ ...data, orderNumber: order.orderNumber });
+      UI.toast('Order placed successfully!', 'success');
+      setTimeout(() => { global.location.href = 'order-confirmation.html?order=' + encodeURIComponent(order.orderNumber); }, 400);
     });
   }
 

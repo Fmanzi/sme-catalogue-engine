@@ -1,12 +1,37 @@
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 const { getAdminUsers } = require('./data');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'anon-dev-secret-change-in-production';
 const TOKEN_EXPIRY = '7d';
+const BCRYPT_ROUNDS = 10;
 
 function hashPassword(password) {
-  return crypto.createHash('sha256').update(password).digest('hex').slice(0, 8);
+  return bcrypt.hashSync(password, BCRYPT_ROUNDS);
+}
+
+function verifyPassword(password, storedHash) {
+  if (storedHash.startsWith('$2a$') || storedHash.startsWith('$2b$') || storedHash.startsWith('$2y$')) {
+    return bcrypt.compareSync(password, storedHash);
+  }
+  /* Legacy SHA-256 (first 8 hex chars) — auto-migrate on next login */
+  const sha256 = require('crypto').createHash('sha256').update(password).digest('hex').slice(0, 8);
+  return sha256 === storedHash;
+}
+
+function migratePasswordIfNeeded(user, clientId, newPassword) {
+  if (user.passwordHash && !user.passwordHash.startsWith('$2')) {
+    const newHash = hashPassword(newPassword);
+    const fs = require('fs');
+    const path = require('path');
+    const filePath = path.join(__dirname, '..', 'clients', clientId, 'admins.json');
+    const users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const idx = users.findIndex(u => u.id === user.id);
+    if (idx !== -1) {
+      users[idx].passwordHash = newHash;
+      fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
+    }
+  }
 }
 
 function generateToken(user) {
@@ -47,8 +72,9 @@ function login(clientId, email, password) {
   const users = getAdminUsers(clientId);
   const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
   if (!user) return { ok: false, error: 'No account found for that email.' };
-  if (hashPassword(password) !== user.passwordHash) return { ok: false, error: 'Incorrect password.' };
+  if (!verifyPassword(password, user.passwordHash)) return { ok: false, error: 'Incorrect password.' };
   if (user.status !== 'active') return { ok: false, error: 'Account disabled.' };
+  migratePasswordIfNeeded(user, clientId, password);
   const token = generateToken({ ...user, clientId });
   const { passwordHash, ...publicUser } = user;
   return { ok: true, token, user: { ...publicUser, clientId } };
@@ -63,4 +89,4 @@ function storeScope(req, res, next) {
   next();
 }
 
-module.exports = { JWT_SECRET, hashPassword, generateToken, verifyToken, authMiddleware, requireRole, login, storeScope };
+module.exports = { JWT_SECRET, hashPassword, verifyPassword, generateToken, verifyToken, authMiddleware, requireRole, login, storeScope };
